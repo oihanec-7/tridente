@@ -1,14 +1,19 @@
 package domain;
 
-public class Contenido {
-	private String titulo;
-	private String descripcion;
-	private int duracion; // en minutos
+import java.util.ArrayList;
 
-	public Contenido(String titulo, String descripcion, int duracion) {
+public abstract class Contenido {
+	private String titulo;
+	private ArrayList<String> genero;
+	private ArrayList<Double> puntuaciones; 
+
+	
+
+	public Contenido(String titulo, ArrayList<String> genero, ArrayList<Double> puntuaciones) {
+		super();
 		this.titulo = titulo;
-		this.descripcion = descripcion;
-		this.duracion = duracion;
+		this.genero = genero;
+		this.puntuaciones = puntuaciones;
 	}
 
 	public String getTitulo() {
@@ -19,20 +24,35 @@ public class Contenido {
 		this.titulo = titulo;
 	}
 
-	public String getDescripcion() {
-		return descripcion;
+
+	
+	public ArrayList<String> getGenero() {
+		return genero;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setGenero(ArrayList<String> genero) {
+		this.genero = genero;
 	}
 
-	public int getDuracion() {
-		return duracion;
+	public ArrayList<Double> getPuntuaciones() {
+		return puntuaciones;
 	}
 
-	public void setDuracion(int duracion) {
-		this.duracion = duracion;
+	public void setPuntuaciones(ArrayList<Double> puntuaciones) {
+		this.puntuaciones = puntuaciones;
+	}
+
+	public double getPuntuacionMedia() {
+		double suma = 0.0;
+		for (Double puntuacion : puntuaciones) {
+			suma += puntuacion;	
+		}
+		return suma / puntuaciones.size(); 
+	}
+	
+	public void agregarPuntuacion(Double puntuacion) {
+		puntuaciones.add(puntuacion);
+		
 	}
 
 }
