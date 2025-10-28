@@ -1,4 +1,4 @@
-package presentacion;
+package gui;
 
 public class VentanaLogin {
 
