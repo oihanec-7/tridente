@@ -110,7 +110,7 @@ public class VentanaPrincipal extends JFrame{
 		panelPrincipal.add(panelMenu, BorderLayout.WEST);
 		
 		
-		
+		//Paneles de scrol (recomendados y mejor valorados)
 		
 		
 		
