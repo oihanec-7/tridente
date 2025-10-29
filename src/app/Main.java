@@ -20,11 +20,11 @@ public class Main {
 	        usuariosPrueba.add(new Usuario("Ana", "ana456", "abcd", "García", "ana@email.com"));
 	        
 	        // Crear ventana principal:
-	        VentanaPrincipal vp = new VentanaPrincipal();
-         
+	        VentanaPrincipal vp = new VentanaPrincipal(usuariosPrueba.get(0));
+	        vp.setVisible(true);
 
             VentanaLogin login = new VentanaLogin(usuariosPrueba, vp);
-            login.setVisible(true);
+//            login.setVisible(true);
 	    });
 	
 
