@@ -6,6 +6,7 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.HeadlessException;
+import java.awt.Image;
 import java.util.List;
 
 import javax.swing.BoxLayout;
@@ -27,7 +28,7 @@ public class VentanaPrincipal extends JFrame{
 	private JButton botonMenu;
 	private JTextField buscador;
 	private JPanel panelCarruseles;
-	private JButton agrgarResena;
+	private JButton agregarResena;
 	private Usuario usuario;
 	
 	
@@ -52,20 +53,25 @@ public class VentanaPrincipal extends JFrame{
 		
 		//Panel superior (barra buscar + boton menu)
 		JPanel panelSuperior = new JPanel();
-		panelSuperior.setLayout(new BorderLayout());
+		panelSuperior.setLayout(new BorderLayout(10,10));
 		
 		botonMenu = new JButton("☰");
 		botonMenu.setSize(new Dimension(50, 30));
 		panelSuperior.add(botonMenu, BorderLayout.WEST);
 		botonMenu.addActionListener(e -> desplegarMenu());
 		
-			// no sale la lupa : lupa a la derecha es un boton para buscar
+			// la lupa esta fea	
 		buscador = new JTextField(30);
-		JPanel panelBuscador = new JPanel(new BorderLayout(8, 20));
-		ImageIcon iconoLupa = new ImageIcon("/data/images/lupa.png");
-		JLabel icono = new JLabel(iconoLupa);
+		
+		JLabel imagen = new JLabel();
+		JPanel panelBuscador = new JPanel(new BorderLayout(5, 5));
+		ImageIcon imagenLupa = new ImageIcon("images/lupa.png");
+		Image escalarImagen = imagenLupa.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+		imagen.setIcon(new ImageIcon(escalarImagen));
+		
+		
 		panelBuscador.add(buscador, BorderLayout.CENTER);
-		panelBuscador.add(icono, BorderLayout.WEST);
+		panelBuscador.add(imagen, BorderLayout.EAST);
 		panelSuperior.add(panelBuscador, BorderLayout.CENTER);
 		
 		panelPrincipal.add(panelSuperior, BorderLayout.NORTH);
@@ -110,7 +116,21 @@ public class VentanaPrincipal extends JFrame{
 		panelPrincipal.add(panelMenu, BorderLayout.WEST);
 		
 		
+		
 		//Paneles de scrol (recomendados y mejor valorados)
+		panelCarruseles = new JPanel(new BoxLayout(panelCarruseles, BoxLayout.Y_AXIS));
+		
+			//Carrusel recomendadas
+		JPanel carruselRecomendados = new JPanel();
+		
+		
+		
+			//Carrusel mejor valoradas
+		JPanel carruselMejorValoradas = new JPanel();
+		
+		
+		
+		
 		
 		
 		
