@@ -5,7 +5,10 @@ import java.util.List;
 
 import javax.swing.SwingUtilities;
 
+import domain.Pelicula;
 import domain.Usuario;
+import gui.VentanaCatalogo;
+import gui.VentanaContenido;
 import gui.VentanaLogin;
 import gui.VentanaPrincipal;
 
@@ -13,6 +16,17 @@ public class Main {
 
 	public static void main(String[] args) {
 	
+		ArrayList<String> generos = new ArrayList<String>();
+		generos.add("Infantil");
+		generos.add("Humor");
+		ArrayList<Double> puntuaciones = new ArrayList<Double>();
+		puntuaciones.add(4.5);
+		puntuaciones.add(3.5);
+		puntuaciones.add((double) 5);
+		puntuaciones.add(4.3);
+		
+		Pelicula peliPrueba = new Pelicula("Cars", generos, puntuaciones, 150);
+		
 	    SwingUtilities.invokeLater(() -> {
 	        // Lista de usuarios de prueba
 	        List<Usuario> usuariosPrueba = new ArrayList<>();
@@ -20,8 +34,14 @@ public class Main {
 	        usuariosPrueba.add(new Usuario("Ana", "ana456", "abcd", "García", "ana@email.com"));
 	      
 
-            VentanaLogin login = new VentanaLogin(usuariosPrueba);
-            login.setVisible(true);
+//            VentanaLogin login = new VentanaLogin(usuariosPrueba);
+//            login.setVisible(true);
+	        
+	        
+	        VentanaContenido vc = new VentanaContenido(peliPrueba);
+	        vc.setVisible(true);
+	        
+	        
 	    });
 	
 

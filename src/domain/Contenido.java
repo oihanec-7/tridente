@@ -6,14 +6,24 @@ public abstract class Contenido {
 	private String titulo;
 	private ArrayList<String> genero;
 	private ArrayList<Double> puntuaciones; 
+	private ArrayList<String> cast;
 
 	
 
-	public Contenido(String titulo, ArrayList<String> genero, ArrayList<Double> puntuaciones) {
+	public Contenido(String titulo, ArrayList<String> genero, ArrayList<Double> puntuaciones, ArrayList<String> cast) {
 		super();
 		this.titulo = titulo;
 		this.genero = genero;
 		this.puntuaciones = puntuaciones;
+		this.cast = cast;
+	}
+
+	public ArrayList<String> getCast() {
+		return cast;
+	}
+
+	public void setCast(ArrayList<String> cast) {
+		this.cast = cast;
 	}
 
 	public String getTitulo() {

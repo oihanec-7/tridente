@@ -5,18 +5,22 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.HeadlessException;
 import java.awt.Image;
 import java.util.List;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
+import domain.Pelicula;
 import domain.Usuario;
 
 public class VentanaPrincipal extends JFrame{
@@ -52,13 +56,14 @@ public class VentanaPrincipal extends JFrame{
 	private void inicializarComponentes() {		
 		
 		//Panel superior (barra buscar + boton menu)
-		JPanel panelSuperior = new JPanel();
-		panelSuperior.setLayout(new BorderLayout(10,10));
+		JPanel panelSuperior = new JPanel(new BorderLayout(10,10));
 		
 		botonMenu = new JButton("☰");
 		botonMenu.setSize(new Dimension(50, 30));
 		panelSuperior.add(botonMenu, BorderLayout.WEST);
-		botonMenu.addActionListener(e -> desplegarMenu());
+		botonMenu.addActionListener(e -> {
+			panelMenu.setVisible(!panelMenu.isVisible()); 
+		});
 		
 			// la lupa esta fea	
 		buscador = new JTextField(30);
@@ -98,16 +103,23 @@ public class VentanaPrincipal extends JFrame{
 		    //Asignacion de Action Listeners
 		    switch (etiqueta) {
 		    	case "Inicio":
-		    		boton.addActionListener(e -> abrirVentanaInicio());
+		    		boton.addActionListener(e -> {
+		    			this.setVisible(true);
+		    			this.panelMenu.setVisible(false);
+		    		});
 		    		break;
 		    	case "Mi Lista":
-		    		boton.addActionListener(e -> abrirVentanaMiLista());
+		    		boton.addActionListener(e -> {});
 		    		break;
 		    	case "Valoradas":
-		    		boton.addActionListener(e -> abrirVentanaValoradas());
+		    		boton.addActionListener(e -> {});
 		    		break;
 		    	case "Mi Usuario":
-		    		boton.addActionListener(e -> abrirVentanaMiUsuario());
+		    		boton.addActionListener(e -> {
+		    			VentanaMiUsuario miUsuario = new VentanaMiUsuario(usuario);
+		    		    miUsuario.setVisible(true);
+		    		}
+		    				);
 		    		break;
 		    }
 		    panelMenu.add(boton);
@@ -118,16 +130,21 @@ public class VentanaPrincipal extends JFrame{
 		
 		
 		//Paneles de scrol (recomendados y mejor valorados)
-		panelCarruseles = new JPanel(new BoxLayout(panelCarruseles, BoxLayout.Y_AXIS));
+		panelCarruseles = new JPanel();
+		panelCarruseles.setLayout(new BoxLayout(panelCarruseles, BoxLayout.Y_AXIS));
+		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 70)));
 		
-			//Carrusel recomendadas
-		JPanel carruselRecomendados = new JPanel();
+		panelCarruseles.add(crearCarrusel("Recomendadas para ti")); 
+		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 20)));
+		panelCarruseles.add(crearCarrusel("Mejor valoradas")); 
+
+		JScrollPane scrollPanelCarruseles = new JScrollPane(
+                panelCarruseles,
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER
+        );
 		
-		
-		
-			//Carrusel mejor valoradas
-		JPanel carruselMejorValoradas = new JPanel();
-		
+		panelPrincipal.add(scrollPanelCarruseles, BorderLayout.CENTER);
 		
 		
 		
@@ -138,46 +155,61 @@ public class VentanaPrincipal extends JFrame{
 		this.add(panelPrincipal);
 	}
 
+	private JPanel crearCarrusel(String titulo) {
+		JPanel panelCarruselCompleto = new JPanel();
+        panelCarruselCompleto.setLayout(new BoxLayout(panelCarruselCompleto, BoxLayout.Y_AXIS));
+		
+		JLabel labelRecomendadas = new JLabel(titulo);
+		labelRecomendadas.setAlignmentX(Component.LEFT_ALIGNMENT);
+		labelRecomendadas.setFont(new Font("Arial", Font.BOLD, 12));
+		panelCarruselCompleto.add(labelRecomendadas);
+		panelCarruselCompleto.add(Box.createRigidArea(new Dimension(0, 5))); 
 
-	private void abrirVentanaMiUsuario() {
-		VentanaMiUsuario miUsuario = new VentanaMiUsuario(usuario);
-	    miUsuario.setVisible(true);
+	
+		JPanel carrusel = new JPanel();
+		carrusel.setLayout(new BoxLayout(carrusel, BoxLayout.X_AXIS));
+		for (int i = 0; i < 20; i++) {
+		    JButton boton = new JButton("Peli " + (i + 1));
+		    boton.setPreferredSize(new Dimension(120, 160));
+		    boton.setMaximumSize(new Dimension(120, 160));
+		    boton.setMinimumSize(new Dimension(120, 160));
+		    boton.addActionListener(e -> mostrarInformacion());
+		    carrusel.add(boton);
+		    carrusel.add(Box.createRigidArea(new Dimension(10, 0)));
+		}
+		
+		carrusel.setPreferredSize(new Dimension(1300, 160));
+		carrusel.setMaximumSize(new Dimension(1300, 160));
+		
+		
+		JScrollPane scrollCarrusel = new JScrollPane(carrusel,
+		        JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+		        JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scrollCarrusel.setPreferredSize(new Dimension(600, 160));
+		scrollCarrusel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 160));
+		scrollCarrusel.setBorder(null);
+        scrollCarrusel.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        panelCarruselCompleto.add(scrollCarrusel);
+		return panelCarruselCompleto;
 	}
 
 
 
 
 
-	private Object abrirVentanaValoradas() {
-		// TODO Auto-generated method stub
-		return null;
+	private void mostrarInformacion() {
+	    VentanaContenido ventanaPelicula = new VentanaContenido(new Pelicula("titulo", null, null, 120));
+	    ventanaPelicula.setVisible(true);
+	    
 	}
 
 
 
 
 
-	private Object abrirVentanaMiLista() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
-
-
-
-	private void abrirVentanaInicio() {
-		this.setVisible(true);
-		this.panelMenu.setVisible(false);
-	}
-
-
-
-
-
-	private void desplegarMenu() {
-		panelMenu.setVisible(!panelMenu.isVisible()); 
-	}
 	
 	
 	
