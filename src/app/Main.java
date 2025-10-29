@@ -18,13 +18,10 @@ public class Main {
 	        List<Usuario> usuariosPrueba = new ArrayList<>();
 	        usuariosPrueba.add(new Usuario("Juan", "juan123", "1234", "Pérez", "juan@email.com"));
 	        usuariosPrueba.add(new Usuario("Ana", "ana456", "abcd", "García", "ana@email.com"));
-	        
-	        // Crear ventana principal:
-	        VentanaPrincipal vp = new VentanaPrincipal(usuariosPrueba.get(0));
-	        vp.setVisible(true);
+	      
 
-            VentanaLogin login = new VentanaLogin(usuariosPrueba, vp);
-//            login.setVisible(true);
+            VentanaLogin login = new VentanaLogin(usuariosPrueba);
+            login.setVisible(true);
 	    });
 	
 

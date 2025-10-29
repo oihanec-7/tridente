@@ -37,12 +37,10 @@ public class VentanaLogin extends JFrame{
 	private JPasswordField passwordTxt;
 	private JButton singIn;
 	private List<Usuario> usuarios;
-	private VentanaPrincipal ventanaPrincipal;
 	
 	
-	public VentanaLogin(List<Usuario> usuarios, VentanaPrincipal vp) {
+	public VentanaLogin(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
-		this.ventanaPrincipal = vp;
 		
 		//Configuración de la ventana
 		this.setTitle("Tridente - Login");
@@ -207,7 +205,8 @@ public class VentanaLogin extends JFrame{
 		for(Usuario u: usuarios) {
 			if(textoUsuario.equals(u.getNombre_usuario()) && textoPassword.equals(u.getContraseña())) {
 				this.setVisible(false);
-				ventanaPrincipal.setVisible(true);
+				VentanaPrincipal vp = new VentanaPrincipal(u);
+				vp.setVisible(true);
 				return;
 			}
 		}
