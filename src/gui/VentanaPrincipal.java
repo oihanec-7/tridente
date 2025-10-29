@@ -199,7 +199,7 @@ public class VentanaPrincipal extends JFrame{
 
 
 	private void mostrarInformacion() {
-	    VentanaContenido ventanaPelicula = new VentanaContenido(new Pelicula("titulo", null, null, 120));
+	    VentanaContenido ventanaPelicula = new VentanaContenido(new Pelicula("titulo", null, null, null, 120));
 	    ventanaPelicula.setVisible(true);
 	    
 	}

@@ -24,8 +24,11 @@ public class Main {
 		puntuaciones.add(3.5);
 		puntuaciones.add((double) 5);
 		puntuaciones.add(4.3);
+		ArrayList<String> actores = new ArrayList<String>();
+		actores.add("Drew Starkey");
+		actores.add("Jacob Elordi");
 		
-		Pelicula peliPrueba = new Pelicula("Cars", generos, puntuaciones, 150);
+		Pelicula peliPrueba = new Pelicula("Cars", generos, puntuaciones, actores, 150);
 		
 	    SwingUtilities.invokeLater(() -> {
 	        // Lista de usuarios de prueba

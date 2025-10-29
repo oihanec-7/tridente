@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 import domain.Contenido;
 import domain.Usuario;
@@ -41,6 +42,7 @@ public class VentanaContenido extends JFrame{
         labelPuntuacion.setFont(new Font("Arial", Font.BOLD, 14));
         panelIzquierda.add(labelPuntuacion, BorderLayout.CENTER);
         
+        panelIzquierda.setBorder(new EmptyBorder(20, 20, 20, 20)); 
         add(panelIzquierda, BorderLayout.WEST);
 	
         
@@ -53,6 +55,7 @@ public class VentanaContenido extends JFrame{
         titulo.setAlignmentX(LEFT_ALIGNMENT);
         panelDerecha.add(titulo);
         
+		panelDerecha.add(Box.createRigidArea(new Dimension(0, 20)));
         JLabel labelGenero = new JLabel("Género: ");
         ArrayList<String> generos = contenido.getGenero();
         for (int i = 0; i < generos.size(); i++) {
@@ -76,8 +79,9 @@ public class VentanaContenido extends JFrame{
         labelActores.setFont(new Font("Arial", Font.PLAIN, 16));
         labelActores.setAlignmentX(LEFT_ALIGNMENT);
         panelDerecha.add(labelActores);
+
         
-        
+        panelDerecha.setBorder(new EmptyBorder(20, 20, 20, 20));
         add(panelDerecha, BorderLayout.CENTER);
 	}
 	
