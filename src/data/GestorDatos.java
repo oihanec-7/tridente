@@ -10,7 +10,9 @@ import domain.Resena;
 import domain.Serie;
 
 public class GestorDatos {
+	 private ArrayList<Resena> resenas;
 
+	
 	 public static ArrayList<Contenido> cargarCSV(String ruta){
 		 ArrayList<Contenido> contenidos = new ArrayList<Contenido>();
 		 
@@ -71,7 +73,6 @@ public class GestorDatos {
 	 }
 	
 	 
-	 private ArrayList<Resena> resenas;
 	 
 	 public void agregarResena(Resena r) {
 		 resenas.add(r);
