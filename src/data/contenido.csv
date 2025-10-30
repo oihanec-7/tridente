@@ -1,31 +1,31 @@
-# tipo,titulo,genero,autor,año,duracion/temporadas
-Pelicula,Inception,Ciencia Ficción,Christopher Nolan,2010,148
-Pelicula,Avatar,Aventura,James Cameron,2009,162
-Pelicula,El Padrino,Crimen,Francis Ford Coppola,1972,175
-Pelicula,La La Land,Romance,Damien Chazelle,2016,128
-Pelicula,Interstellar,Ciencia Ficción,Christopher Nolan,2014,169
-Pelicula,Gladiator,Acción,Ridley Scott,2000,155
-Pelicula,Parasite,Suspenso,Bong Joon-ho,2019,132
-Pelicula,El Señor de los Anillos: La Comunidad del Anillo,Fantasía,Peter Jackson,2001,178
-Pelicula,Forrest Gump,Drama,Robert Zemeckis,1994,142
-Pelicula,Titanic,Romance,James Cameron,1997,195
-Pelicula,Jurassic Park,Aventura,Steven Spielberg,1993,127
-Pelicula,Matrix,Ciencia Ficción,Lana y Lilly Wachowski,1999,136
-Pelicula,El Rey León,Animación,Rob Minkoff,1994,88
-Pelicula,El Viaje de Chihiro,Fantasía,Hayao Miyazaki,2001,125
-Pelicula,Oppenheimer,Drama,Christopher Nolan,2023,180
-Serie,Breaking Bad,Drama,Vince Gilligan,2008,5
-Serie,Stranger Things,Fantasía,Hermanos Duffer,2016,4
-Serie,The Office,Comedia,Greg Daniels,2005,9
-Serie,Game of Thrones,Fantasía,David Benioff y D.B. Weiss,2011,8
-Serie,The Crown,Drama,Peter Morgan,2016,6
-Serie,The Mandalorian,Ciencia Ficción,Jon Favreau,2019,3
-Serie,Dark,Suspenso,Baran bo Odar y Jantje Friese,2017,3
-Serie,Friends,Comedia,David Crane y Marta Kauffman,1994,10
-Serie,The Boys,Acción,Eric Kripke,2019,4
-Serie,House of the Dragon,Fantasía,Ryan Condal,2022,2
-Serie,The Witcher,Fantasía,Lauren Schmidt Hissrich,2019,3
-Serie,Better Call Saul,Drama,Vince Gilligan,2015,6
-Serie,Loki,Ciencia Ficción,Michael Waldron,2021,2
-Serie,One Piece,Aventura,Steven Maeda,2023,1
-Serie,Sherlock,Misterio,Steven Moffat y Mark Gatiss,2010,4
+Pelicula;Inception;Ciencia ficcion,Accion;4.8,5.0,4.6,4.9;Leonardo DiCaprio,Joseph Gordon-Levitt;148
+Pelicula;Interstellar;Ciencia ficcion,Drama;5.0,4.9,4.8,4.7;Matthew McConaughey,Anne Hathaway;169
+Pelicula;The Dark Knight;Accion,Drama;5.0,4.9,5.0,4.8;Christian Bale,Heath Ledger;152
+Pelicula;La La Land;Romance,Musical;4.7,4.8,4.9,4.5;Ryan Gosling,Emma Stone;128
+Pelicula;Gladiator;Accion,Drama;4.9,4.7,5.0,4.8;Russell Crowe,Joaquin Phoenix;155
+Pelicula;Titanic;Romance,Drama;4.5,4.6,4.7,4.8;Leonardo DiCaprio,Kate Winslet;195
+Pelicula;The Matrix;Accion,Ciencia ficcion;4.9,4.8,4.7,4.9;Keanu Reeves,Carrie-Anne Moss;136
+Pelicula;Forrest Gump;Drama,Comedia;4.9,5.0,4.8,4.7;Tom Hanks,Robin Wright;142
+Pelicula;Fight Club;Drama,Accion;4.8,4.7,4.9,4.8;Brad Pitt,Edward Norton;139
+Pelicula;Joker;Drama,Accion;4.9,4.8,4.7,4.9;Joaquin Phoenix,Robert De Niro;122
+Pelicula;Avatar;Ciencia ficcion,Accion;4.5,4.6,4.7,4.5;Sam Worthington,Zoe Saldana;162
+Pelicula;The Shawshank Redemption;Drama;5.0,5.0,4.9,4.8;Tim Robbins,Morgan Freeman;142
+Pelicula;The Godfather;Drama,Accion;5.0,4.9,5.0,5.0;Marlon Brando,Al Pacino;175
+Pelicula;Avengers: Endgame;Accion,Ciencia ficcion;4.6,4.7,4.8,4.9;Robert Downey Jr.,Chris Evans;181
+Pelicula;La Bella y la Bestia;Musical,Romance;4.8,4.9,4.7,4.6;Emma Watson,Dan Stevens;129
+Serie;Breaking Bad;Drama,Accion;5.0,4.9,4.8,5.0;Bryan Cranston,Aaron Paul;5
+Serie;Game of Thrones;Fantasia,Drama;4.9,4.8,4.9,5.0;Emilia Clarke,Kit Harington;8
+Serie;Stranger Things;Ciencia ficcion,Drama;4.8,4.9,4.7,4.8;Millie Bobby Brown,David Harbour;5
+Serie;The Crown;Drama,Romance;4.7,4.8,4.9,4.6;Olivia Colman,Helena Bonham Carter;6
+Serie;The Office;Comedia;4.8,4.7,4.9,4.8;Steve Carell,Jenna Fischer;9
+Serie;Friends;Comedia,Romance;4.9,5.0,4.8,4.9;Jennifer Aniston,Courteney Cox;10
+Serie;The Mandalorian;Accion,Ciencia ficcion;4.6,4.8,4.9,4.7;Pedro Pascal,Gina Carano;3
+Serie;The Boys;Accion,Comedia;4.7,4.8,4.9,4.6;Karl Urban,Jack Quaid;4
+Serie;Better Call Saul;Drama,Accion;4.9,5.0,4.8,4.9;Bob Odenkirk,Rhea Seehorn;6
+Serie;The Last of Us;Drama,Ciencia ficcion;4.9,5.0,4.8,4.7;Pedro Pascal,Bella Ramsey;1
+Serie;Sherlock;Drama,Accion;4.8,4.9,4.7,4.9;Benedict Cumberbatch,Martin Freeman;4
+Serie;The Witcher;Fantasia,Accion;4.5,4.7,4.8,4.6;Henry Cavill,Anya Chalotra;3
+Serie;Peaky Blinders;Drama,Accion;4.9,4.8,4.9,5.0;Cillian Murphy,Tom Hardy;6
+Serie;The Umbrella Academy;Accion,Fantasia;4.4,4.5,4.6,4.5;Elliot Page,Tom Hopper;3
+Serie;Narcos;Drama,Accion;4.8,4.9,5.0,4.8;Wagner Moura,Pedro Pascal;3
+Serie;Dark;Ciencia ficcion,Fantasia;5.0,4.9,4.8,4.9;Louis Hofmann,Lisa Vicari;3

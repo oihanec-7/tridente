@@ -89,7 +89,7 @@ public class VentanaPrincipal extends JFrame{
 		panelMenu.setMaximumSize(new Dimension(150, Integer.MAX_VALUE));
 		panelMenu.setBackground(Color.LIGHT_GRAY);
 		
-		String[] etiquetasBotones = {"Inicio", "Mi Lista", "Valoradas", "Mi Usuario"};
+		String[] etiquetasBotones = {"Inicio", "Catalogo", "Mi Lista", "Valoradas", "Mi Usuario"};
 		for (String etiqueta : etiquetasBotones) {
 			JButton boton = new JButton(etiqueta);
 		    boton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
@@ -108,6 +108,13 @@ public class VentanaPrincipal extends JFrame{
 		    			this.panelMenu.setVisible(false);
 		    		});
 		    		break;
+		    	case "Catalogo":
+		    		boton.addActionListener(e -> {
+		    			this.setVisible(false);
+		    			VentanaCatalogo catalogo = new VentanaCatalogo(usuario);
+		    		    catalogo.setVisible(true);
+		    		});
+		    		break;
 		    	case "Mi Lista":
 		    		boton.addActionListener(e -> {});
 		    		break;
@@ -116,6 +123,7 @@ public class VentanaPrincipal extends JFrame{
 		    		break;
 		    	case "Mi Usuario":
 		    		boton.addActionListener(e -> {
+		    			this.setVisible(false);
 		    			VentanaMiUsuario miUsuario = new VentanaMiUsuario(usuario);
 		    		    miUsuario.setVisible(true);
 		    		}
