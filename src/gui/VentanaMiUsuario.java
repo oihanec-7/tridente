@@ -36,7 +36,7 @@ public class VentanaMiUsuario extends JFrame{
 		JLabel fotoPerfil = new JLabel();
 		//ImageIcon icono = ImageIcon(""); // Poner la foto
 		//Image imagenEscalada = icono.getImage().getScaledInstance(120,120, Image.SCALE_SMOOTH);
-		fotoPerfil.setIcon(new ImageIcon("icono_perfil.jpg"));
+		fotoPerfil.setIcon(new ImageIcon("images/icono_perfil.png"));
 		fotoPerfil.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
 		panelPrincipal.add(fotoPerfil, BorderLayout.WEST);
 		
