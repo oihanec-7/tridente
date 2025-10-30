@@ -21,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 
 import data.GestorDatos;
 import domain.Contenido;
@@ -40,14 +41,16 @@ public class VentanaPrincipal extends JFrame{
 	private Usuario usuario;
 	private ArrayList<Contenido> listaContenidos;
 	private ArrayList<Contenido> listaMejorValoradas;
-	
+	private ArrayList<Contenido> listaPeliculas;
+	private ArrayList<Contenido> listaSeries;
 	
 	public VentanaPrincipal(Usuario usuario) throws HeadlessException {
 		super();
 		this.usuario = usuario;
 		this.listaContenidos = GestorDatos.cargarCSV("src/data/contenido.csv");
 		this.listaMejorValoradas = GestorDatos.mejorValoradas(listaContenidos);
-		
+		this.listaPeliculas = GestorDatos.soloPeliculas(listaContenidos);
+		this.listaSeries = GestorDatos.soloSeries(listaContenidos);
 		
 		this.setTitle("Ventana Principal");
 		this.setSize(1300, 800);
@@ -61,25 +64,21 @@ public class VentanaPrincipal extends JFrame{
 	}
 
 
-	
-	
-	
 	private void inicializarComponentes() {		
-		
 		//Panel superior (barra buscar + boton menu)
-		JPanel panelSuperior = new JPanel(new BorderLayout(10,10));
+		JPanel panelSuperior = new JPanel(new BorderLayout());
 		
 		botonMenu = new JButton("☰");
-		botonMenu.setSize(new Dimension(50, 30));
+		botonMenu.setSize(new Dimension(50, 50));
+		botonMenu.setBackground(new Color(140, 60, 85));
+		botonMenu.setForeground(Color.WHITE);
+		botonMenu.setFocusPainted(false);    
 		panelSuperior.add(botonMenu, BorderLayout.WEST);
 		botonMenu.addActionListener(e -> {
 			panelMenu.setVisible(!panelMenu.isVisible()); 
 		});
 		panelSuperior.setBackground(new Color(217, 108, 70));
-
-		
-			
-		
+		panelSuperior.setBorder(null);
 		panelPrincipal.add(panelSuperior, BorderLayout.NORTH);
 		
 		
@@ -88,7 +87,7 @@ public class VentanaPrincipal extends JFrame{
 		panelMenu.setLayout(new BoxLayout(panelMenu, BoxLayout.Y_AXIS));
 		panelMenu.setPreferredSize(new Dimension(150, 0));  
 		panelMenu.setMaximumSize(new Dimension(150, Integer.MAX_VALUE));
-		panelMenu.setBackground(Color.LIGHT_GRAY);
+		panelMenu.setBackground(new Color(242, 201, 185));
 		
 		String[] etiquetasBotones = {"Inicio", "Catalogo", "Mi Lista", "Valoradas", "Mi Usuario"};
 		for (String etiqueta : etiquetasBotones) {
@@ -135,16 +134,27 @@ public class VentanaPrincipal extends JFrame{
 		panelMenu.setVisible(false);
 		panelPrincipal.add(panelMenu, BorderLayout.WEST);
 		
-		
-		
+
 		//Paneles de scrol (recomendados y mejor valorados)
 		panelCarruseles = new JPanel();
 		panelCarruseles.setLayout(new BoxLayout(panelCarruseles, BoxLayout.Y_AXIS));
+		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 30)));
+
+		JLabel nombreApp = new JLabel("TRIDENTE");
+		nombreApp.setFont(new Font("Arial Black", Font.BOLD, 36));
+		panelCarruseles.add(nombreApp);
+		
 		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 70)));
 		
 		panelCarruseles.add(crearCarrusel("Recomendadas para ti", this.listaContenidos)); 
 		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 20)));
 		panelCarruseles.add(crearCarrusel("Mejor valoradas", this.listaMejorValoradas)); 
+		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 20)));
+		panelCarruseles.add(crearCarrusel("Peliculas", this.listaPeliculas));
+		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 20)));
+		panelCarruseles.add(crearCarrusel("Series", this.listaSeries));
+		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 20)));
+		
 		panelCarruseles.setBackground(new Color(217, 108, 70));
 		
 		JScrollPane scrollPanelCarruseles = new JScrollPane(
@@ -152,15 +162,8 @@ public class VentanaPrincipal extends JFrame{
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER
         );
-		
+		scrollPanelCarruseles.setBorder(null);
 		panelPrincipal.add(scrollPanelCarruseles, BorderLayout.CENTER);
-		
-		
-		
-		
-		
-		
-		
 		this.add(panelPrincipal);
 	}
 
@@ -180,25 +183,25 @@ public class VentanaPrincipal extends JFrame{
 		 //Panel con el carrusel de pelis/series
 		 JPanel panelContenido = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
 		 panelContenido.setBackground(new Color(217, 108, 70)); 
-		    for (Contenido c : lista) {
-		        JButton boton = new JButton(c.getTitulo());
-		        boton.setPreferredSize(new Dimension(120, 160));
-		        boton.addActionListener(e -> new VentanaContenido(c).setVisible(true));
-		        panelContenido.add(boton);
-		    }
+		 for (Contenido c : lista) {
+			 JButton boton = new JButton(c.getTitulo());
+			 boton.setPreferredSize(new Dimension(120, 160));
+			 boton.addActionListener(e -> new VentanaContenido(c).setVisible(true));
+			 panelContenido.add(boton);
+		 }
 		 
 		 //Añadir scroll horizontal
-		    JScrollPane scrollCarrusel = new JScrollPane(
-		    		panelContenido,
-		            JScrollPane.VERTICAL_SCROLLBAR_NEVER,
-		            JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED
-		        );
-		        scrollCarrusel.setPreferredSize(new Dimension(1200, 180));
-		        scrollCarrusel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 180));
-		        scrollCarrusel.setBorder(null);
-		        scrollCarrusel.setAlignmentX(Component.LEFT_ALIGNMENT);
+		 JScrollPane scrollCarrusel = new JScrollPane(
+				 panelContenido,
+				 JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+				 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED
+				 );
+		 scrollCarrusel.setPreferredSize(new Dimension(1200, 180));
+		 scrollCarrusel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 180));
+		 scrollCarrusel.setBorder(null);
+		 scrollCarrusel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-		        panelCarruselCompleto.add(scrollCarrusel);
+		 panelCarruselCompleto.add(scrollCarrusel);
 
 		 return panelCarruselCompleto;
 		 }	

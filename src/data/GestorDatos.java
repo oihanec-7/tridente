@@ -69,4 +69,25 @@ public class GestorDatos {
 		 
 		 return mejorValoradas;
 	 }
+	 
+	 
+	 public static ArrayList<Contenido> soloPeliculas(ArrayList<Contenido> contenidos){
+		 ArrayList<Contenido> peliculas = new ArrayList<Contenido>();
+		 for(Contenido c : contenidos) {
+			 if(c instanceof Pelicula) {
+				 peliculas.add(c);
+			 }
+		 } 
+		 return peliculas;
+	 }
+	 
+	 public static ArrayList<Contenido> soloSeries(ArrayList<Contenido> contenidos){
+		 ArrayList<Contenido> series = new ArrayList<Contenido>();
+		 for(Contenido c : contenidos) {
+			 if(c instanceof Serie) {
+				 series.add(c);
+			 }
+		 } 
+		 return series;
+	 }
 }
