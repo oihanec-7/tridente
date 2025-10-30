@@ -50,6 +50,7 @@ public class VentanaCrearCuenta extends JFrame{
         	
         
 
+        
 		//Panel principal
 		JPanel panelPrincipal = new JPanel();
 		panelPrincipal.setLayout(new BoxLayout(panelPrincipal, BoxLayout.Y_AXIS));

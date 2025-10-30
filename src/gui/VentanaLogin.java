@@ -40,6 +40,7 @@ public class VentanaLogin extends JFrame{
 	private List<Usuario> usuarios;
 	
 	
+	
 	public VentanaLogin(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
 		
