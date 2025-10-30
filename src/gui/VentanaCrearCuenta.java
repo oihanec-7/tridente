@@ -12,6 +12,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -136,16 +137,8 @@ public class VentanaCrearCuenta extends JFrame{
 		iniciar_Sesion.setFocusPainted(false);
 		iniciar_Sesion.setForeground(Color.WHITE);
 		
-		iniciar_Sesion.addActionListener(e -> {
-			this.setVisible(false);
-			VentanaLogin vl = new VentanaLogin(usuarios);
-			vl.setVisible(true);
-		});
-		
-		
-		
-		
-		
+		iniciar_Sesion.addActionListener(e -> crearNuevaCuenta(usuarios));
+	
 		
 		formJPanel.add(nombre);
 		formJPanel.add(Box.createVerticalStrut(15));
@@ -177,12 +170,35 @@ public class VentanaCrearCuenta extends JFrame{
 		
 		this.setLayout(new BorderLayout());
 		this.add(panelPrincipal, BorderLayout.CENTER);
+			
 		
+	}
+	
+	private void crearNuevaCuenta(List<Usuario> usuarios) {
+		String nombreC = txt_nombre.getText();
+		String apellidoC = txt_apellido.getText();
+		String nombre_usuarioC = txt_nombre_usuario.getText();
+		String emailC = txt_email.getText();
+		String contraseña = new String(txt_contraseña.getPassword());
 		
+		if(nombreC.isEmpty() || apellidoC.isEmpty() || nombre_usuarioC.isEmpty() || 
+				emailC.isEmpty() || contraseña.isEmpty()) {
+			JOptionPane.showMessageDialog(this, "Por favor completa todos los campos", "Campos vacíos", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		for(Usuario u: usuarios) {
+			if(emailC.equals(u.getEmail())) {
+				JOptionPane.showMessageDialog(this, "Este email ya está siendo utilizado", "Error Crear Cuenta", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+		}
 		
+		Usuario usuario = new Usuario(nombreC, nombre_usuarioC, contraseña, apellidoC, emailC);
+		usuarios.add(usuario);
 		
-		
-
+		this.setVisible(false);
+		VentanaLogin vl = new VentanaLogin(usuarios);
+		vl.setVisible(true);
 		
 		
 	}
