@@ -1,10 +1,17 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 
+import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,43 +25,60 @@ public class VentanaMiUsuario extends JFrame{
 		
 		setTitle("Perfil de Usuario:" + usuario.getNombre_usuario());
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setSize(600,300);
+		setSize(500,300);
 		setLayout(new BorderLayout(15,15));
+		setLocationRelativeTo(null);
 		
+		// Panel principal 
+		JPanel panelPrincipal = new JPanel(new BorderLayout());
+		
+		// Panel izquierdo - Foto perfil
 		JLabel fotoPerfil = new JLabel();
-		fotoPerfil.setHorizontalAlignment(SwingConstants.CENTER);
-		fotoPerfil.setVerticalAlignment(SwingConstants.CENTER);
+		//ImageIcon icono = ImageIcon(""); // Poner la foto
+		//Image imagenEscalada = icono.getImage().getScaledInstance(120,120, Image.SCALE_SMOOTH);
+		fotoPerfil.setIcon(new ImageIcon("icono_perfil.jpg"));
+		fotoPerfil.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+		panelPrincipal.add(fotoPerfil, BorderLayout.WEST);
 		
-			
-		JLabel titulo = new JLabel("Mi Perfil");
-		add(titulo, BorderLayout.NORTH);
-
-		JPanel panelInfo = new JPanel();
-		panelInfo.setLayout(new BoxLayout(panelInfo, BoxLayout.Y_AXIS));
+		// Panel derecho - Datos usuario
+		JPanel panelDatos = new JPanel();
+		panelDatos.setLayout(new BoxLayout(panelDatos, BoxLayout.Y_AXIS));
+		panelDatos.setBorder(BorderFactory.createEmptyBorder(30,20,20,20));
 		
 		// Nombre de Usuario (en grande)
         JLabel labelNombreUsuario = new JLabel(usuario.getNombre_usuario());
-        labelNombreUsuario.setFont(new Font("Arial", Font.BOLD, 28)); // Fuente grande
-        //labelNombreUsuario.setAlignmentX(Component.LEFT_ALIGNMENT); // Alinear a la izquierda
-        panelInfo.add(labelNombreUsuario);
-        //panelInfo.add(Box.createRigidArea(new Dimension(0, 10))); // Espacio vertical
+        labelNombreUsuario.setFont(new Font("Arial", Font.BOLD, 20)); 
 
         // Nombre y Apellidos
-        JLabel labelNombreCompleto = new JLabel(usuario.getNombre() + usuario.getApellido());
-        labelNombreCompleto.setFont(new Font("SansSerif", Font.PLAIN, 18));
-        //labelNombreCompleto.setAlignmentX(Component.LEFT_ALIGNMENT);
-        panelInfo.add(labelNombreCompleto);
-        //panelInfo.add(Box.createRigidArea(new Dimension(0, 5))); // Espacio vertical
-
-        // Email
+        JLabel labelNombreCompleto = new JLabel(usuario.getNombre() + " " + usuario.getApellido());
         JLabel labelEmail = new JLabel(usuario.getEmail());
-        labelEmail.setFont(new Font("SansSerif", Font.PLAIN, 16));
-        //labelEmail.setForeground(Color.GRAY); // Un color más suave
-        //labelEmail.setAlignmentX(Component.LEFT_ALIGNMENT);
-        panelInfo.add(labelEmail);
+        JLabel labelResenas = new JLabel("Reseñas:" + usuario.getNum_resenas());
+            
+        
+        JButton btnCerrarSesion = new JButton("Cerrar Sesión");
+        btnCerrarSesion.setAlignmentX(Component.LEFT_ALIGNMENT);
+        btnCerrarSesion.setBackground(new Color(220, 50, 50));
+        btnCerrarSesion.setForeground(Color.WHITE);
+        btnCerrarSesion.setFocusPainted(false);
+        btnCerrarSesion.setFont(new Font("Arial", Font.BOLD, 13));
+        btnCerrarSesion.addActionListener(e -> System.exit(0));
+        
+        panelDatos.add(labelNombreUsuario);
+        panelDatos.add(Box.createVerticalStrut(10));
+        panelDatos.add(labelNombreCompleto);
+        panelDatos.add(Box.createVerticalStrut(10));
+        panelDatos.add(labelEmail);
+        panelDatos.add(Box.createVerticalStrut(10));
+        panelDatos.add(labelResenas);
+        panelDatos.add(Box.createVerticalGlue());
+        panelDatos.add(btnCerrarSesion);
+        
+        panelPrincipal.add(panelDatos, BorderLayout.CENTER);
+        add(panelPrincipal);
+        setVisible(true);
 		
-		
-		
-	}
-
+	
+    }
 }
+
+
