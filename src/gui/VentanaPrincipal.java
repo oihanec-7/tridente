@@ -123,7 +123,6 @@ public class VentanaPrincipal extends JFrame{
 		    		break;
 		    	case "Mi Usuario":
 		    		boton.addActionListener(e -> {
-		    			this.setVisible(false);
 		    			VentanaMiUsuario miUsuario = new VentanaMiUsuario(usuario);
 		    		    miUsuario.setVisible(true);
 		    		}

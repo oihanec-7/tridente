@@ -129,6 +129,7 @@ public class VentanaCrearCuenta extends JFrame{
 		
 		
 		
+		
 		panelPrincipal.add(crear_cuenta);
 		panelPrincipal.add(Box.createVerticalStrut(25));
 		panelPrincipal.add(nombre);

@@ -36,17 +36,18 @@ public class Main {
 	        List<Usuario> usuariosPrueba = new ArrayList<>();
 	        usuariosPrueba.add(new Usuario("Juan", "juan123", "1234", "Pérez", "juan@email.com", 6));
 	        usuariosPrueba.add(new Usuario("Ana", "ana456", "abcd", "García", "ana@email.com", 8));
-	   
 
             VentanaLogin login = new VentanaLogin(usuariosPrueba);
             login.setVisible(true);
 	        
 //       	VentanaContenido vc = new VentanaContenido(peliPrueba);
+
+//	       	VentanaContenido vc = new VentanaContenido(peliPrueba);
 //	        vc.setVisible(true);
-	        
-	        Usuario usuarioPrueb = new Usuario("Juan", "juan123", "1234", "Pérez", "juan@email.com", 22);
-	        VentanaMiUsuario ventanaPerfil = new VentanaMiUsuario(usuarioPrueb);
-	        ventanaPerfil.setVisible(true);
+//	        
+//	        Usuario usuarioPrueb = new Usuario("Juan", "juan123", "1234", "Pérez", "juan@email.com", 22);
+//	        VentanaMiUsuario ventanaPerfil = new VentanaMiUsuario(usuarioPrueb);
+//	        ventanaPerfil.setVisible(true);
 	        
 	    });
 	    
