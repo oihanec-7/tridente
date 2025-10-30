@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -31,16 +32,17 @@ public class VentanaCrearCuenta extends JFrame{
 	public VentanaCrearCuenta (List<Usuario> usuarios) {
 		//Configuración de la ventana principal
 		this.setTitle("Crear Cuenta");
-		this.setSize(500, 800);
+		this.setSize(400, 600);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		
 		//Colores
-		Color fondoPrincipal = new Color(40, 40, 40);
+		Color fondoPrincipal = new Color(217, 108, 70);
         Color fondoCampo = new Color(220, 220, 220);
         Color colorTexto = Color.BLACK;
         Color titulo = Color.WHITE;
-        Color botonColor = new Color(0, 120, 215);
+        Color labelColor = Color.WHITE;
+        Color botonColor = new Color(140, 60, 85);
         
         //Bordes
         Border bordes = BorderFactory.createCompoundBorder(
@@ -48,73 +50,88 @@ public class VentanaCrearCuenta extends JFrame{
         		BorderFactory.createEmptyBorder(5,10,5,10)
         );
         	
-        
-
-        
+       
 		//Panel principal
 		JPanel panelPrincipal = new JPanel();
 		panelPrincipal.setLayout(new BoxLayout(panelPrincipal, BoxLayout.Y_AXIS));
 		panelPrincipal.setBackground(fondoPrincipal);
-		panelPrincipal.setBorder(BorderFactory.createEmptyBorder(30, 60, 30, 60));
+		panelPrincipal.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+		panelPrincipal.setAlignmentX(LEFT_ALIGNMENT);
+		
+		JPanel formJPanel = new JPanel();
+		formJPanel.setLayout(new BoxLayout(formJPanel, BoxLayout.Y_AXIS));
+		formJPanel.setBackground(fondoPrincipal);
+		formJPanel.setAlignmentX(LEFT_ALIGNMENT);
 	
 		//Labels y Jtextfields
 		JLabel crear_cuenta = new JLabel("Crear Cuenta");
 		crear_cuenta.setFont(new Font("Helvetica Neue", Font.BOLD, 30));
-		crear_cuenta.setAlignmentX(CENTER_ALIGNMENT);
+		crear_cuenta.setAlignmentX(LEFT_ALIGNMENT);
 		crear_cuenta.setForeground(titulo);
 		
 		
 		JLabel nombre = new JLabel("Nombre");
 		nombre.setFont(new Font("Helvetica Neue", Font.PLAIN, 16));
 		nombre.setAlignmentX(LEFT_ALIGNMENT);
+		nombre.setForeground(labelColor);
 		txt_nombre = new JTextField(10);
 		txt_nombre.setBackground(fondoCampo);
 		txt_nombre.setForeground(colorTexto);
 		txt_nombre.setBorder(bordes);
 		txt_nombre.setMaximumSize(new Dimension(300, 30));
+		txt_nombre.setAlignmentX(LEFT_ALIGNMENT);
 		
 		
 		JLabel apellido = new JLabel("Apellido");
 		apellido.setFont(new Font("Helvetica Neue", Font.PLAIN, 16));
 		apellido.setAlignmentX(LEFT_ALIGNMENT);
+		apellido.setForeground(labelColor);
 		txt_apellido = new JTextField(10);
 		txt_apellido.setBackground(fondoCampo);
 		txt_apellido.setForeground(colorTexto);
 		txt_apellido.setBorder(bordes);
 		txt_apellido.setMaximumSize(new Dimension(300, 30));
+		txt_apellido.setAlignmentX(LEFT_ALIGNMENT);
 		
 		JLabel nombre_usuario = new JLabel("Nombre Usuario");
 		nombre_usuario.setFont(new Font("Helvetica Neue", Font.PLAIN, 16));
 		nombre_usuario.setAlignmentX(LEFT_ALIGNMENT);
+		nombre_usuario.setForeground(labelColor);
 		txt_nombre_usuario = new JTextField(10);
 		txt_nombre_usuario.setBackground(fondoCampo);
 		txt_nombre_usuario.setForeground(colorTexto);
 		txt_nombre_usuario.setBorder(bordes);
 		txt_nombre_usuario.setMaximumSize(new Dimension(300, 30));
+		txt_nombre_usuario.setAlignmentX(LEFT_ALIGNMENT);
 		
 		
 		JLabel email = new JLabel("Email");
 		email.setFont(new Font("Helvetica Neue", Font.PLAIN, 16));
 		email.setAlignmentX(LEFT_ALIGNMENT);
+		email.setForeground(labelColor);
 		txt_email = new JTextField(10);
 		txt_email.setBackground(fondoCampo);
 		txt_email.setForeground(colorTexto);
+		txt_email.setBorder(bordes);
 		txt_email.setMaximumSize(new Dimension(300, 30));
+		txt_email.setAlignmentX(LEFT_ALIGNMENT);
 		
 		
 		
 		JLabel contraseña = new JLabel("Contraseña");
 		contraseña.setFont(new Font("Helvetica Neue", Font.PLAIN, 16));
 		contraseña.setAlignmentX(LEFT_ALIGNMENT);
+		contraseña.setForeground(labelColor);
 		txt_contraseña = new JPasswordField(10);
 		txt_contraseña.setBackground(fondoCampo);
 		txt_contraseña.setForeground(colorTexto);
 		txt_contraseña.setBorder(bordes);
 		txt_contraseña.setMaximumSize(new Dimension(300, 30));
+		txt_contraseña.setAlignmentX(LEFT_ALIGNMENT);
 		
 		iniciar_Sesion = new JButton("Iniciar Sesión");
 		iniciar_Sesion.setMaximumSize(new Dimension(150, 35));
-		iniciar_Sesion.setAlignmentX(CENTER_ALIGNMENT);
+		iniciar_Sesion.setAlignmentX(LEFT_ALIGNMENT);
 		iniciar_Sesion.setBackground(botonColor);
 		iniciar_Sesion.setFocusPainted(false);
 		iniciar_Sesion.setForeground(Color.WHITE);
@@ -130,33 +147,36 @@ public class VentanaCrearCuenta extends JFrame{
 		
 		
 		
+		formJPanel.add(nombre);
+		formJPanel.add(Box.createVerticalStrut(15));
+		formJPanel.add(txt_nombre);
+		formJPanel.add(Box.createVerticalStrut(15));
+		formJPanel.add(apellido);
+		formJPanel.add(Box.createVerticalStrut(15));
+		formJPanel.add(txt_apellido);
+		formJPanel.add(Box.createVerticalStrut(15));
+		formJPanel.add(nombre_usuario);
+		formJPanel.add(Box.createVerticalStrut(15));
+		formJPanel.add(txt_nombre_usuario);
+		formJPanel.add(Box.createVerticalStrut(15));
+		formJPanel.add(email);
+		formJPanel.add(Box.createVerticalStrut(15));
+		formJPanel.add(txt_email);
+		formJPanel.add(Box.createVerticalStrut(15));
+		formJPanel.add(contraseña);
+		formJPanel.add(Box.createVerticalStrut(15));
+		formJPanel.add(txt_contraseña);
+		
 		
 		panelPrincipal.add(crear_cuenta);
 		panelPrincipal.add(Box.createVerticalStrut(25));
-		panelPrincipal.add(nombre);
-		panelPrincipal.add(Box.createVerticalStrut(15));
-		panelPrincipal.add(txt_nombre);
-		panelPrincipal.add(Box.createVerticalStrut(15));
-		panelPrincipal.add(apellido);
-		panelPrincipal.add(Box.createVerticalStrut(15));
-		panelPrincipal.add(txt_apellido);
-		panelPrincipal.add(Box.createVerticalStrut(15));
-		panelPrincipal.add(nombre_usuario);
-		panelPrincipal.add(Box.createVerticalStrut(15));
-		panelPrincipal.add(txt_nombre_usuario);
-		panelPrincipal.add(Box.createVerticalStrut(15));
-		panelPrincipal.add(email);
-		panelPrincipal.add(Box.createVerticalStrut(15));
-		panelPrincipal.add(txt_email);
-		panelPrincipal.add(Box.createVerticalStrut(15));
-		panelPrincipal.add(contraseña);
-		panelPrincipal.add(Box.createVerticalStrut(15));
-		panelPrincipal.add(txt_contraseña);
-		panelPrincipal.add(Box.createVerticalStrut(25));
+		panelPrincipal.add(formJPanel);
+		panelPrincipal.add(Box.createVerticalStrut(30));
 		panelPrincipal.add(iniciar_Sesion);
 		
 		
-		this.add(panelPrincipal);
+		this.setLayout(new BorderLayout());
+		this.add(panelPrincipal, BorderLayout.CENTER);
 		
 		
 
