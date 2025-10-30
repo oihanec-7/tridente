@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import domain.Contenido;
 import domain.Pelicula;
+import domain.Resena;
 import domain.Serie;
 
 public class GestorDatos {
@@ -68,8 +69,7 @@ public class GestorDatos {
 		 }
 		 
 		 return mejorValoradas;
-	 }
-	 
+	 }	 
 	 
 	 public static ArrayList<Contenido> soloPeliculas(ArrayList<Contenido> contenidos){
 		 ArrayList<Contenido> peliculas = new ArrayList<Contenido>();
@@ -90,4 +90,5 @@ public class GestorDatos {
 		 } 
 		 return series;
 	 }
+
 }

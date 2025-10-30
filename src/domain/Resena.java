@@ -1,12 +1,12 @@
 package domain;
 
-public class Reseña {
+public class Resena {
 	private Usuario usuario;
 	private Contenido contenido;
 	private Double puntuacion; // entre 1 y 5
 	
 	
-	public Reseña(Usuario usuario, Contenido contenido, Double puntuacion) {
+	public Resena(Usuario usuario, Contenido contenido, Double puntuacion) {
 		super();
 		this.usuario = usuario;
 		this.contenido = contenido;
