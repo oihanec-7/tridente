@@ -6,15 +6,17 @@ public class Usuario {
 	private String contraseña;
 	private String apellido;
 	private String email;
+	private int num_resenas;
 
 
-	public Usuario(String nombre, String nombre_usuario, String contraseña, String apellido, String email) {
+	public Usuario(String nombre, String nombre_usuario, String contraseña, String apellido, String email, int num_resenas) {
 		super();
 		this.nombre = nombre;
 		this.nombre_usuario = nombre_usuario;
 		this.contraseña = contraseña;
 		this.apellido = apellido;
 		this.email = email;
+		this.num_resenas = num_resenas;
 	}
 
 	public String getNombre() {
@@ -45,6 +47,11 @@ public class Usuario {
 		return apellido;
 	}
 
+	public int getNum_resenas() {
+		return num_resenas;
+	}
+
+	
 	
 
 }
