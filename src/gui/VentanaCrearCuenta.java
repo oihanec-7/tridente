@@ -179,6 +179,9 @@ public class VentanaCrearCuenta extends JFrame{
 		this.add(panelPrincipal, BorderLayout.CENTER);
 		
 		
+		
+		
+		
 
 		
 		
