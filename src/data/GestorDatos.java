@@ -14,7 +14,6 @@ public class GestorDatos {
 	 public static ArrayList<Contenido> cargarCSV(String ruta){
 		 ArrayList<Contenido> contenidos = new ArrayList<Contenido>();
 		 
-
 		 try {
 			 File f = new File(ruta);
 			 Scanner sc = new Scanner(f);
@@ -77,5 +76,25 @@ public class GestorDatos {
 	 public void agregarResena(Resena r) {
 		 resenas.add(r);
 	 }
+
+	 public static ArrayList<Contenido> soloPeliculas(ArrayList<Contenido> contenidos){
+		 ArrayList<Contenido> peliculas = new ArrayList<Contenido>();
+		 for(Contenido c : contenidos) {
+			 if(c instanceof Pelicula) {
+				 peliculas.add(c);
+			 }
+		 } 
+		 return peliculas;
+	 }
 	 
+	 public static ArrayList<Contenido> soloSeries(ArrayList<Contenido> contenidos){
+		 ArrayList<Contenido> series = new ArrayList<Contenido>();
+		 for(Contenido c : contenidos) {
+			 if(c instanceof Serie) {
+				 series.add(c);
+			 }
+		 } 
+		 return series;
+	 }
+
 }

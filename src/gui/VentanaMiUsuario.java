@@ -57,11 +57,9 @@ public class VentanaMiUsuario extends JFrame{
         // Nombre y Apellidos
         JLabel labelNombreCompleto = new JLabel(usuario.getNombre() + " " + usuario.getApellido());
         JLabel labelEmail = new JLabel(usuario.getEmail());
-        
 //        JLabel labelResenas = new JLabel("Reseñas:" + usuario.getNum_resenas());
-        
         JLabel labelResenas = new JLabel("Numero de reseñas hechas:" + " " + usuario.getListaValoradas().size());
-        
+
             
         
         JButton btnCerrarSesion = new JButton("Cerrar Sesión");

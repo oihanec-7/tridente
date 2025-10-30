@@ -10,6 +10,7 @@ import java.awt.HeadlessException;
 import java.awt.Image;
 import java.util.ArrayList;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -39,7 +40,7 @@ public class VentanaCatalogo extends JFrame{
 		this.listaContenidos = GestorDatos.cargarCSV("src/data/contenido.csv");
 		
 		this.setTitle("Catalogo");
-		this.setSize(700, 400);
+		this.setSize(1300, 800);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
@@ -50,9 +51,13 @@ public class VentanaCatalogo extends JFrame{
 	private void inicializarVentana() {
 		JPanel panelPrincipal = new JPanel(new BorderLayout());
 		
+		panelPrincipal.setBackground(new Color(217, 108, 70));
+		panelPrincipal.setOpaque(true);
+		
 		//Mantener el boton de menu y el menu desplegable y añadir la barra de buscar arriba
 		//Panel superior (barra buscar + boton menu)
 				JPanel panelSuperior = new JPanel(new BorderLayout(10,10));
+				panelSuperior.setBackground(new Color(217, 108, 70));
 				
 				botonMenu = new JButton("☰");
 				botonMenu.setSize(new Dimension(50, 30));
@@ -134,6 +139,8 @@ public class VentanaCatalogo extends JFrame{
 				
 				//Añadir todas las pelis y series
 				JPanel panelPortadas = anadirContenidos(this.listaContenidos);
+				panelPortadas.setBackground(new Color(217, 108, 70));
+
 				JScrollPane scroll = new JScrollPane(panelPortadas,
 				        JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				        JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -168,8 +175,7 @@ public class VentanaCatalogo extends JFrame{
 					
 				});
 				
-				
-				
+			
 				
 				
 				

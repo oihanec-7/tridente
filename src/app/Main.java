@@ -1,9 +1,11 @@
 package app;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 import domain.Pelicula;
 import domain.Usuario;

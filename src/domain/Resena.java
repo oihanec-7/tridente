@@ -13,7 +13,6 @@ public class Resena {
 		this.puntuacion = puntuacion;
 	}
 
-
 	public Usuario getUsuario() {
 		return usuario;
 	}

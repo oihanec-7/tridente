@@ -34,7 +34,6 @@ public abstract class Contenido {
 		this.titulo = titulo;
 	}
 
-	
 	public ArrayList<String> getGenero() {
 		return genero;
 	}

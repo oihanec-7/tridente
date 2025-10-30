@@ -125,5 +125,4 @@ public class VentanaAgregarResena extends JFrame{
         setVisible(true);
     
 	}
-
 }
