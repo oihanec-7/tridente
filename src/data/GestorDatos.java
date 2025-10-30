@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import domain.Contenido;
 import domain.Pelicula;
+import domain.Resena;
 import domain.Serie;
 
 public class GestorDatos {
@@ -69,4 +70,8 @@ public class GestorDatos {
 		 
 		 return mejorValoradas;
 	 }
+	
+	 //public void agregarResena(Resena r) {
+		 //resenas.add(r);
+	 
 }
