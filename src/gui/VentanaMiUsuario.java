@@ -31,14 +31,19 @@ public class VentanaMiUsuario extends JFrame{
 		
 		// Panel principal 
 		JPanel panelPrincipal = new JPanel(new BorderLayout());
+		panelPrincipal.setBackground(new Color(242, 201, 185));
 		
 		// Panel izquierdo - Foto perfil
-		JLabel fotoPerfil = new JLabel();
-		//ImageIcon icono = ImageIcon(""); // Poner la foto
-		//Image imagenEscalada = icono.getImage().getScaledInstance(120,120, Image.SCALE_SMOOTH);
-		fotoPerfil.setIcon(new ImageIcon("icono_perfil.jpg"));
+		ImageIcon icon = new ImageIcon("images/icono_perfil.png");
+		Image imagenAjustada = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+		ImageIcon iconoEscalado = new ImageIcon(imagenAjustada);
+		JLabel fotoPerfil = new JLabel(iconoEscalado);
 		fotoPerfil.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
-		panelPrincipal.add(fotoPerfil, BorderLayout.WEST);
+		
+		JPanel panelIzquierdo = new JPanel(new BorderLayout());
+		panelIzquierdo.setBackground(new Color(242, 201, 185)); 
+		panelIzquierdo.add(fotoPerfil, BorderLayout.NORTH);
+		panelPrincipal.add(panelIzquierdo, BorderLayout.WEST);
 		
 		// Panel derecho - Datos usuario
 		JPanel panelDatos = new JPanel();
@@ -52,12 +57,16 @@ public class VentanaMiUsuario extends JFrame{
         // Nombre y Apellidos
         JLabel labelNombreCompleto = new JLabel(usuario.getNombre() + " " + usuario.getApellido());
         JLabel labelEmail = new JLabel(usuario.getEmail());
+<<<<<<< HEAD
 //        JLabel labelResenas = new JLabel("Reseñas:" + usuario.getNum_resenas());
+=======
+        JLabel labelResenas = new JLabel("Numero de reseñas hechas:" + " " + usuario.getListaValoradas().size());
+>>>>>>> branch 'master' of git@github.com:oihanec-7/tridente.git
             
         
         JButton btnCerrarSesion = new JButton("Cerrar Sesión");
         btnCerrarSesion.setAlignmentX(Component.LEFT_ALIGNMENT);
-        btnCerrarSesion.setBackground(new Color(220, 50, 50));
+        btnCerrarSesion.setBackground(new Color(140, 60, 82));
         btnCerrarSesion.setForeground(Color.WHITE);
         btnCerrarSesion.setFocusPainted(false);
         btnCerrarSesion.setFont(new Font("Arial", Font.BOLD, 13));
