@@ -51,7 +51,9 @@ public class Usuario {
 		return apellido;
 	}
 
-	
+	public ArrayList<Contenido> getListaValoradas() {
+		return listaValoradas;
+	}
 	
 
 }

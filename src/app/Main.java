@@ -49,6 +49,7 @@ public class Main {
 //	        VentanaMiUsuario ventanaPerfil = new VentanaMiUsuario(usuarioPrueb);
 //	        ventanaPerfil.setVisible(true);
 	        
+            
 	    });
 	    
 	
