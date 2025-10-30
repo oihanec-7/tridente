@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -14,7 +16,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import data.GestorDatos;
 import domain.Contenido;
@@ -126,8 +131,65 @@ public class VentanaCatalogo extends JFrame{
 				panelMenu.setVisible(false);
 				panelPrincipal.add(panelMenu, BorderLayout.WEST);
 		
+				
+				//Añadir todas las pelis y series
+				JPanel panelPortadas = anadirContenidos(this.listaContenidos);
+				JScrollPane scroll = new JScrollPane(panelPortadas,
+				        JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				        JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+				panelPrincipal.add(scroll, BorderLayout.CENTER);
 		
+				
+				//Listener del buscador (para filtrar por titulo)
+				buscador.getDocument().addDocumentListener(new DocumentListener() {
+					
+					@Override
+					public void removeUpdate(DocumentEvent e) { filtrar();}
+					@Override
+					public void insertUpdate(DocumentEvent e) {filtrar();}
+					@Override
+					public void changedUpdate(DocumentEvent e) {filtrar();}
+				
+					
+					private void filtrar() {
+						String texto = buscador.getText().toLowerCase();
+			            ArrayList<Contenido> filtradas = new ArrayList<>();
+			            for (Contenido c : listaContenidos) {
+			                if (c.getTitulo().toLowerCase().contains(texto)) {
+			                    filtradas.add(c);
+			                }
+			            }
+						
+			            panelPortadas.removeAll();
+			            JPanel panelActualizado = anadirContenidos(filtradas);
+			            panelActualizado.revalidate(); 
+			            panelActualizado.repaint();
+					}
+					
+				});
+				
+				
+				
+				
+				
+				
 		add(panelPrincipal);
 	}
-
+	
+	
+	private JPanel anadirContenidos(ArrayList<Contenido> contenidos) {
+		JPanel panelPortadas = new JPanel(new GridLayout(0, 5, 10, 10));
+		for (Contenido c : contenidos) {
+			JButton boton = new JButton(c.getTitulo());
+			boton.setPreferredSize(new Dimension(120, 160));
+		    boton.setMaximumSize(new Dimension(120, 160));
+		    boton.addActionListener(e -> {
+		        VentanaContenido ventana = new VentanaContenido(c);
+		        ventana.setVisible(true);
+		    });
+		    panelPortadas.add(boton);
+		}
+		
+		return panelPortadas;
+	}
 }
