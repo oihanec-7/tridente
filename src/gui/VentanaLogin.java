@@ -36,7 +36,9 @@ public class VentanaLogin extends JFrame{
 	private JTextField userTxt;
 	private JPasswordField passwordTxt;
 	private JButton singIn;
+	private JButton crearCuenta;
 	private List<Usuario> usuarios;
+	
 	
 	
 	public VentanaLogin(List<Usuario> usuarios) {
@@ -136,6 +138,35 @@ public class VentanaLogin extends JFrame{
 		
 		singIn.addActionListener(e -> verificarUsuario());
 		
+		//boton crear cuenta
+		crearCuenta = new JButton("Crear Cuenta");
+		crearCuenta.setMaximumSize(new Dimension(120, 30));
+		crearCuenta.setAlignmentX(Component.CENTER_ALIGNMENT);
+		crearCuenta.setFont(new Font("Helvetica Neue", Font.BOLD, 14));
+		crearCuenta.setBackground(botonColor);
+		crearCuenta.setForeground(Color.WHITE);
+		crearCuenta.setOpaque(true);
+		
+		// cambia el cursor cuando pase sobre el boton
+		crearCuenta.setCursor(new Cursor(Cursor.HAND_CURSOR)); 
+		
+		//cambia el color del boton cuando el cursor pasa por encima
+		crearCuenta.addMouseListener(new java.awt.event.MouseAdapter(){
+			public void mouseEntered(java.awt.event.MouseAdapter evt) {
+				crearCuenta.setBackground(new Color(0, 100, 200));
+			}
+			public void mouseExited(java.awt.event.MouseAdapter evt) {
+				crearCuenta.setBackground(new Color(0, 120, 215));
+			}
+			
+		});
+		
+		crearCuenta.addActionListener(e -> {
+			this.setVisible(false);
+			VentanaCrearCuenta ventana_cuenta = new VentanaCrearCuenta(usuarios);
+			ventana_cuenta.setVisible(true);
+		});
+		
 		//Bordes redondeados con padding interno
 		Border bordeNormal = BorderFactory.createCompoundBorder(
 			BorderFactory.createLineBorder(Color.DARK_GRAY, 1, true),
@@ -184,6 +215,8 @@ public class VentanaLogin extends JFrame{
 		formPanel.add(passwordTxt);
 		formPanel.add(Box.createVerticalStrut(20));
 		formPanel.add(singIn);
+		formPanel.add(Box.createVerticalStrut(15));
+		formPanel.add(crearCuenta);
 		
 		panelDerecho.add(Box.createVerticalGlue());
 		panelDerecho.add(formPanel);
@@ -219,6 +252,7 @@ public class VentanaLogin extends JFrame{
 		userTxt.requestFocus(); //pone el cursor en el campo user text automaticamente
 		
 	}
+	
 		
 		
 
