@@ -109,7 +109,6 @@ public class VentanaAgregarResena extends JFrame{
             
             JOptionPane.showMessageDialog(this, "Reseña agregada correctamente.");
             dispose();
-        
         });
         
         // Añadir todo al panel principal

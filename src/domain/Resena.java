@@ -23,7 +23,6 @@ public class Resena {
 		this.usuario = usuario;
 	}
 
-
 	public Contenido getContenido() {
 		return contenido;
 	}

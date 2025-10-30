@@ -23,6 +23,7 @@ public class Usuario {
 		this.listaValoradas = new ArrayList<Contenido>();
 	}
 
+	
 	public String getNombre() {
 		return nombre;
 	}

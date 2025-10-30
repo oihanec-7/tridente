@@ -71,7 +71,11 @@ public class GestorDatos {
 		 return mejorValoradas;
 	 }
 	
-	 //public void agregarResena(Resena r) {
-		 //resenas.add(r);
+	 
+	 private ArrayList<Resena> resenas;
+	 
+	 public void agregarResena(Resena r) {
+		 resenas.add(r);
+	 }
 	 
 }
