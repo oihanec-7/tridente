@@ -57,7 +57,11 @@ public class VentanaMiUsuario extends JFrame{
         // Nombre y Apellidos
         JLabel labelNombreCompleto = new JLabel(usuario.getNombre() + " " + usuario.getApellido());
         JLabel labelEmail = new JLabel(usuario.getEmail());
+<<<<<<< HEAD
+//        JLabel labelResenas = new JLabel("Reseñas:" + usuario.getNum_resenas());
+=======
         JLabel labelResenas = new JLabel("Numero de reseñas hechas:" + " " + usuario.getListaValoradas().size());
+>>>>>>> branch 'master' of git@github.com:oihanec-7/tridente.git
             
         
         JButton btnCerrarSesion = new JButton("Cerrar Sesión");
@@ -74,7 +78,7 @@ public class VentanaMiUsuario extends JFrame{
         panelDatos.add(Box.createVerticalStrut(10));
         panelDatos.add(labelEmail);
         panelDatos.add(Box.createVerticalStrut(10));
-        panelDatos.add(labelResenas);
+//        panelDatos.add(labelResenas);
         panelDatos.add(Box.createVerticalGlue());
         panelDatos.add(btnCerrarSesion);
         

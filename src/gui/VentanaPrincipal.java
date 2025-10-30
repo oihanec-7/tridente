@@ -5,9 +5,11 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.HeadlessException;
 import java.awt.Image;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.Box;
@@ -20,6 +22,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
+import data.GestorDatos;
+import domain.Contenido;
 import domain.Pelicula;
 import domain.Usuario;
 
@@ -34,17 +38,24 @@ public class VentanaPrincipal extends JFrame{
 	private JPanel panelCarruseles;
 	private JButton agregarResena;
 	private Usuario usuario;
+	private ArrayList<Contenido> listaContenidos;
+	private ArrayList<Contenido> listaMejorValoradas;
 	
 	
 	public VentanaPrincipal(Usuario usuario) throws HeadlessException {
 		super();
 		this.usuario = usuario;
+		this.listaContenidos = GestorDatos.cargarCSV("src/data/contenido.csv");
+		this.listaMejorValoradas = GestorDatos.mejorValoradas(listaContenidos);
 		
 		
 		this.setTitle("Ventana Principal");
-		this.setSize(700, 400);
+		this.setSize(1300, 800);
 		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);		
+		
+		panelPrincipal.setBackground(new Color(217, 108, 70));
+		panelPrincipal.setOpaque(true);
 		
 		inicializarComponentes();
 	}
@@ -64,20 +75,10 @@ public class VentanaPrincipal extends JFrame{
 		botonMenu.addActionListener(e -> {
 			panelMenu.setVisible(!panelMenu.isVisible()); 
 		});
+		panelSuperior.setBackground(new Color(217, 108, 70));
+
 		
-			// la lupa esta fea	
-		buscador = new JTextField(30);
-		
-		JLabel imagen = new JLabel();
-		JPanel panelBuscador = new JPanel(new BorderLayout(5, 5));
-		ImageIcon imagenLupa = new ImageIcon("images/lupa.png");
-		Image escalarImagen = imagenLupa.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
-		imagen.setIcon(new ImageIcon(escalarImagen));
-		
-		
-		panelBuscador.add(buscador, BorderLayout.CENTER);
-		panelBuscador.add(imagen, BorderLayout.EAST);
-		panelSuperior.add(panelBuscador, BorderLayout.CENTER);
+			
 		
 		panelPrincipal.add(panelSuperior, BorderLayout.NORTH);
 		
@@ -141,10 +142,11 @@ public class VentanaPrincipal extends JFrame{
 		panelCarruseles.setLayout(new BoxLayout(panelCarruseles, BoxLayout.Y_AXIS));
 		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 70)));
 		
-		panelCarruseles.add(crearCarrusel("Recomendadas para ti")); 
+		panelCarruseles.add(crearCarrusel("Recomendadas para ti", this.listaContenidos)); 
 		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 20)));
-		panelCarruseles.add(crearCarrusel("Mejor valoradas")); 
-
+		panelCarruseles.add(crearCarrusel("Mejor valoradas", this.listaMejorValoradas)); 
+		panelCarruseles.setBackground(new Color(217, 108, 70));
+		
 		JScrollPane scrollPanelCarruseles = new JScrollPane(
                 panelCarruseles,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -162,62 +164,43 @@ public class VentanaPrincipal extends JFrame{
 		this.add(panelPrincipal);
 	}
 
-	private JPanel crearCarrusel(String titulo) {
-		JPanel panelCarruselCompleto = new JPanel();
-        panelCarruselCompleto.setLayout(new BoxLayout(panelCarruselCompleto, BoxLayout.Y_AXIS));
-		
-		JLabel labelRecomendadas = new JLabel(titulo);
-		labelRecomendadas.setAlignmentX(Component.LEFT_ALIGNMENT);
-		labelRecomendadas.setFont(new Font("Arial", Font.BOLD, 12));
-		panelCarruselCompleto.add(labelRecomendadas);
-		panelCarruselCompleto.add(Box.createRigidArea(new Dimension(0, 5))); 
+	private JPanel crearCarrusel(String titulo, ArrayList<Contenido> lista) {
+		//Panel que contiene el titulo y el carrusel
+		 JPanel panelCarruselCompleto = new JPanel();
+		 panelCarruselCompleto.setLayout(new BoxLayout(panelCarruselCompleto, BoxLayout.Y_AXIS));
+		 panelCarruselCompleto.setBackground(new Color(217, 108, 70));
+		 
+		 //Establecer el titulo del carrusel
+		 JLabel labelTitulo = new JLabel(titulo);
+		 labelTitulo.setFont(new Font("Arial", Font.BOLD, 16));
+		 labelTitulo.setAlignmentX(Component.LEFT_ALIGNMENT); 
+		 panelCarruselCompleto.add(labelTitulo);
+		 panelCarruselCompleto.add(Box.createRigidArea(new Dimension(0, 5)));
+		 
+		 //Panel con el carrusel de pelis/series
+		 JPanel panelContenido = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
+		 panelContenido.setBackground(new Color(217, 108, 70)); 
+		    for (Contenido c : lista) {
+		        JButton boton = new JButton(c.getTitulo());
+		        boton.setPreferredSize(new Dimension(120, 160));
+		        boton.addActionListener(e -> new VentanaContenido(c).setVisible(true));
+		        panelContenido.add(boton);
+		    }
+		 
+		 //Añadir scroll horizontal
+		    JScrollPane scrollCarrusel = new JScrollPane(
+		    		panelContenido,
+		            JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+		            JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED
+		        );
+		        scrollCarrusel.setPreferredSize(new Dimension(1200, 180));
+		        scrollCarrusel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 180));
+		        scrollCarrusel.setBorder(null);
+		        scrollCarrusel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-	
-		JPanel carrusel = new JPanel();
-		carrusel.setLayout(new BoxLayout(carrusel, BoxLayout.X_AXIS));
-		for (int i = 0; i < 20; i++) {
-		    JButton boton = new JButton("Peli " + (i + 1));
-		    boton.setPreferredSize(new Dimension(120, 160));
-		    boton.setMaximumSize(new Dimension(120, 160));
-		    boton.setMinimumSize(new Dimension(120, 160));
-		    boton.addActionListener(e -> mostrarInformacion());
-		    carrusel.add(boton);
-		    carrusel.add(Box.createRigidArea(new Dimension(10, 0)));
-		}
-		
-		carrusel.setPreferredSize(new Dimension(1300, 160));
-		carrusel.setMaximumSize(new Dimension(1300, 160));
-		
-		
-		JScrollPane scrollCarrusel = new JScrollPane(carrusel,
-		        JScrollPane.VERTICAL_SCROLLBAR_NEVER,
-		        JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		scrollCarrusel.setPreferredSize(new Dimension(600, 160));
-		scrollCarrusel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 160));
-		scrollCarrusel.setBorder(null);
-        scrollCarrusel.setAlignmentX(Component.LEFT_ALIGNMENT);
+		        panelCarruselCompleto.add(scrollCarrusel);
 
-        panelCarruselCompleto.add(scrollCarrusel);
-		return panelCarruselCompleto;
-	}
-
-
-
-
-
-	private void mostrarInformacion() {
-	    VentanaContenido ventanaPelicula = new VentanaContenido(new Pelicula("titulo", null, null, null, 120));
-	    ventanaPelicula.setVisible(true);
-	    
-	}
-
-
-
-
-
-
-
-	
-	
+		 return panelCarruselCompleto;
+		 }	
 	
 }
