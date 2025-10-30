@@ -1,4 +1,4 @@
-package app;
+package app;	
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,12 +37,9 @@ public class Main {
 	        usuariosPrueba.add(new Usuario("Ana", "ana456", "abcd", "García", "ana@email.com"));
 	      
 
-//            VentanaLogin login = new VentanaLogin(usuariosPrueba);
-//            login.setVisible(true);
+            VentanaLogin login = new VentanaLogin(usuariosPrueba);
+            login.setVisible(true);
 	        
-	        
-	        VentanaContenido vc = new VentanaContenido(peliPrueba);
-	        vc.setVisible(true);
 	        
 	        
 	    });
