@@ -14,7 +14,6 @@ public class GestorDatos {
 	 public static ArrayList<Contenido> cargarCSV(String ruta){
 		 ArrayList<Contenido> contenidos = new ArrayList<Contenido>();
 		 
-
 		 try {
 			 File f = new File(ruta);
 			 Scanner sc = new Scanner(f);

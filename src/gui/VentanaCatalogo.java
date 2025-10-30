@@ -175,8 +175,7 @@ public class VentanaCatalogo extends JFrame{
 					
 				});
 				
-				
-				
+			
 				
 				
 				
