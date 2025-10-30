@@ -1,22 +1,26 @@
 package domain;
 
+import java.util.ArrayList;
+
 public class Usuario {
 	private String nombre;
 	private String nombre_usuario;
 	private String contraseña;
 	private String apellido;
 	private String email;
-	private int num_resenas;
+	private ArrayList<Contenido> miLista;
+	private ArrayList<Contenido> listaValoradas;
 
 
-	public Usuario(String nombre, String nombre_usuario, String contraseña, String apellido, String email, int num_resenas) {
+	public Usuario(String nombre, String nombre_usuario, String contraseña, String apellido, String email) {
 		super();
 		this.nombre = nombre;
 		this.nombre_usuario = nombre_usuario;
 		this.contraseña = contraseña;
 		this.apellido = apellido;
 		this.email = email;
-		this.num_resenas = num_resenas;
+		this.miLista = new ArrayList<Contenido>();
+		this.listaValoradas = new ArrayList<Contenido>();
 	}
 
 	public String getNombre() {
@@ -45,10 +49,6 @@ public class Usuario {
 
 	public String getApellido() {
 		return apellido;
-	}
-
-	public int getNum_resenas() {
-		return num_resenas;
 	}
 
 	

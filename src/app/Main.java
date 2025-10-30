@@ -34,8 +34,8 @@ public class Main {
 	    SwingUtilities.invokeLater(() -> {
 	        // Lista de usuarios de prueba
 	        List<Usuario> usuariosPrueba = new ArrayList<>();
-	        usuariosPrueba.add(new Usuario("Juan", "juan123", "1234", "Pérez", "juan@email.com", 6));
-	        usuariosPrueba.add(new Usuario("Ana", "ana456", "abcd", "García", "ana@email.com", 8));
+	        usuariosPrueba.add(new Usuario("Juan", "juan123", "1234", "Pérez", "juan@email.com"));
+	        usuariosPrueba.add(new Usuario("Ana", "ana456", "abcd", "García", "ana@email.com"));
 
             VentanaLogin login = new VentanaLogin(usuariosPrueba);
             login.setVisible(true);
