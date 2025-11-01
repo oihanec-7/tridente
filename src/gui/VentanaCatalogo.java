@@ -184,7 +184,6 @@ public class VentanaCatalogo extends JFrame{
 		add(panelPrincipal);
 	}
 	
-	
 	private JPanel anadirContenidos(ArrayList<Contenido> contenidos) {
 		JPanel panelPortadas = new JPanel(new GridLayout(0, 5, 10, 10));
 		for (Contenido c : contenidos) {

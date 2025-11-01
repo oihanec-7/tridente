@@ -137,7 +137,6 @@ public class VentanaPrincipal extends JFrame{
 		
 		
 		
-		
 		//Paneles de scroll (mas el nombre de la app y el boton "Añadir reseña")
 		panelCarruseles = new JPanel();
 		panelCarruseles.setLayout(new BoxLayout(panelCarruseles, BoxLayout.Y_AXIS));
