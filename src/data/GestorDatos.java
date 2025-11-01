@@ -41,7 +41,7 @@ public class GestorDatos {
 		    		 cast.add(actor);
 		    	 }
 		    	 
-		    	 String rutaPortada = partes[5];
+		    	 String rutaPortada = partes[6].trim();
 
 		    	 if (tipo.equalsIgnoreCase("Pelicula")) {
 		    		 int duracion = Integer.parseInt(partes[5]);

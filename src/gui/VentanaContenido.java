@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import data.GestorDatos;
 import domain.Contenido;
 import domain.Usuario;
 
@@ -44,8 +45,8 @@ public class VentanaContenido extends JFrame{
         panelIzquierdo.setBorder(new EmptyBorder(20, 20, 20, 20)); 
         
         	//Portada
-        ImageIcon portada = new ImageIcon("images/usuario.png"); 	// FALTA PONER LA IMAGEN QUE CORRESPONDEE
-		Image imagenAjustada = portada.getImage().getScaledInstance(130, 150, Image.SCALE_SMOOTH);
+        ImageIcon portada = new ImageIcon(contenido.getRutaPortada()); 	
+		Image imagenAjustada = portada.getImage().getScaledInstance(120, 170, Image.SCALE_SMOOTH);
         ImageIcon iconoEscalado = new ImageIcon(imagenAjustada);
         JLabel fotoPortada = new JLabel(iconoEscalado);
         fotoPortada.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -105,11 +106,6 @@ public class VentanaContenido extends JFrame{
         
         add(panelPrincipal);
 	}
-	
-	
-	
-	
-	
 	
 }
 

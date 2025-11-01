@@ -216,7 +216,11 @@ public class VentanaPrincipal extends JFrame{
 		 JPanel panelContenido = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
 		 panelContenido.setBackground(new Color(217, 108, 70)); 
 		 for (Contenido c : lista) {
-			 JButton boton = new JButton(c.getTitulo());
+			 ImageIcon portada = new ImageIcon(c.getRutaPortada());
+			 Image imagenAjustada = portada.getImage().getScaledInstance(120, 160, Image.SCALE_SMOOTH);
+			 ImageIcon iconoEscalado = new ImageIcon(imagenAjustada);
+		        
+			 JButton boton = new JButton(iconoEscalado);
 			 boton.setPreferredSize(new Dimension(120, 160));
 			 boton.addActionListener(e -> new VentanaContenido(c).setVisible(true));
 			 panelContenido.add(boton);
