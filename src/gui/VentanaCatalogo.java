@@ -52,7 +52,6 @@ public class VentanaCatalogo extends JFrame{
 
 
 	private void inicializarVentana() {
-		
 		panelPrincipal.setBackground(new Color(217, 108, 70));
 		panelPrincipal.setOpaque(true);
 		
@@ -175,6 +174,8 @@ public class VentanaCatalogo extends JFrame{
 						}
 
 						JPanel panelActualizado = anadirContenidos(filtradas);
+						panelActualizado.setBackground(new Color(217, 108, 70));
+						
 						scrollPortadas.setViewportView(panelActualizado);
 						scrollPortadas.revalidate();
 						scrollPortadas.repaint();	
