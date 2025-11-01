@@ -42,6 +42,7 @@ public class VentanaPrincipal extends JFrame{
 	private ArrayList<Contenido> listaMejorValoradas;
 	private ArrayList<Contenido> listaPeliculas;
 	private ArrayList<Contenido> listaSeries;
+	private GestorDatos gestor;
 	
 	public VentanaPrincipal(Usuario usuario) throws HeadlessException {
 		super();
@@ -50,13 +51,14 @@ public class VentanaPrincipal extends JFrame{
 		this.listaMejorValoradas = GestorDatos.mejorValoradas(listaContenidos);
 		this.listaPeliculas = GestorDatos.soloPeliculas(listaContenidos);
 		this.listaSeries = GestorDatos.soloSeries(listaContenidos);
+		this.gestor = gestor;
 		
 		this.setTitle("Ventana Principal");
 		this.setSize(1300, 800);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);		
 		
-		panelPrincipal.setBackground(new Color(217, 108, 70));
+		panelPrincipal.setBackground(new Color(155, 178, 240));
 		panelPrincipal.setOpaque(true);
 		
 		inicializarComponentes();
@@ -69,14 +71,14 @@ public class VentanaPrincipal extends JFrame{
 		
 		botonMenu = new JButton("☰");
 		botonMenu.setSize(new Dimension(50, 50));
-		botonMenu.setBackground(new Color(140, 60, 85));
+		botonMenu.setBackground(new Color(14, 28, 59));
 		botonMenu.setForeground(Color.WHITE);
 		botonMenu.setFocusPainted(false);    
 		panelSuperior.add(botonMenu, BorderLayout.WEST);
 		botonMenu.addActionListener(e -> {
 			panelMenu.setVisible(!panelMenu.isVisible()); 
 		});
-		panelSuperior.setBackground(new Color(217, 108, 70));
+		panelSuperior.setBackground(new Color(155, 178, 204));
 		panelSuperior.setBorder(null);
 		panelPrincipal.add(panelSuperior, BorderLayout.NORTH);
 		
@@ -87,7 +89,7 @@ public class VentanaPrincipal extends JFrame{
 		panelMenu.setLayout(new BoxLayout(panelMenu, BoxLayout.Y_AXIS));
 		panelMenu.setPreferredSize(new Dimension(150, 0));  
 		panelMenu.setMaximumSize(new Dimension(150, Integer.MAX_VALUE));
-		panelMenu.setBackground(new Color(242, 201, 185));
+		panelMenu.setBackground(new Color(243, 200, 207));
 		
 		String[] etiquetasBotones = {"Inicio", "Catalogo", "Mi Lista", "Valoradas", "Mi Usuario"};
 		for (String etiqueta : etiquetasBotones) {
@@ -145,7 +147,7 @@ public class VentanaPrincipal extends JFrame{
 			//Panel para el titulo y el boton
 		JPanel panelTitulo = new JPanel();
 		panelTitulo.setLayout(new BoxLayout(panelTitulo, BoxLayout.X_AXIS));
-		panelTitulo.setBackground(new Color(217, 108, 70));
+		panelTitulo.setBackground(new Color(102, 24, 27));
 		panelTitulo.setAlignmentX(Component.LEFT_ALIGNMENT); 
 		panelTitulo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 60));
 
@@ -161,11 +163,11 @@ public class VentanaPrincipal extends JFrame{
 		botonResena.setMaximumSize(new Dimension(60, 60));
 		botonResena.setFont(new Font("Arial", Font.BOLD, 24));
 		botonResena.setForeground(Color.WHITE);
-		botonResena.setBackground(new Color(140, 60, 85));
+		botonResena.setBackground(new Color(14, 28, 59));
 		botonResena.setOpaque(true);
 		panelTitulo.add(botonResena);
 		botonResena.addActionListener(e -> {
-			VentanaAgregarResena vr = new VentanaAgregarResena(usuario, listaContenidos, null);
+			VentanaAgregarResena vr = new VentanaAgregarResena(usuario, listaContenidos, gestor);
 			vr.setVisible(true);
 		});
 		
@@ -184,7 +186,7 @@ public class VentanaPrincipal extends JFrame{
 		panelCarruseles.add(crearCarrusel("Series", this.listaSeries));
 		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 20)));
 		
-		panelCarruseles.setBackground(new Color(217, 108, 70));
+		panelCarruseles.setBackground(new Color(155, 178, 204));
 		
 		JScrollPane scrollPanelCarruseles = new JScrollPane(
                 panelCarruseles,
@@ -203,7 +205,7 @@ public class VentanaPrincipal extends JFrame{
 		//Panel que contiene el titulo y el carrusel
 		 JPanel panelCarruselCompleto = new JPanel();
 		 panelCarruselCompleto.setLayout(new BoxLayout(panelCarruselCompleto, BoxLayout.Y_AXIS));
-		 panelCarruselCompleto.setBackground(new Color(217, 108, 70));
+		 panelCarruselCompleto.setBackground(new Color(155, 178, 204));
 		 
 		 //Establecer el titulo del carrusel
 		 JLabel labelTitulo = new JLabel(titulo);
@@ -214,7 +216,7 @@ public class VentanaPrincipal extends JFrame{
 		 
 		 //Panel con el carrusel de pelis/series
 		 JPanel panelContenido = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
-		 panelContenido.setBackground(new Color(217, 108, 70)); 
+		 panelContenido.setBackground(new Color(155, 178, 204)); 
 		 for (Contenido c : lista) {
 			 ImageIcon portada = new ImageIcon(c.getRutaPortada());
 			 Image imagenAjustada = portada.getImage().getScaledInstance(120, 160, Image.SCALE_SMOOTH);
