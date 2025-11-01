@@ -68,7 +68,11 @@ public class VentanaMiUsuario extends JFrame{
         btnCerrarSesion.setForeground(Color.WHITE);
         btnCerrarSesion.setFocusPainted(false);
         btnCerrarSesion.setFont(new Font("Arial", Font.BOLD, 13));
-        btnCerrarSesion.addActionListener(e -> System.exit(0));
+        btnCerrarSesion.addActionListener(e -> {
+        	VentanaLogin ventana = new VentanaLogin(null);
+        	ventana.setVisible(true);
+        	dispose();
+        });
         
         panelDatos.add(labelNombreUsuario);
         panelDatos.add(Box.createVerticalStrut(10));

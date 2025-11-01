@@ -95,7 +95,7 @@ public class VentanaLogin extends JFrame{
 		
 		
 		userTxt = new JTextField();
-		userTxt.setMaximumSize(new Dimension(400, 35));
+		userTxt.setMaximumSize(new Dimension(400, 45));
 		userTxt.setAlignmentX(Component.CENTER_ALIGNMENT);
 		userTxt.setBackground(fondoCampos);
 		userTxt.setForeground(textoCampos);
@@ -107,7 +107,7 @@ public class VentanaLogin extends JFrame{
 		labelPassWord.setForeground(Color.WHITE);
 		
 		passwordTxt = new JPasswordField();
-		passwordTxt.setMaximumSize(new Dimension(400, 35));
+		passwordTxt.setMaximumSize(new Dimension(400, 45));
 		passwordTxt.setAlignmentX(Component.CENTER_ALIGNMENT);
 		passwordTxt.setBackground(fondoCampos);
 		passwordTxt.setForeground(textoCampos);
@@ -170,7 +170,7 @@ public class VentanaLogin extends JFrame{
 		//Bordes redondeados con padding interno
 		Border bordeNormal = BorderFactory.createCompoundBorder(
 			BorderFactory.createLineBorder(Color.DARK_GRAY, 1, true),
-			BorderFactory.createEmptyBorder(5,10,5,10)
+			BorderFactory.createEmptyBorder(1,10,1,10)
 		);
 		
 		Border bordeResaltado = BorderFactory.createCompoundBorder(
@@ -203,7 +203,6 @@ public class VentanaLogin extends JFrame{
 			
 		});
 
-		
 		
 		
 		formPanel.add(labelusuario);
