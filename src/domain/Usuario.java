@@ -54,6 +54,16 @@ public class Usuario {
 	public ArrayList<Contenido> getListaValoradas() {
 		return listaValoradas;
 	}
+
+	public ArrayList<Contenido> getMiLista() {
+		return miLista;
+	}
+
+	public void setMiLista(ArrayList<Contenido> miLista) {
+		this.miLista = miLista;
+	}
+	
+	
 	
 
 }
