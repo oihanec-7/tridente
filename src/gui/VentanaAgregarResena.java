@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.util.ArrayList;
@@ -42,10 +43,12 @@ public class VentanaAgregarResena extends JFrame{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		
+		// Panel Principal
 		JPanel panelPrincipal = new JPanel();
 		panelPrincipal.setLayout(new BoxLayout(panelPrincipal, BoxLayout.Y_AXIS));
         panelPrincipal.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
+        // Titulo
         JLabel lblTitulo = new JLabel("Agregar nueva reseña");
         lblTitulo.setFont(new Font("Arial", Font.BOLD, 20));
         lblTitulo.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -56,6 +59,7 @@ public class VentanaAgregarResena extends JFrame{
         	titulos.add(c.getTitulo());
         }
         JComboBox<String> comboTitulos = new JComboBox<>(titulos.toArray(new String[0]));
+        comboTitulos.setPreferredSize(new Dimension(200, 25)); 
         
         JPanel panelCombo = new JPanel(new FlowLayout(FlowLayout.LEFT));
         panelCombo.add(new JLabel("Título:"));
@@ -66,7 +70,7 @@ public class VentanaAgregarResena extends JFrame{
         panelPuntuacion.add(new JLabel("Puntuación:"));
         ButtonGroup grupoEstrellas = new ButtonGroup();
         JRadioButton[] estrellas = new JRadioButton[5];
-        for (int i = 1; i <= 5; i++) {
+        for (int i = 0; i < 5; i++) {
             estrellas[i] = new JRadioButton(String.valueOf(i + 1));
             estrellas[i].setActionCommand(String.valueOf(i + 1));
             grupoEstrellas.add(estrellas[i]);
@@ -105,7 +109,9 @@ public class VentanaAgregarResena extends JFrame{
             
             // Crear la reseña y agregarla al gestor
             Resena resena = new Resena(usuarioActual, contenidoSeleccionado, puntuacion);
-            gestor.agregarResena(resena);
+        	if (gestor != null) {
+        		gestor.agregarResena(resena);
+        	}
             
             JOptionPane.showMessageDialog(this, "Reseña agregada correctamente.");
             dispose();
