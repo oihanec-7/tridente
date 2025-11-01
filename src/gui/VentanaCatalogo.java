@@ -50,7 +50,6 @@ public class VentanaCatalogo extends JFrame{
 		inicializarVentana();
 	}
 
-
 	private void inicializarVentana() {
 		panelPrincipal.setBackground(new Color(217, 108, 70));
 		panelPrincipal.setOpaque(true);
