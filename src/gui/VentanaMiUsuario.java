@@ -31,7 +31,7 @@ public class VentanaMiUsuario extends JFrame{
 		
 		// Panel principal 
 		JPanel panelPrincipal = new JPanel(new BorderLayout());
-		panelPrincipal.setBackground(new Color(242, 201, 185));
+		panelPrincipal.setBackground(new Color(155, 178, 204));
 		
 		// Panel izquierdo - Foto perfil
 		ImageIcon icon = new ImageIcon("images/icono_perfil.png");
@@ -41,7 +41,7 @@ public class VentanaMiUsuario extends JFrame{
 		fotoPerfil.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
 		
 		JPanel panelIzquierdo = new JPanel(new BorderLayout());
-		panelIzquierdo.setBackground(new Color(242, 201, 185)); 
+		panelIzquierdo.setBackground(new Color(243, 200, 207)); 
 		panelIzquierdo.add(fotoPerfil, BorderLayout.NORTH);
 		panelPrincipal.add(panelIzquierdo, BorderLayout.WEST);
 		
@@ -49,22 +49,27 @@ public class VentanaMiUsuario extends JFrame{
 		JPanel panelDatos = new JPanel();
 		panelDatos.setLayout(new BoxLayout(panelDatos, BoxLayout.Y_AXIS));
 		panelDatos.setBorder(BorderFactory.createEmptyBorder(30,20,20,20));
+		panelDatos.setBackground(new Color(155, 178, 204));
 		
 		// Nombre de Usuario (en grande)
         JLabel labelNombreUsuario = new JLabel(usuario.getNombre_usuario());
-        labelNombreUsuario.setFont(new Font("Arial", Font.BOLD, 20)); 
+        labelNombreUsuario.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 40)); 
 
         // Nombre y Apellidos
         JLabel labelNombreCompleto = new JLabel(usuario.getNombre() + " " + usuario.getApellido());
         JLabel labelEmail = new JLabel(usuario.getEmail());
-//        JLabel labelResenas = new JLabel("Reseñas:" + usuario.getNum_resenas());
         JLabel labelResenas = new JLabel("Numero de reseñas hechas:" + " " + usuario.getListaValoradas().size());
-
-            
+        labelNombreCompleto.setFont(new Font("SansSerif", Font.PLAIN ,30));
+        labelNombreCompleto.setForeground(new Color(14, 28, 59));
+        labelEmail.setFont(new Font("Segoe UI", Font.PLAIN ,30));
+        labelEmail.setForeground(new Color(14, 28, 59));
+        labelResenas.setFont(new Font("Century Gothic", Font.PLAIN ,30));
+        labelResenas.setForeground(new Color(14, 28, 59));
         
+        // Boton Cerrar Sesion
         JButton btnCerrarSesion = new JButton("Cerrar Sesión");
         btnCerrarSesion.setAlignmentX(Component.LEFT_ALIGNMENT);
-        btnCerrarSesion.setBackground(new Color(140, 60, 82));
+        btnCerrarSesion.setBackground(new Color(102, 24, 27));
         btnCerrarSesion.setForeground(Color.WHITE);
         btnCerrarSesion.setFocusPainted(false);
         btnCerrarSesion.setFont(new Font("Arial", Font.BOLD, 13));

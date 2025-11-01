@@ -1,29 +1,25 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.util.ArrayList;
-import java.util.List;
+
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 
 import data.GestorDatos;
 import domain.Contenido;
-import domain.Pelicula;
 import domain.Resena;
 import domain.Usuario;
 
@@ -39,18 +35,21 @@ public class VentanaAgregarResena extends JFrame{
         this.gestor = gestor;
 		
 		setTitle("Agregar reseña");
-		setSize(400,250);
+		setSize(450,350);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
+		
 		
 		// Panel Principal
 		JPanel panelPrincipal = new JPanel();
 		panelPrincipal.setLayout(new BoxLayout(panelPrincipal, BoxLayout.Y_AXIS));
         panelPrincipal.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-
+        panelPrincipal.setBackground(new Color(155, 178, 204));
+        
         // Titulo
-        JLabel lblTitulo = new JLabel("Agregar nueva reseña");
+        JLabel lblTitulo = new JLabel("Nueva Reseña");
         lblTitulo.setFont(new Font("Arial", Font.BOLD, 20));
+        lblTitulo.setForeground(new Color(102, 24, 27));
         lblTitulo.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
         // ComboBox con titulos de contenidos
@@ -64,25 +63,82 @@ public class VentanaAgregarResena extends JFrame{
         JPanel panelCombo = new JPanel(new FlowLayout(FlowLayout.LEFT));
         panelCombo.add(new JLabel("Título:"));
         panelCombo.add(comboTitulos);
+        panelCombo.setBackground(new Color(155, 178, 204));
                
-        // Puntuacion
+        // Puntuacion con estrellas
         JPanel panelPuntuacion = new JPanel(new FlowLayout(FlowLayout.LEFT));
         panelPuntuacion.add(new JLabel("Puntuación:"));
-        ButtonGroup grupoEstrellas = new ButtonGroup();
-        JRadioButton[] estrellas = new JRadioButton[5];
-        for (int i = 0; i < 5; i++) {
-            estrellas[i] = new JRadioButton(String.valueOf(i + 1));
-            estrellas[i].setActionCommand(String.valueOf(i + 1));
-            grupoEstrellas.add(estrellas[i]);
+        panelPuntuacion.setBackground(new Color(155, 178, 204));
+        
+        int numEstrellas = 5;
+        JButton[] estrellas = new JButton[numEstrellas];
+        final int[] puntuacionSeleccionada = {0};
+        
+        Font fontEstrellas = new Font("Segoe UI Symbol", Font.PLAIN, 22);
+        Color colorEstrella = new Color(255, 215, 0);
+        Color colorVacia = new Color(200, 200, 200);
+        
+        for (int i = 0; i < numEstrellas; i++) {
+        	int indice = i;
+        	estrellas[i] = new JButton("⭐");
+            estrellas[i].setFont(fontEstrellas);
+            estrellas[i].setBorderPainted(false);
+            estrellas[i].setFocusPainted(false);
+            estrellas[i].setContentAreaFilled(false);
+            estrellas[i].setForeground(colorVacia);
+            
+            estrellas[i].addMouseListener(new java.awt.event.MouseAdapter() {
+            	public void mouseEntered (java.awt.event.MouseEvent e) {
+            		for (int j = 0; j <= indice; j++) {
+            			estrellas[j].setText("★");
+            			estrellas[j].setForeground(colorEstrella);
+            		}
+            		for (int j = indice + 1; j < numEstrellas; j++) {
+            			estrellas[j].setText("☆");
+            			estrellas[j].setForeground(colorVacia);
+            		}
+            	}
+            	
+            	public void mouseExited(java.awt.event.MouseEvent e) {
+            		for(int j = 0; j < numEstrellas; j++) {
+            			if (j < puntuacionSeleccionada[0]) {
+            				estrellas[j].setText("★");
+            				 estrellas[j].setForeground(colorEstrella);
+                        } else {
+                            estrellas[j].setText("☆");
+                            estrellas[j].setForeground(colorVacia);
+            			}
+            		}
+            	}
+            });
+            
+            estrellas[i].addActionListener(e -> {
+            	puntuacionSeleccionada[0] = indice + 1;
+            	for (int j = 0; j < numEstrellas; j++) {
+            		 if (j < puntuacionSeleccionada[0]) {
+                         estrellas[j].setText("★");
+                         estrellas[j].setForeground(colorEstrella);
+                     } else {
+                         estrellas[j].setText("☆");
+                         estrellas[j].setForeground(colorVacia);
+                     }
+            	}
+            });
+            
             panelPuntuacion.add(estrellas[i]);
         }
         
         // Botones inferiores
         JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         JButton btnGuardar = new JButton("Guardar reseña");
+        btnGuardar.setBackground(new Color(102, 24, 27));
+        btnGuardar.setForeground(Color.WHITE);
         JButton btnCancelar = new JButton("Cancelar");
+        btnCancelar.setBackground(new Color(102, 24, 27));
+        btnCancelar.setForeground(Color.WHITE);
         panelBotones.add(btnGuardar);
         panelBotones.add(btnCancelar);
+        panelBotones.setBackground(new Color(155, 178, 204));
         
         // Accion Cancelar
         btnCancelar.addActionListener(e -> dispose());
@@ -101,11 +157,11 @@ public class VentanaAgregarResena extends JFrame{
             	JOptionPane.showMessageDialog(this, "No se encontro el contenido seleccionado.");
             	return;
             }
-            if (grupoEstrellas.getSelection() == null) {
+            if (puntuacionSeleccionada[0] == 0) {
             	JOptionPane.showMessageDialog(this, "Seleccione una puntuación.");
                 return;
             }
-            double puntuacion = Double.parseDouble(grupoEstrellas.getSelection().getActionCommand());
+            double puntuacion = puntuacionSeleccionada[0];
             
             // Crear la reseña y agregarla al gestor
             Resena resena = new Resena(usuarioActual, contenidoSeleccionado, puntuacion);
@@ -132,3 +188,4 @@ public class VentanaAgregarResena extends JFrame{
     
 	}
 }
+
