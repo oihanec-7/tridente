@@ -32,7 +32,10 @@ public class VentanaCatalogo extends JFrame{
 	private ArrayList<Contenido> listaContenidos;
 	private Usuario usuario;
 	private JButton botonMenu;
+	private JPanel panelPrincipal = new JPanel(new BorderLayout());
 	private JPanel panelMenu;
+	private JPanel panelPortadas;
+	private JScrollPane scrollPortadas;
 	private JTextField buscador;
 	
 	public VentanaCatalogo(Usuario usuario) {
@@ -49,7 +52,6 @@ public class VentanaCatalogo extends JFrame{
 
 
 	private void inicializarVentana() {
-		JPanel panelPrincipal = new JPanel(new BorderLayout());
 		
 		panelPrincipal.setBackground(new Color(217, 108, 70));
 		panelPrincipal.setOpaque(true);
@@ -60,11 +62,16 @@ public class VentanaCatalogo extends JFrame{
 				panelSuperior.setBackground(new Color(217, 108, 70));
 				
 				botonMenu = new JButton("☰");
-				botonMenu.setSize(new Dimension(50, 30));
+				botonMenu.setSize(new Dimension(50, 50));
+				botonMenu.setBackground(new Color(140, 60, 85));
+				botonMenu.setForeground(Color.WHITE);
+				botonMenu.setFocusPainted(false);    
 				panelSuperior.add(botonMenu, BorderLayout.WEST);
 				botonMenu.addActionListener(e -> {
 					panelMenu.setVisible(!panelMenu.isVisible()); 
 				});
+				panelSuperior.setBackground(new Color(217, 108, 70));
+				panelSuperior.setBorder(null);
 				
 					// la lupa esta fea	
 				buscador = new JTextField(30);
@@ -88,7 +95,7 @@ public class VentanaCatalogo extends JFrame{
 				panelMenu.setLayout(new BoxLayout(panelMenu, BoxLayout.Y_AXIS));
 				panelMenu.setPreferredSize(new Dimension(150, 0));  
 				panelMenu.setMaximumSize(new Dimension(150, Integer.MAX_VALUE));
-				panelMenu.setBackground(Color.LIGHT_GRAY);
+				panelMenu.setBackground(new Color(242, 201, 185));
 				
 				String[] etiquetasBotones = {"Inicio", "Catalogo", "Mi Lista", "Valoradas", "Mi Usuario"};
 				for (String etiqueta : etiquetasBotones) {
@@ -141,10 +148,10 @@ public class VentanaCatalogo extends JFrame{
 				JPanel panelPortadas = anadirContenidos(this.listaContenidos);
 				panelPortadas.setBackground(new Color(217, 108, 70));
 
-				JScrollPane scroll = new JScrollPane(panelPortadas,
+				scrollPortadas = new JScrollPane(panelPortadas,
 				        JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				        JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-				panelPrincipal.add(scroll, BorderLayout.CENTER);
+				panelPrincipal.add(scrollPortadas, BorderLayout.CENTER);
 		
 				
 				//Listener del buscador (para filtrar por titulo)
@@ -158,27 +165,22 @@ public class VentanaCatalogo extends JFrame{
 					public void changedUpdate(DocumentEvent e) {filtrar();}
 				
 					
-					private void filtrar() {
+					public void filtrar() {
 						String texto = buscador.getText().toLowerCase();
-			            ArrayList<Contenido> filtradas = new ArrayList<>();
-			            for (Contenido c : listaContenidos) {
-			                if (c.getTitulo().toLowerCase().contains(texto)) {
-			                    filtradas.add(c);
-			                }
-			            }
-						
-			            panelPortadas.removeAll();
-			            JPanel panelActualizado = anadirContenidos(filtradas);
-			            panelActualizado.revalidate(); 
-			            panelActualizado.repaint();
+						ArrayList<Contenido> filtradas = new ArrayList<>();
+						for (Contenido c : listaContenidos) {
+							if (c.getTitulo().toLowerCase().contains(texto)) {
+								filtradas.add(c);
+							}
+						}
+
+						JPanel panelActualizado = anadirContenidos(filtradas);
+						scrollPortadas.setViewportView(panelActualizado);
+						scrollPortadas.revalidate();
+						scrollPortadas.repaint();	
 					}
-					
 				});
-				
-			
-				
-				
-				
+						
 		add(panelPrincipal);
 	}
 	

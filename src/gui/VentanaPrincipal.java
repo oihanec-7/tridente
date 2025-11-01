@@ -35,9 +35,8 @@ public class VentanaPrincipal extends JFrame{
 	private JPanel panelPrincipal = new JPanel(new BorderLayout());
 	private JPanel panelMenu;
 	private JButton botonMenu;
-	private JTextField buscador;
 	private JPanel panelCarruseles;
-	private JButton agregarResena;
+	private JButton botonResena;
 	private Usuario usuario;
 	private ArrayList<Contenido> listaContenidos;
 	private ArrayList<Contenido> listaMejorValoradas;
@@ -65,7 +64,7 @@ public class VentanaPrincipal extends JFrame{
 
 
 	private void inicializarComponentes() {		
-		//Panel superior (barra buscar + boton menu)
+		//Panel superior para el boton del menu
 		JPanel panelSuperior = new JPanel(new BorderLayout());
 		
 		botonMenu = new JButton("☰");
@@ -80,6 +79,7 @@ public class VentanaPrincipal extends JFrame{
 		panelSuperior.setBackground(new Color(217, 108, 70));
 		panelSuperior.setBorder(null);
 		panelPrincipal.add(panelSuperior, BorderLayout.NORTH);
+		
 		
 		
 		// Panel (desplegable) del menu
@@ -123,6 +123,7 @@ public class VentanaPrincipal extends JFrame{
 		    		break;
 		    	case "Mi Usuario":
 		    		boton.addActionListener(e -> {
+		    			this.setVisible(true);
 		    			VentanaMiUsuario miUsuario = new VentanaMiUsuario(usuario);
 		    		    miUsuario.setVisible(true);
 		    		}
@@ -134,16 +135,45 @@ public class VentanaPrincipal extends JFrame{
 		panelMenu.setVisible(false);
 		panelPrincipal.add(panelMenu, BorderLayout.WEST);
 		
-
-		//Paneles de scrol (recomendados y mejor valorados)
+		
+		
+		
+		//Paneles de scroll (mas el nombre de la app y el boton "Añadir reseña")
 		panelCarruseles = new JPanel();
 		panelCarruseles.setLayout(new BoxLayout(panelCarruseles, BoxLayout.Y_AXIS));
 		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 30)));
 
+			//Panel para el titulo y el boton
+		JPanel panelTitulo = new JPanel();
+		panelTitulo.setLayout(new BoxLayout(panelTitulo, BoxLayout.X_AXIS));
+		panelTitulo.setBackground(new Color(217, 108, 70));
+		panelTitulo.setAlignmentX(Component.LEFT_ALIGNMENT); 
+		panelTitulo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 60));
+
 		JLabel nombreApp = new JLabel("TRIDENTE");
 		nombreApp.setFont(new Font("Arial Black", Font.BOLD, 36));
-		panelCarruseles.add(nombreApp);
+		nombreApp.setForeground(Color.WHITE);
+		panelTitulo.add(nombreApp);
+
+		panelTitulo.add(Box.createHorizontalGlue());
+
+		botonResena = new JButton("+");
+		botonResena.setPreferredSize(new Dimension(60, 60));
+		botonResena.setMaximumSize(new Dimension(60, 60));
+		botonResena.setFont(new Font("Arial", Font.BOLD, 24));
+		botonResena.setForeground(Color.WHITE);
+		botonResena.setBackground(new Color(140, 60, 85));
+		botonResena.setOpaque(true);
+		panelTitulo.add(botonResena);
+		botonResena.addActionListener(e -> {
+			VentanaAgregarResena vr = new VentanaAgregarResena(usuario, listaContenidos, null);
+			vr.setVisible(true);
+		});
 		
+		panelCarruseles.add(panelTitulo);
+//		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 30))); 
+		
+		// Añadimos los scrolls al panelCarruseles
 		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 70)));
 		
 		panelCarruseles.add(crearCarrusel("Recomendadas para ti", this.listaContenidos)); 
@@ -167,6 +197,9 @@ public class VentanaPrincipal extends JFrame{
 		this.add(panelPrincipal);
 	}
 
+	
+	
+	
 	private JPanel crearCarrusel(String titulo, ArrayList<Contenido> lista) {
 		//Panel que contiene el titulo y el carrusel
 		 JPanel panelCarruselCompleto = new JPanel();
