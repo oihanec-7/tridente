@@ -10,6 +10,7 @@ import java.awt.HeadlessException;
 import java.awt.Image;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -49,14 +50,14 @@ public class VentanaCatalogo extends JFrame{
 		inicializarVentana();
 	}
 
-
 	private void inicializarVentana() {
 		panelPrincipal.setBackground(new Color(217, 108, 70));
 		panelPrincipal.setOpaque(true);
 		
 		//Mantener el boton de menu y el menu desplegable y añadir la barra de buscar arriba
-		//Panel superior (barra buscar + boton menu)
-		JPanel panelSuperior = new JPanel(new BorderLayout(10,10));
+			//Panel superior (barra buscar + boton menu)
+		JPanel panelSuperior = new JPanel();
+		panelSuperior.setLayout(new BoxLayout(panelSuperior, BoxLayout.X_AXIS));
 		panelSuperior.setBackground(new Color(217, 108, 70));
 				
 		botonMenu = new JButton("☰");
@@ -64,7 +65,7 @@ public class VentanaCatalogo extends JFrame{
 		botonMenu.setBackground(new Color(140, 60, 85));
 		botonMenu.setForeground(Color.WHITE);
 		botonMenu.setFocusPainted(false);    
-		panelSuperior.add(botonMenu, BorderLayout.WEST);
+		panelSuperior.add(botonMenu);
 		botonMenu.addActionListener(e -> {
 				panelMenu.setVisible(!panelMenu.isVisible()); 
 			});
@@ -73,19 +74,13 @@ public class VentanaCatalogo extends JFrame{
 				
 			// la lupa esta fea	
 		buscador = new JTextField(30);
-				
-		JLabel imagen = new JLabel();
-		JPanel panelBuscador = new JPanel(new BorderLayout(5, 5));
-				
-				
+		panelSuperior.add(buscador);
+		
 		ImageIcon imagenLupa = new ImageIcon("images/lupa.png");
 		Image escalarImagen = imagenLupa.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
-		imagen.setIcon(new ImageIcon(escalarImagen));
-				
-				
-		panelBuscador.add(buscador, BorderLayout.CENTER);
-		panelBuscador.add(imagen, BorderLayout.EAST);
-		panelSuperior.add(panelBuscador, BorderLayout.CENTER);
+		ImageIcon iconoEscalado = new ImageIcon(escalarImagen);
+		JLabel etiquetaLupa = new JLabel(iconoEscalado); 
+		panelSuperior.add(etiquetaLupa);
 				
 		panelPrincipal.add(panelSuperior, BorderLayout.NORTH);
 				
@@ -186,23 +181,40 @@ public class VentanaCatalogo extends JFrame{
 	}
 	
 	private JPanel anadirContenidos(ArrayList<Contenido> contenidos) {
-		JPanel panelPortadas = new JPanel(new GridLayout(0, 5, 10, 10));
-		for (Contenido c : contenidos) {
-			ImageIcon portada = new ImageIcon(c.getRutaPortada()); 	
-			Image imagenAjustada = portada.getImage().getScaledInstance(120, 170, Image.SCALE_SMOOTH);
-	        ImageIcon iconoEscalado = new ImageIcon(imagenAjustada);
-			
-			
-			JButton boton = new JButton(iconoEscalado);
-			boton.setPreferredSize(new Dimension(120, 170));
-		    boton.setMaximumSize(new Dimension(120, 170));
-		    boton.addActionListener(e -> {
-		        VentanaContenido ventana = new VentanaContenido(c);
-		        ventana.setVisible(true);
-		    });
-		    panelPortadas.add(boton);
-		}
-		
-		return panelPortadas;
+	    JPanel panelPrincipal = new JPanel();
+	    panelPrincipal.setLayout(new BoxLayout(panelPrincipal, BoxLayout.Y_AXIS));
+	    panelPrincipal.setBackground(new Color(217, 108, 70));
+	    panelPrincipal.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); 
+	    panelPrincipal.add(Box.createRigidArea(new Dimension(0, 30)));
+
+	    int botonesPorFila = 9; 
+	    JPanel fila = null;
+	    int contador = 0;
+
+	    for (Contenido c : contenidos) {
+	        if (contador % botonesPorFila == 0) {
+	            fila = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 5)); 
+	            fila.setBackground(new Color(217, 108, 70));
+	            panelPrincipal.add(fila);
+	        }
+
+	        // Crear botones para cada peli/serie
+	        ImageIcon portadaIcon = new ImageIcon(c.getRutaPortada());
+	        Image imagenEscalada = portadaIcon.getImage().getScaledInstance(120, 170, Image.SCALE_SMOOTH);
+	        ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
+	        JButton boton = new JButton(iconoEscalado);
+	        boton.setPreferredSize(new Dimension(120, 170));
+	        boton.setBorderPainted(false);
+	        boton.addActionListener(e -> {
+	            VentanaContenido ventana = new VentanaContenido(c);
+	            ventana.setVisible(true);
+	        });
+
+	        fila.add(boton);
+	        contador++;
+	    }
+
+	    return panelPrincipal;
 	}
+
 }
