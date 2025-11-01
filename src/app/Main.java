@@ -31,7 +31,6 @@ public class Main {
 		actores.add("Drew Starkey");
 		actores.add("Jacob Elordi");
 		
-		Pelicula peliPrueba = new Pelicula("Cars", generos, puntuaciones, actores, 150);
 		
 	    SwingUtilities.invokeLater(() -> {
 	        // Lista de usuarios de prueba
