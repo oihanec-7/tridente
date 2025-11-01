@@ -1,31 +1,31 @@
-Pelicula;Inception;Ciencia ficcion,Accion;4.8,5.0,4.6,4.9;Leonardo DiCaprio,Joseph Gordon-Levitt;148
-Pelicula;Interstellar;Ciencia ficcion,Drama;5.0,4.9,4.8,4.7;Matthew McConaughey,Anne Hathaway;169
-Pelicula;The Dark Knight;Accion,Drama;5.0,4.9,5.0,4.8;Christian Bale,Heath Ledger;152
-Pelicula;La La Land;Romance,Musical;4.7,4.8,4.9,4.5;Ryan Gosling,Emma Stone;128
-Pelicula;Gladiator;Accion,Drama;4.9,4.7,5.0,4.8;Russell Crowe,Joaquin Phoenix;155
-Pelicula;Titanic;Romance,Drama;4.5,4.6,4.7,4.8;Leonardo DiCaprio,Kate Winslet;195
-Pelicula;The Matrix;Accion,Ciencia ficcion;4.9,4.8,4.7,4.9;Keanu Reeves,Carrie-Anne Moss;136
-Pelicula;Forrest Gump;Drama,Comedia;4.9,5.0,4.8,4.7;Tom Hanks,Robin Wright;142
-Pelicula;Fight Club;Drama,Accion;4.8,4.7,4.9,4.8;Brad Pitt,Edward Norton;139
-Pelicula;Joker;Drama,Accion;4.9,4.8,4.7,4.9;Joaquin Phoenix,Robert De Niro;122
-Pelicula;Avatar;Ciencia ficcion,Accion;4.5,4.6,4.7,4.5;Sam Worthington,Zoe Saldana;162
-Pelicula;The Shawshank Redemption;Drama;5.0,5.0,4.9,4.8;Tim Robbins,Morgan Freeman;142
-Pelicula;The Godfather;Drama,Accion;5.0,4.9,5.0,5.0;Marlon Brando,Al Pacino;175
-Pelicula;Avengers: Endgame;Accion,Ciencia ficcion;4.6,4.7,4.8,4.9;Robert Downey Jr.,Chris Evans;181
-Pelicula;La Bella y la Bestia;Musical,Romance;4.8,4.9,4.7,4.6;Emma Watson,Dan Stevens;129
-Serie;Breaking Bad;Drama,Accion;5.0,4.9,4.8,5.0;Bryan Cranston,Aaron Paul;5
-Serie;Game of Thrones;Fantasia,Drama;4.9,4.8,4.9,5.0;Emilia Clarke,Kit Harington;8
-Serie;Stranger Things;Ciencia ficcion,Drama;4.8,4.9,4.7,4.8;Millie Bobby Brown,David Harbour;5
-Serie;The Crown;Drama,Romance;4.7,4.8,4.9,4.6;Olivia Colman,Helena Bonham Carter;6
-Serie;The Office;Comedia;4.8,4.7,4.9,4.8;Steve Carell,Jenna Fischer;9
-Serie;Friends;Comedia,Romance;4.9,5.0,4.8,4.9;Jennifer Aniston,Courteney Cox;10
-Serie;The Mandalorian;Accion,Ciencia ficcion;4.6,4.8,4.9,4.7;Pedro Pascal,Gina Carano;3
-Serie;The Boys;Accion,Comedia;4.7,4.8,4.9,4.6;Karl Urban,Jack Quaid;4
-Serie;Better Call Saul;Drama,Accion;4.9,5.0,4.8,4.9;Bob Odenkirk,Rhea Seehorn;6
-Serie;The Last of Us;Drama,Ciencia ficcion;4.9,5.0,4.8,4.7;Pedro Pascal,Bella Ramsey;1
-Serie;Sherlock;Drama,Accion;4.8,4.9,4.7,4.9;Benedict Cumberbatch,Martin Freeman;4
-Serie;The Witcher;Fantasia,Accion;4.5,4.7,4.8,4.6;Henry Cavill,Anya Chalotra;3
-Serie;Peaky Blinders;Drama,Accion;4.9,4.8,4.9,5.0;Cillian Murphy,Tom Hardy;6
-Serie;The Umbrella Academy;Accion,Fantasia;4.4,4.5,4.6,4.5;Elliot Page,Tom Hopper;3
-Serie;Narcos;Drama,Accion;4.8,4.9,5.0,4.8;Wagner Moura,Pedro Pascal;3
-Serie;Dark;Ciencia ficcion,Fantasia;5.0,4.9,4.8,4.9;Louis Hofmann,Lisa Vicari;3
+Pelicula;Guardians of the Galaxy;Ciencia ficcion,Accion;4.7,4.8,4.6,4.9;Chris Pratt,Zoe Saldana;121;images/guardians_of_the_galaxy.jpg
+Pelicula;Interstellar;Ciencia ficcion,Drama;5.0,4.9,4.8,4.7;Matthew McConaughey,Anne Hathaway;169;images/interstellar.jpg
+Pelicula;The Dark Knight;Accion,Drama;5.0,4.9,5.0,4.8;Christian Bale,Heath Ledger;152;images/the_dark_knight.jpg
+Pelicula;La La Land;Romance,Musical;4.7,4.8,4.9,4.5;Ryan Gosling,Emma Stone;128;images/la_la_land.jpg
+Pelicula;Gladiator;Accion,Drama;4.9,4.7,5.0,4.8;Russell Crowe,Joaquin Phoenix;155;images/gladiator.jpg
+Pelicula;Titanic;Romance,Drama;4.5,4.6,4.7,4.8;Leonardo DiCaprio,Kate Winslet;195;images/titanic.jpg
+Pelicula;The Matrix;Accion,Ciencia ficcion;4.9,4.8,4.7,4.9;Keanu Reeves,Carrie-Anne Moss;136;images/the_matrix.jpg
+Pelicula;Forrest Gump;Drama,Comedia;4.9,5.0,4.8,4.7;Tom Hanks,Robin Wright;142;images/forrest_gump.jpg
+Pelicula;Fight Club;Drama,Accion;4.8,4.7,4.9,4.8;Brad Pitt,Edward Norton;139;images/fight_club.jpg
+Pelicula;Joker;Drama,Accion;4.9,4.8,4.7,4.9;Joaquin Phoenix,Robert De Niro;122;images/joker.jpg
+Pelicula;Avatar;Ciencia ficcion,Accion;4.5,4.6,4.7,4.5;Sam Worthington,Zoe Saldana;162;images/avatar.jpg
+Pelicula;The Shawshank Redemption;Drama;5.0,5.0,4.9,4.8;Tim Robbins,Morgan Freeman;142;images/the_shawshank_redemption.jpg
+Pelicula;The Godfather;Drama,Accion;5.0,4.9,5.0,5.0;Marlon Brando,Al Pacino;175;images/the_godfather.jpg
+Pelicula;Avengers: Endgame;Accion,Ciencia ficcion;4.6,4.7,4.8,4.9;Robert Downey Jr.,Chris Evans;181;images/avengers_end_game.jpg
+Pelicula;La Bella y la Bestia;Musical,Romance;4.8,4.9,4.7,4.6;Emma Watson,Dan Stevens;129;images/la_bella_y_la_bestia.jpg
+Serie;Breaking Bad;Drama,Accion;5.0,4.9,4.8,5.0;Bryan Cranston,Aaron Paul;5;images/breaking_bad.jpg
+Serie;Game of Thrones;Fantasia,Drama;4.9,4.8,4.9,5.0;Emilia Clarke,Kit Harington;8;images/game_of_thrones.jpg
+Serie;Stranger Things;Ciencia ficcion,Drama;4.8,4.9,4.7,4.8;Millie Bobby Brown,David Harbour;5;images/stranger_things.jpg
+Serie;The Crown;Drama,Romance;4.7,4.8,4.9,4.6;Olivia Colman,Helena Bonham Carter;6;images/the_crown.jpg
+Serie;The Office;Comedia;4.8,4.7,4.9,4.8;Steve Carell,Jenna Fischer;9;images/the_office.jpg
+Serie;Friends;Comedia,Romance;4.9,5.0,4.8,4.9;Jennifer Aniston,Courteney Cox;10;images/friends.jpg
+Serie;The Mandalorian;Accion,Ciencia ficcion;4.6,4.8,4.9,4.7;Pedro Pascal,Gina Carano;3;images/mandalorian.jpg
+Serie;The Boys;Accion,Comedia;4.7,4.8,4.9,4.6;Karl Urban,Jack Quaid;4;images/the_boys.jpg
+Serie;Better Call Saul;Drama,Accion;4.9,5.0,4.8,4.9;Bob Odenkirk,Rhea Seehorn;6;images/better_call_saul.jpg
+Serie;The Last of Us;Drama,Ciencia ficcion;4.9,5.0,4.8,4.7;Pedro Pascal,Bella Ramsey;1;images/the_last_of_us.jpg
+Serie;Sherlock;Drama,Accion;4.8,4.9,4.7,4.9;Benedict Cumberbatch,Martin Freeman;4;images/sherlock.jpg
+Serie;The Witcher;Fantasia,Accion;4.5,4.7,4.8,4.6;Henry Cavill,Anya Chalotra;3;images/the_witcher.jpg
+Serie;Peaky Blinders;Drama,Accion;4.9,4.8,4.9,5.0;Cillian Murphy,Tom Hardy;6;images/peaky_blinders.jpg
+Serie;The Umbrella Academy;Accion,Fantasia;4.4,4.5,4.6,4.5;Elliot Page,Tom Hopper;3;images/umbrella_academy.jpg
+Serie;Narcos;Drama,Accion;4.8,4.9,5.0,4.8;Wagner Moura,Pedro Pascal;3;images/narcos.jpg
+Serie;Dark;Ciencia ficcion,Fantasia;5.0,4.9,4.8,4.9;Louis Hofmann,Lisa Vicari;3;images/dark.jpg
