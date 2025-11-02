@@ -215,5 +215,4 @@ public class VentanaCatalogo extends JFrame{
 
 	    return panelPrincipal;
 	}
-
 }

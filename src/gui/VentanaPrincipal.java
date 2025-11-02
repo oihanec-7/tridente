@@ -20,7 +20,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-
 import data.GestorDatos;
 import domain.Contenido;
 import domain.Recomendador;

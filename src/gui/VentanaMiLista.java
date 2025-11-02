@@ -61,9 +61,8 @@ public class VentanaMiLista extends JFrame {
         botonMenu.setForeground(Color.WHITE);
         botonMenu.setFocusPainted(false);
         panelSuperior.add(botonMenu);
-
         botonMenu.addActionListener(e -> panelMenu.setVisible(!panelMenu.isVisible()));
-
+        
         buscador = new JTextField(30);
         panelSuperior.add(Box.createHorizontalStrut(10));
         panelSuperior.add(buscador);
