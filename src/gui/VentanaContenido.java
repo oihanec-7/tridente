@@ -150,7 +150,8 @@ public class VentanaContenido extends JFrame{
 	          		
         	});  	
         		
-        }
+        }  
+      
         else {
         	botonLista = new JButton("Añadir a mi Lista");
         	botonLista.setBackground(new Color(155, 178, 204));
