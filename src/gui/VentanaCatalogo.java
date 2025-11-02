@@ -121,7 +121,11 @@ public class VentanaCatalogo extends JFrame{
 					});
 					break;
 				case "Valoradas":
-					boton.addActionListener(e -> {});
+					boton.addActionListener(e -> {
+						this.setVisible(false);
+		    			VentanaValoradas vv = new VentanaValoradas(usuario);
+		    			vv.setVisible(true);
+					});
 					break;
 				case "Mi Usuario":
 					boton.addActionListener(e -> {
