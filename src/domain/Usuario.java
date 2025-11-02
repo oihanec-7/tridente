@@ -2,6 +2,8 @@ package domain;
 
 import java.util.ArrayList;
 
+import gui.VentanaMiLista;
+
 public class Usuario {
 	private String nombre;
 	private String nombre_usuario;
@@ -10,6 +12,7 @@ public class Usuario {
 	private String email;
 	private ArrayList<Contenido> miLista;
 	private ArrayList<Contenido> listaValoradas;
+	private VentanaMiLista ventanaMiLista;
 
 
 	public Usuario(String nombre, String nombre_usuario, String contraseña, String apellido, String email) {
@@ -21,6 +24,8 @@ public class Usuario {
 		this.email = email;
 		this.miLista = new ArrayList<Contenido>();
 		this.listaValoradas = new ArrayList<Contenido>();
+		this.ventanaMiLista = null;
+		
 	}
 
 	public String getNombre() {
@@ -61,6 +66,14 @@ public class Usuario {
 
 	public void setMiLista(ArrayList<Contenido> miLista) {
 		this.miLista = miLista;
+	}
+
+	public void setVentanaMiLista(VentanaMiLista v) { 
+	    this.ventanaMiLista = v; 
+	}
+
+	public VentanaMiLista getVentanaMiLista() { 
+	    return this.ventanaMiLista; 
 	}
 	
 	
