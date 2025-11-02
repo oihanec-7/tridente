@@ -25,21 +25,22 @@ import domain.Usuario;
 
 public class VentanaAgregarResena extends JFrame{
 	
-	private GestorDatos gestor;
 	private Usuario usuarioActual;
 	private ArrayList<Contenido> contenidos;
 		
-	public VentanaAgregarResena(Usuario usuario, ArrayList<Contenido> contenidos, GestorDatos gestor) {
+	public VentanaAgregarResena(Usuario usuario, ArrayList<Contenido> contenidos) {
 		this.usuarioActual = usuario;
-        this.contenidos = contenidos;
-        this.gestor = gestor;
+        this.contenidos = GestorDatos.cargarCSV("src/data/contenido.csv");
 		
 		setTitle("Agregar reseña");
 		setSize(450,350);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		
-		
+		inicializarVentana();
+	}
+	
+	public void inicializarVentana() {	
 		// Panel Principal
 		JPanel panelPrincipal = new JPanel();
 		panelPrincipal.setLayout(new BoxLayout(panelPrincipal, BoxLayout.Y_AXIS));
@@ -54,7 +55,7 @@ public class VentanaAgregarResena extends JFrame{
 		
         // ComboBox con titulos de contenidos
         ArrayList<String> titulos = new ArrayList<>();
-        for (Contenido c : contenidos) {
+        for (Contenido c : this.contenidos) {
         	titulos.add(c.getTitulo());
         }
         JComboBox<String> comboTitulos = new JComboBox<>(titulos.toArray(new String[0]));
@@ -163,11 +164,7 @@ public class VentanaAgregarResena extends JFrame{
             }
             double puntuacion = puntuacionSeleccionada[0];
             
-            // Crear la reseña y agregarla al gestor
-            Resena resena = new Resena(usuarioActual, contenidoSeleccionado, puntuacion);
-        	if (gestor != null) {
-        		gestor.agregarResena(resena);
-        	}
+           
             
             JOptionPane.showMessageDialog(this, "Reseña agregada correctamente.");
             dispose();
@@ -188,4 +185,5 @@ public class VentanaAgregarResena extends JFrame{
     
 	}
 }
+
 

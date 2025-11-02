@@ -51,15 +51,16 @@ public class VentanaCatalogo extends JFrame{
 	}
 
 	private void inicializarVentana() {
-		panelPrincipal.setBackground(new Color(217, 108, 70));
+		panelPrincipal.setBackground(new Color(155, 178, 240));
 		panelPrincipal.setOpaque(true);
 		
 		//Mantener el boton de menu y el menu desplegable y añadir la barra de buscar arriba
 			//Panel superior (barra buscar + boton menu)
 		JPanel panelSuperior = new JPanel();
 		panelSuperior.setLayout(new BoxLayout(panelSuperior, BoxLayout.X_AXIS));
-		panelSuperior.setBackground(new Color(217, 108, 70));
-				
+		panelSuperior.setBackground(new Color(155, 178, 240));
+		panelSuperior.setBorder(null);
+		
 		botonMenu = new JButton("☰");
 		botonMenu.setSize(new Dimension(50, 50));
 		botonMenu.setBackground(new Color(140, 60, 85));
@@ -69,8 +70,7 @@ public class VentanaCatalogo extends JFrame{
 		botonMenu.addActionListener(e -> {
 				panelMenu.setVisible(!panelMenu.isVisible()); 
 			});
-		panelSuperior.setBackground(new Color(217, 108, 70));
-		panelSuperior.setBorder(null);
+		
 				
 			// la lupa esta fea	
 		buscador = new JTextField(30);
@@ -90,7 +90,7 @@ public class VentanaCatalogo extends JFrame{
 		panelMenu.setLayout(new BoxLayout(panelMenu, BoxLayout.Y_AXIS));
 		panelMenu.setPreferredSize(new Dimension(150, 0));  
 		panelMenu.setMaximumSize(new Dimension(150, Integer.MAX_VALUE));
-		panelMenu.setBackground(new Color(242, 201, 185));
+		panelMenu.setBackground(new Color(14, 28, 59));
 				
 		String[] etiquetasBotones = {"Inicio", "Catalogo", "Mi Lista", "Valoradas", "Mi Usuario"};
 		for (String etiqueta : etiquetasBotones) {
@@ -144,7 +144,7 @@ public class VentanaCatalogo extends JFrame{
 				
 		//Añadir todas las pelis y series
 		JPanel panelPortadas = anadirContenidos(this.listaContenidos);
-		panelPortadas.setBackground(new Color(217, 108, 70));
+		panelPortadas.setBackground(new Color(155, 178, 240));
 
 		scrollPortadas = new JScrollPane(panelPortadas,
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -187,7 +187,7 @@ public class VentanaCatalogo extends JFrame{
 	private JPanel anadirContenidos(ArrayList<Contenido> contenidos) {
 	    JPanel panelPrincipal = new JPanel();
 	    panelPrincipal.setLayout(new BoxLayout(panelPrincipal, BoxLayout.Y_AXIS));
-	    panelPrincipal.setBackground(new Color(217, 108, 70));
+	    panelPrincipal.setBackground(new Color(155, 178, 240));
 	    panelPrincipal.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); 
 	    panelPrincipal.add(Box.createRigidArea(new Dimension(0, 30)));
 

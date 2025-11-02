@@ -42,7 +42,6 @@ public class VentanaPrincipal extends JFrame{
 	private ArrayList<Contenido> listaMejorValoradas;
 	private ArrayList<Contenido> listaPeliculas;
 	private ArrayList<Contenido> listaSeries;
-	private GestorDatos gestor;
 	
 	public VentanaPrincipal(Usuario usuario) throws HeadlessException {
 		super();
@@ -51,7 +50,6 @@ public class VentanaPrincipal extends JFrame{
 		this.listaMejorValoradas = GestorDatos.mejorValoradas(listaContenidos);
 		this.listaPeliculas = GestorDatos.soloPeliculas(listaContenidos);
 		this.listaSeries = GestorDatos.soloSeries(listaContenidos);
-		this.gestor = gestor;
 		
 		this.setTitle("Ventana Principal");
 		this.setSize(1300, 800);
@@ -171,7 +169,7 @@ public class VentanaPrincipal extends JFrame{
 		botonResena.setOpaque(true);
 		panelTitulo.add(botonResena);
 		botonResena.addActionListener(e -> {
-			VentanaAgregarResena vr = new VentanaAgregarResena(usuario, listaContenidos, gestor);
+			VentanaAgregarResena vr = new VentanaAgregarResena(usuario, listaContenidos);
 			vr.setVisible(true);
 		});
 		
