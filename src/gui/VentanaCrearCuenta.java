@@ -38,12 +38,12 @@ public class VentanaCrearCuenta extends JFrame{
 		this.setLocationRelativeTo(null);
 		
 		//Colores
-		Color fondoPrincipal = new Color(217, 108, 70);
+		Color fondoPrincipal = new Color(155, 178, 204);
         Color fondoCampo = new Color(220, 220, 220);
         Color colorTexto = Color.BLACK;
         Color titulo = Color.WHITE;
         Color labelColor = Color.WHITE;
-        Color botonColor = new Color(140, 60, 85);
+        Color botonColor = new Color(14, 28, 59);
         
         //Bordes
         Border bordes = BorderFactory.createCompoundBorder(

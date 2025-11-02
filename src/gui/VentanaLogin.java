@@ -53,7 +53,7 @@ public class VentanaLogin extends JFrame{
 		//Colores
 		Color fondoPrincipal = new Color(40,40,40);
 		Color fondoCampos = new Color(200, 200, 200);
-		Color botonColor = new Color(0, 120, 215);
+		Color botonColor = new Color(102, 24, 27);
 		Color textoCampos = Color.BLACK;
 		
 		//Creación del panel principal que posteriormente se divide en otros dos paneles
@@ -126,15 +126,15 @@ public class VentanaLogin extends JFrame{
 		singIn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
 		//cambia el color del boton cuando el cursor pasa por encima
-		singIn.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				singIn.setBackground(new Color(0, 100, 200));
-			}
-			public void mouseExited(java.awt.event.MouseEvent evt) {
-				singIn.setBackground(new Color(0, 120, 215));
-			}
+		//singIn.addMouseListener(new java.awt.event.MouseAdapter() {
+			//public void mouseEntered(java.awt.event.MouseEvent evt) {
+				//singIn.setBackground(new Color(0, 100, 200));
+			//}
+			//public void mouseExited(java.awt.event.MouseEvent evt) {
+				//singIn.setBackground(new Color(0, 120, 215));
+			//}
 			
-		});
+		//});
 		
 		singIn.addActionListener(e -> verificarUsuario());
 		
@@ -151,15 +151,15 @@ public class VentanaLogin extends JFrame{
 		crearCuenta.setCursor(new Cursor(Cursor.HAND_CURSOR)); 
 		
 		//cambia el color del boton cuando el cursor pasa por encima
-		crearCuenta.addMouseListener(new java.awt.event.MouseAdapter(){
-			public void mouseEntered(java.awt.event.MouseAdapter evt) {
-				crearCuenta.setBackground(new Color(0, 100, 200));
-			}
-			public void mouseExited(java.awt.event.MouseAdapter evt) {
-				crearCuenta.setBackground(new Color(0, 120, 215));
-			}
+		//crearCuenta.addMouseListener(new java.awt.event.MouseAdapter(){
+			//public void mouseEntered(java.awt.event.MouseAdapter evt) {
+				//crearCuenta.setBackground(new Color(0, 100, 200));
+			//}
+			//public void mouseExited(java.awt.event.MouseAdapter evt) {
+				//crearCuenta.setBackground(new Color(0, 120, 215));
+			//}
 			
-		});
+		//});
 		
 		crearCuenta.addActionListener(e -> {
 			this.setVisible(false);
@@ -175,7 +175,7 @@ public class VentanaLogin extends JFrame{
 		
 		Border bordeResaltado = BorderFactory.createCompoundBorder(
 				BorderFactory.createLineBorder(new Color(0, 120, 215), 2, true),
-				BorderFactory.createEmptyBorder(2,7,2,7)
+				BorderFactory.createEmptyBorder(0,7,0,7)
 		);
 		
 		//Cambia el borde del campo de texto cuando recibe o pierde foco.
