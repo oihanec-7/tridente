@@ -114,41 +114,73 @@ public class VentanaContenido extends JFrame{
 
         
         panelDerecha.setBorder(new EmptyBorder(20, 20, 20, 20));
-       
         
-        // Botón añadir a mi Lista
-        JButton añadirLista = new JButton("Añadir a mi Lista");
-        añadirLista.setAlignmentX(LEFT_ALIGNMENT);
-        añadirLista.setBackground(new Color(155, 178, 204));
-        añadirLista.setFont(new Font("Arial", Font.BOLD, 14));
-        añadirLista.setForeground(Color.white);
-        añadirLista.setFocusPainted(false);
-        añadirLista.setBorder(BorderFactory.createEmptyBorder(8,15,8,15));
+        boolean enMilista = usuario.getMiLista().contains(contenido);
+        JButton botonLista;
+        if(enMilista) {
+        	botonLista = new JButton("Quitar de mi Lista");
+        	botonLista.setBackground(new Color(200, 50, 50));
+        	ImageIcon basura = new ImageIcon("images/quitar.png");
+        	Image escalarBasura = basura.getImage().getScaledInstance(18, 18, Image.SCALE_SMOOTH);
+        	botonLista.setIcon(new ImageIcon(escalarBasura));
+
+        	botonLista.addActionListener(e -> {
+	          	int confirm = JOptionPane.showConfirmDialog(
+	                    this,
+	                    "¿Estás seguro de que quieres quitar " + contenido.getTitulo() + " de tu lista?",
+	                    "Confirmar",
+	                    JOptionPane.YES_NO_OPTION,
+	                    JOptionPane.WARNING_MESSAGE
+	            );
+	          	if(confirm == JOptionPane.YES_OPTION) {
+	          		usuario.getMiLista().remove(contenido);
+	          		if (usuario.getMiLista() != null) {
+		          		usuario.getVentanaMiLista().actualizarMiLista();
+					}
+		          		
+	          		JOptionPane.showMessageDialog(
+	                        this,
+	                        contenido.getTitulo() + " se ha eliminado de tu lista.",
+	                        "Eliminado",
+	                        JOptionPane.INFORMATION_MESSAGE
+	                );
+	          		this.dispose();
+	          	}
+	          
+	          		
+        	});  	
+        		
+        }  
+      
+        else {
+        	botonLista = new JButton("Añadir a mi Lista");
+        	botonLista.setBackground(new Color(155, 178, 204));
+        	ImageIcon cine = new ImageIcon("images/cine.png");
+        	Image escalarCine = cine.getImage().getScaledInstance(18, 18, Image.SCALE_SMOOTH);
+        	botonLista.setIcon(new ImageIcon(escalarCine));
+    
+        	
+          	botonLista.addActionListener(e -> {
+          		usuario.getMiLista().add(contenido);
+          		JOptionPane.showMessageDialog(this,
+                        contenido.getTitulo() + " se ha añadido a tu lista.",
+                        "Añadido", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose(); 
+          		
+          	});
+        }
         
+        botonLista.setAlignmentX(LEFT_ALIGNMENT);
+    	botonLista.setFont(new Font("Arial", Font.BOLD, 14));
+     	botonLista.setForeground(Color.black);
+    	botonLista.setFocusPainted(false);
+    	botonLista.setBorder(BorderFactory.createEmptyBorder(8,15,8,15));
+     	botonLista.setHorizontalAlignment(JButton.LEFT);
+      	botonLista.setIconTextGap(8);
+    	
         panelDerecha.add(Box.createRigidArea(new Dimension(0, 30)));
         
-        ImageIcon iconoCine = new ImageIcon("images/cine.png");
-        Image escalarImagen = iconoCine.getImage().getScaledInstance(18, 18, Image.SCALE_SMOOTH);
-        añadirLista.setIcon(new ImageIcon(escalarImagen));
-        añadirLista.setHorizontalAlignment(JButton.LEFT);
-        añadirLista.setIconTextGap(8);
-        
-        añadirLista.addActionListener(e -> {
-        	if(usuario != null && contenido != null) {
-        		if(!usuario.getMiLista().contains(contenido)) {
-        			usuario.getMiLista().add(contenido);
-        			JOptionPane.showMessageDialog(this,
-                            contenido.getTitulo() + " se ha añadido a tu lista.",
-                            "Añadido", JOptionPane.INFORMATION_MESSAGE);
-        		}else {
-                    JOptionPane.showMessageDialog(this,
-                            "Ya tienes " + contenido.getTitulo() + " en tu lista.",
-                            "Aviso", JOptionPane.WARNING_MESSAGE);
-                }
-        	}
-        });
-        
-        panelDerecha.add(añadirLista);
+        panelDerecha.add(botonLista);
         panelPrincipal.add(panelDerecha, BorderLayout.CENTER);
         
         add(panelPrincipal);
