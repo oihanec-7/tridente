@@ -226,7 +226,7 @@ public class VentanaPrincipal extends JFrame{
 		        
 			 JButton boton = new JButton(iconoEscalado);
 			 boton.setPreferredSize(new Dimension(120, 160));
-			 boton.addActionListener(e -> new VentanaContenido(c).setVisible(true));
+			 boton.addActionListener(e -> new VentanaContenido(c, usuario).setVisible(true));
 			 panelContenido.add(boton);
 		 }
 		 

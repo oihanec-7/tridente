@@ -39,6 +39,29 @@ public class VentanaLogin extends JFrame{
 	private JButton crearCuenta;
 	private List<Usuario> usuarios;
 	
+	private void addPlaceholderBehavior(JTextField field, String placeholder) {
+	    field.setText(placeholder);
+	    field.setForeground(Color.GRAY);
+
+	    field.addFocusListener(new FocusAdapter() {
+	        @Override
+	        public void focusGained(FocusEvent e) {
+	            if (field.getText().equals(placeholder)) {
+	                field.setText("");
+	                field.setForeground(Color.BLACK);
+	                
+	            }
+	        }
+
+	        @Override
+	        public void focusLost(FocusEvent e) {
+	            if (field.getText().isEmpty()) {
+	                field.setText(placeholder);
+	                field.setForeground(Color.GRAY);
+	            }
+	        }
+	    });
+	}
 	
 	
 	public VentanaLogin(List<Usuario> usuarios) {
@@ -51,11 +74,12 @@ public class VentanaLogin extends JFrame{
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		//Colores
-		Color fondoPrincipal = new Color(40,40,40);
-		Color fondoCampos = new Color(200, 200, 200);
-		Color botonColor = new Color(102, 24, 27);
+		Color fondoPrincipal = new Color(34, 40, 49);
+		Color fondoCampos = new Color(255, 255, 255);
+		Color botonColor = new Color(231, 76, 60);
 		Color textoCampos = Color.BLACK;
-		
+			
+				
 		//Creación del panel principal que posteriormente se divide en otros dos paneles
 		JPanel panelPrincipal = new JPanel(new GridLayout(1,2));
 		panelPrincipal.setBackground(fondoPrincipal);
@@ -88,22 +112,23 @@ public class VentanaLogin extends JFrame{
 		formPanel.setBackground(fondoPrincipal);
 		
 		//Labels y Jtextfields(campos)
-		JLabel labelusuario = new JLabel("User");
+		JLabel labelusuario = new JLabel("Usuario");
 		labelusuario.setAlignmentX(Component.CENTER_ALIGNMENT);
-		labelusuario.setFont(new Font("Helvetica Neue", Font.PLAIN, 16));
+		labelusuario.setFont(new Font("Helvetica Neue", Font.BOLD, 16));
 		labelusuario.setForeground(Color.WHITE);
 		
 		
 		userTxt = new JTextField();
-		userTxt.setMaximumSize(new Dimension(400, 45));
+		userTxt.setMaximumSize(new Dimension(400, 40));
 		userTxt.setAlignmentX(Component.CENTER_ALIGNMENT);
 		userTxt.setBackground(fondoCampos);
 		userTxt.setForeground(textoCampos);
+		addPlaceholderBehavior(userTxt, "Usuario");
 		
-
-		JLabel labelPassWord = new JLabel("Password");
+		
+		JLabel labelPassWord = new JLabel("Contraseña");
 		labelPassWord.setAlignmentX(Component.CENTER_ALIGNMENT);
-		labelPassWord.setFont(new Font("Helvetica Neue", Font.PLAIN, 16));
+		labelPassWord.setFont(new Font("Helvetica Neue", Font.BOLD, 16));
 		labelPassWord.setForeground(Color.WHITE);
 		
 		passwordTxt = new JPasswordField();
@@ -111,15 +136,17 @@ public class VentanaLogin extends JFrame{
 		passwordTxt.setAlignmentX(Component.CENTER_ALIGNMENT);
 		passwordTxt.setBackground(fondoCampos);
 		passwordTxt.setForeground(textoCampos);
+		addPlaceholderBehavior(passwordTxt, "Password");
 		
 		
 		
 		singIn = new JButton("Sing In");
-		singIn.setMaximumSize(new Dimension(120, 30));
+		singIn.setMaximumSize(new Dimension(150, 35));
 		singIn.setAlignmentX(Component.CENTER_ALIGNMENT);
 		singIn.setFont(new Font("Helvetica Neue", Font.BOLD, 14));
 		singIn.setBackground(botonColor);
 		singIn.setForeground(Color.WHITE);
+		singIn.setFocusPainted(false);
 		singIn.setOpaque(true); // asegura que se pinte el fondo
 		
 		// cambia el cursor cuando pase sobre el botón
@@ -140,11 +167,12 @@ public class VentanaLogin extends JFrame{
 		
 		//boton crear cuenta
 		crearCuenta = new JButton("Crear Cuenta");
-		crearCuenta.setMaximumSize(new Dimension(120, 30));
+		crearCuenta.setMaximumSize(new Dimension(150, 35));
 		crearCuenta.setAlignmentX(Component.CENTER_ALIGNMENT);
 		crearCuenta.setFont(new Font("Helvetica Neue", Font.BOLD, 14));
 		crearCuenta.setBackground(botonColor);
 		crearCuenta.setForeground(Color.WHITE);
+		crearCuenta.setFocusPainted(false);
 		crearCuenta.setOpaque(true);
 		
 		// cambia el cursor cuando pase sobre el boton
@@ -167,42 +195,10 @@ public class VentanaLogin extends JFrame{
 			ventana_cuenta.setVisible(true);
 		});
 		
-		//Bordes redondeados con padding interno
-		Border bordeNormal = BorderFactory.createCompoundBorder(
-			BorderFactory.createLineBorder(Color.DARK_GRAY, 1, true),
-			BorderFactory.createEmptyBorder(1,10,1,10)
-		);
-		
-		Border bordeResaltado = BorderFactory.createCompoundBorder(
-				BorderFactory.createLineBorder(new Color(0, 120, 215), 2, true),
-				BorderFactory.createEmptyBorder(0,7,0,7)
-		);
-		
 		//Cambia el borde del campo de texto cuando recibe o pierde foco.
 		//Campo activo: al enfocar se resalta en azul
 		//al perde el foco vuelve a gris
-		passwordTxt.addFocusListener(new FocusAdapter() {
-			public void focusGained(FocusEvent e) {
-		        passwordTxt.setBorder(bordeResaltado);
-		    }
-			
-			public void focusLost(FocusEvent e) {
-		        passwordTxt.setBorder(bordeNormal);
-		    }
-			
-		});
-		
-		userTxt.addFocusListener(new FocusAdapter() {
-			public void focusGained(FocusEvent e) {
-		        userTxt.setBorder(bordeResaltado);
-		    }
-			
-			public void focusLost(FocusEvent e) {
-		        userTxt.setBorder(bordeNormal);
-		    }
-			
-		});
-
+	
 		
 		
 		formPanel.add(labelusuario);
@@ -251,6 +247,8 @@ public class VentanaLogin extends JFrame{
 		userTxt.requestFocus(); //pone el cursor en el campo user text automaticamente
 		
 	}
+	
+	
 	
 		
 		

@@ -180,7 +180,7 @@ public class VentanaMiLista extends JFrame {
             JButton boton = new JButton(new ImageIcon(escalarPortada));
             boton.setPreferredSize(new Dimension(120, 170));
             boton.setBorderPainted(false);
-            boton.addActionListener(e -> new VentanaContenido(c).setVisible(true));
+            boton.addActionListener(e -> new VentanaContenido(c, usuario).setVisible(true));
             fila.add(boton);
             contador++;
         }

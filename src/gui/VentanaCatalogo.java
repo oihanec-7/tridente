@@ -51,14 +51,14 @@ public class VentanaCatalogo extends JFrame{
 	}
 
 	private void inicializarVentana() {
-		panelPrincipal.setBackground(new Color(155, 178, 240));
+		panelPrincipal.setBackground(new Color(155, 178, 204));
 		panelPrincipal.setOpaque(true);
 		
 		//Mantener el boton de menu y el menu desplegable y añadir la barra de buscar arriba
 			//Panel superior (barra buscar + boton menu)
 		JPanel panelSuperior = new JPanel();
 		panelSuperior.setLayout(new BoxLayout(panelSuperior, BoxLayout.X_AXIS));
-		panelSuperior.setBackground(new Color(155, 178, 240));
+		panelSuperior.setBackground(new Color(155, 178, 204));
 		panelSuperior.setBorder(null);
 		
 		botonMenu = new JButton("☰");
@@ -90,7 +90,7 @@ public class VentanaCatalogo extends JFrame{
 		panelMenu.setLayout(new BoxLayout(panelMenu, BoxLayout.Y_AXIS));
 		panelMenu.setPreferredSize(new Dimension(150, 0));  
 		panelMenu.setMaximumSize(new Dimension(150, Integer.MAX_VALUE));
-		panelMenu.setBackground(new Color(14, 28, 59));
+		panelMenu.setBackground(new Color(243, 200, 207));
 				
 		String[] etiquetasBotones = {"Inicio", "Catalogo", "Mi Lista", "Valoradas", "Mi Usuario"};
 		for (String etiqueta : etiquetasBotones) {
@@ -144,7 +144,7 @@ public class VentanaCatalogo extends JFrame{
 				
 		//Añadir todas las pelis y series
 		JPanel panelPortadas = anadirContenidos(this.listaContenidos);
-		panelPortadas.setBackground(new Color(155, 178, 240));
+		panelPortadas.setBackground(new Color(155, 178, 204));
 
 		scrollPortadas = new JScrollPane(panelPortadas,
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -187,7 +187,7 @@ public class VentanaCatalogo extends JFrame{
 	private JPanel anadirContenidos(ArrayList<Contenido> contenidos) {
 	    JPanel panelPrincipal = new JPanel();
 	    panelPrincipal.setLayout(new BoxLayout(panelPrincipal, BoxLayout.Y_AXIS));
-	    panelPrincipal.setBackground(new Color(155, 178, 240));
+	    panelPrincipal.setBackground(new Color(155, 178, 204));
 	    panelPrincipal.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); 
 	    panelPrincipal.add(Box.createRigidArea(new Dimension(0, 30)));
 
@@ -198,7 +198,7 @@ public class VentanaCatalogo extends JFrame{
 	    for (Contenido c : contenidos) {
 	        if (contador % botonesPorFila == 0) {
 	            fila = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 5)); 
-	            fila.setBackground(new Color(217, 108, 70));
+	            fila.setBackground(new Color(155, 178, 204));
 	            panelPrincipal.add(fila);
 	        }
 
@@ -210,7 +210,7 @@ public class VentanaCatalogo extends JFrame{
 	        boton.setPreferredSize(new Dimension(120, 170));
 	        boton.setBorderPainted(false);
 	        boton.addActionListener(e -> {
-	            VentanaContenido ventana = new VentanaContenido(c);
+	            VentanaContenido ventana = new VentanaContenido(c, usuario);
 	            ventana.setVisible(true);
 	        });
 
