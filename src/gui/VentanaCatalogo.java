@@ -63,25 +63,19 @@ public class VentanaCatalogo extends JFrame{
 		
 		botonMenu = new JButton("☰");
 		botonMenu.setSize(new Dimension(50, 50));
-		botonMenu.setBackground(new Color(140, 60, 85));
-		botonMenu.setForeground(Color.WHITE);
-		botonMenu.setFocusPainted(false);    
-		panelSuperior.add(botonMenu);
+        botonMenu.setBackground(new Color(14, 28, 59));
+        botonMenu.setForeground(Color.WHITE);
+        botonMenu.setFocusPainted(false);
+        panelSuperior.add(botonMenu);
 		botonMenu.addActionListener(e -> {
 				panelMenu.setVisible(!panelMenu.isVisible()); 
 			});
 		
 				
-			// la lupa esta fea	
 		buscador = new JTextField(30);
+		panelSuperior.add(Box.createHorizontalStrut(10));
 		panelSuperior.add(buscador);
-		
-		ImageIcon imagenLupa = new ImageIcon("images/lupa.png");
-		Image escalarImagen = imagenLupa.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
-		ImageIcon iconoEscalado = new ImageIcon(escalarImagen);
-		JLabel etiquetaLupa = new JLabel(iconoEscalado); 
-		panelSuperior.add(etiquetaLupa);
-				
+					
 		panelPrincipal.add(panelSuperior, BorderLayout.NORTH);
 				
 				
@@ -174,7 +168,7 @@ public class VentanaCatalogo extends JFrame{
 				}
 
 				JPanel panelActualizado = anadirContenidos(filtradas);
-				panelActualizado.setBackground(new Color(217, 108, 70));
+				panelActualizado.setBackground(new Color(155, 178, 204));
 						
 				scrollPortadas.setViewportView(panelActualizado);
 				scrollPortadas.revalidate();
