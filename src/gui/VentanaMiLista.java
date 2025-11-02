@@ -68,12 +68,6 @@ public class VentanaMiLista extends JFrame {
         panelSuperior.add(Box.createHorizontalStrut(10));
         panelSuperior.add(buscador);
 
-        ImageIcon imagenLupa = new ImageIcon("images/lupa.png");
-        Image escalarImagen = imagenLupa.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
-        JLabel etiquetaLupa = new JLabel(new ImageIcon(escalarImagen));
-        panelSuperior.add(Box.createHorizontalStrut(5));
-        panelSuperior.add(etiquetaLupa);
-
         panelPrincipal.add(panelSuperior, BorderLayout.NORTH);
 
         // Panel menú lateral

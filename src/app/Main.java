@@ -53,7 +53,7 @@ public class Main {
             cast.add("Chris Pratt");
             cast.add("Zoe Saldana");
             Pelicula guardians = new Pelicula("Guardians of the Galaxy", genero, puntuacione, cast, "images/guardians_of_the_galaxy.jpg", 121);
-            juan.getMiLista().add(guardians);
+//            juan.getMiLista().add(guardians);
 
             // Serie
             ArrayList<String> generosSerie = new ArrayList<>();
@@ -68,7 +68,7 @@ public class Main {
             castSerie.add("Bryan Cranston");
             castSerie.add("Aaron Paul");
             Serie breakingBad = new Serie("Breaking Bad", generosSerie, puntuacionesSerie, castSerie, "images/breaking_bad.jpg", 5);
-            juan.getMiLista().add(breakingBad);
+//            juan.getMiLista().add(breakingBad);
 
             // Añadir usuario a la lista de prueba
             usuariosPrueba.add(juan);
