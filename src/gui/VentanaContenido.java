@@ -133,7 +133,7 @@ public class VentanaContenido extends JFrame{
 	                    JOptionPane.WARNING_MESSAGE
 	            );
 	          	if(confirm == JOptionPane.YES_OPTION) {
-	          		usuario.getMiLista().contains(contenido);
+	          		usuario.getMiLista().remove(contenido);
 	          		if (usuario.getMiLista() != null) {
 		          		usuario.getVentanaMiLista().actualizarMiLista();
 					}
