@@ -74,9 +74,9 @@ public class VentanaLogin extends JFrame{
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		//Colores
-		Color fondoPrincipal = new Color(34, 40, 49);
+		Color fondoPrincipal = new Color(14, 28, 59);
 		Color fondoCampos = new Color(255, 255, 255);
-		Color botonColor = new Color(231, 76, 60);
+		Color botonColor = new Color(102, 24, 27);
 		Color textoCampos = Color.BLACK;
 			
 				
@@ -87,7 +87,7 @@ public class VentanaLogin extends JFrame{
 		//Creación y ajustes de la imagen(logo)
 		JLabel imagen = new JLabel();
 		
-		ImageIcon logo = new ImageIcon("images/tridente.png");
+		ImageIcon logo = new ImageIcon("images/logo.png");
 		Image escalarImagen = logo.getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH);
 		imagen.setIcon(new ImageIcon(escalarImagen));
 		imagen.setHorizontalAlignment(JLabel.CENTER);
