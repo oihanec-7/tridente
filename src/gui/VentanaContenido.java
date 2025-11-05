@@ -71,7 +71,6 @@ public class VentanaContenido extends JFrame{
         
 		panelPrincipal.add(panelIzquierdo, BorderLayout.WEST);
 
-
         //Panel de la derecha
         JPanel panelDerecha = new JPanel();
         panelDerecha.setLayout(new BoxLayout(panelDerecha, BoxLayout.Y_AXIS));

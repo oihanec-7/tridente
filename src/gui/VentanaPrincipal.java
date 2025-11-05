@@ -10,7 +10,6 @@ import java.awt.Font;
 import java.awt.HeadlessException;
 import java.awt.Image;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -20,12 +19,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.UIManager;
 
 import data.GestorDatos;
 import domain.Contenido;
-import domain.Pelicula;
+import domain.Recomendador;
 import domain.Usuario;
 
 public class VentanaPrincipal extends JFrame{
@@ -184,7 +181,7 @@ public class VentanaPrincipal extends JFrame{
 		// Añadimos los scrolls al panelCarruseles
 		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 70)));
 		
-		panelCarruseles.add(crearCarrusel("Recomendadas para ti", this.listaContenidos)); 
+		panelCarruseles.add(crearCarrusel("Recomendadas para ti", Recomendador.recomendarPorGenero(usuario, listaContenidos))); 
 		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 20)));
 		panelCarruseles.add(crearCarrusel("Mejor valoradas", this.listaMejorValoradas)); 
 		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 20)));
