@@ -10,6 +10,8 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
@@ -138,6 +140,18 @@ public class VentanaLogin extends JFrame{
 		passwordTxt.setForeground(textoCampos);
 		addPlaceholderBehavior(passwordTxt, "Password");
 		
+		//evento de teclado, si le damos a enter y la contraseña es correcta 
+		//entramos en la ventana princiapl
+		passwordTxt.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e){
+				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+					verificarUsuario();
+				}
+				
+				
+			}
+		});
+		
 		
 		
 		singIn = new JButton("Sing In");
@@ -248,9 +262,5 @@ public class VentanaLogin extends JFrame{
 		
 	}
 	
-	
-	
-		
-		
 
 }
