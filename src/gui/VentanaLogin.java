@@ -250,26 +250,27 @@ public class VentanaLogin extends JFrame{
 				
 				// ventana de carga 
 				VentanaLoading loading = new VentanaLoading();
+				loading.setVisible(true);
 				
-				SwingUtilities.invokeLater(() -> {
-					SwingWorker<Void, Void> worker = new SwingWorker<>() {
-		
-						@Override
-						protected Void doInBackground() throws Exception {
-							Thread.sleep(2000);
-							return null;
-						}
-						protected void done() {
-							loading.dispose();
-							VentanaPrincipal vp = new VentanaPrincipal(u);
-							vp.setVisible(true);
-						}
-						
-					};
-					worker.execute();
-				});
+				SwingWorker<Void, Void> worker = new SwingWorker<>() {
+		            private VentanaPrincipal principal;
+
+		            @Override
+		            protected Void doInBackground() throws Exception {
+		                principal = new VentanaPrincipal(u);
+		                return null;
+		            }
+
+		            @Override
+		            protected void done() {
+		                loading.dispose();  
+		                principal.setVisible(true);  
+		            }
+		        };
+
+		        worker.execute();
 				return;
-		}
+			}
 		}
 		
 		//Si el usuario y la contraseña son incorrectos:
