@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.util.ArrayList;
 
 
@@ -40,6 +41,8 @@ public class VentanaAgregarResena extends JFrame{
 		inicializarVentana();
 	}
 	
+	
+
 	public void inicializarVentana() {	
 		// Panel Principal
 		JPanel panelPrincipal = new JPanel();
