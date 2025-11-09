@@ -1,6 +1,8 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Recomendador {
 		
@@ -14,17 +16,17 @@ public class Recomendador {
 			}
 		}
 		
-		ArrayList<Contenido> recomendados = new ArrayList<Contenido>();
+	    Set<Contenido> recomendadasSet = new HashSet<>(); 
 		for (Contenido cont : catalogo) {
 			if(!usuario.getMiLista().contains(cont)) {
 				for (String gen : cont.getGenero()) {
 					if(generosUsuario.contains(gen)) {
-						recomendados.add(cont);
+						recomendadasSet.add(cont);
 					}
 				}
 			}
 		}	
-		return recomendados;
+		return new ArrayList<Contenido>(recomendadasSet);
 	}
 
 }

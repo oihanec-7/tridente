@@ -181,6 +181,8 @@ public class VentanaPrincipal extends JFrame{
 		// Añadimos los scrolls al panelCarruseles
 		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 70)));
 		
+		panelCarruseles.add(crearCarrusel("Mi Lista", usuario.getMiLista())); 
+		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 20)));
 		panelCarruseles.add(crearCarrusel("Recomendadas para ti", Recomendador.recomendarPorGenero(usuario, listaContenidos))); 
 		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 20)));
 		panelCarruseles.add(crearCarrusel("Mejor valoradas", this.listaMejorValoradas)); 
@@ -218,33 +220,49 @@ public class VentanaPrincipal extends JFrame{
 		 panelCarruselCompleto.add(labelTitulo);
 		 panelCarruselCompleto.add(Box.createRigidArea(new Dimension(0, 5)));
 		 
-		 //Panel con el carrusel de pelis/series
-		 JPanel panelContenido = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
-		 panelContenido.setBackground(new Color(155, 178, 204)); 
-		 for (Contenido c : lista) {
-			 ImageIcon portada = new ImageIcon(c.getRutaPortada());
-			 Image imagenAjustada = portada.getImage().getScaledInstance(120, 160, Image.SCALE_SMOOTH);
-			 ImageIcon iconoEscalado = new ImageIcon(imagenAjustada);
-		        
-			 JButton boton = new JButton(iconoEscalado);
-			 boton.setPreferredSize(new Dimension(120, 160));
-			 boton.addActionListener(e -> new VentanaContenido(c, usuario).setVisible(true));
-			 panelContenido.add(boton);
-		 }
-		 
-		 //Añadir scroll horizontal
-		 JScrollPane scrollCarrusel = new JScrollPane(
-				 panelContenido,
-				 JScrollPane.VERTICAL_SCROLLBAR_NEVER,
-				 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED
-				 );
-		 scrollCarrusel.setPreferredSize(new Dimension(1200, 180));
-		 scrollCarrusel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 180));
-		 scrollCarrusel.setBorder(null);
-		 scrollCarrusel.setAlignmentX(Component.LEFT_ALIGNMENT);
+		// Si no hay contenido, ponemos un mensaje
+		 if (lista.isEmpty()) {
+		        JLabel mensaje = new JLabel();
+		        mensaje.setAlignmentX(Component.LEFT_ALIGNMENT);
+		        mensaje.setFont(new Font("Arial", Font.ITALIC, 14));
+		        mensaje.setForeground(Color.DARK_GRAY);
 
-		 panelCarruselCompleto.add(scrollCarrusel);
+		        if (titulo.equals("Mi Lista")) {
+		            mensaje.setText("No tienes ningún contenido en tu lista.");
+		        } else if (titulo.equals("Recomendadas para ti")) {
+		            mensaje.setText("Añade películas a tu lista para recibir recomendaciones similares.");
+		        } else {
+		            mensaje.setText("No hay contenido disponible.");
+		        }
 
+		        panelCarruselCompleto.add(mensaje);
+		    } else {
+		    	// Si la lista no esta vacia, se crea el carrusel
+				 JPanel panelContenido = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
+				 panelContenido.setBackground(new Color(155, 178, 204)); 
+				 for (Contenido c : lista) {
+					 ImageIcon portada = new ImageIcon(c.getRutaPortada());
+					 Image imagenAjustada = portada.getImage().getScaledInstance(120, 160, Image.SCALE_SMOOTH);
+					 ImageIcon iconoEscalado = new ImageIcon(imagenAjustada);
+				        
+					 JButton boton = new JButton(iconoEscalado);
+					 boton.setPreferredSize(new Dimension(120, 160));
+					 boton.addActionListener(e -> new VentanaContenido(c, usuario).setVisible(true));
+					 panelContenido.add(boton);
+				 }	
+				//Añadir scroll horizontal
+				 JScrollPane scrollCarrusel = new JScrollPane(
+						 panelContenido,
+						 JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+						 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED
+						 );
+				 scrollCarrusel.setPreferredSize(new Dimension(1200, 180));
+				 scrollCarrusel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 180));
+				 scrollCarrusel.setBorder(null);
+				 scrollCarrusel.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+				 panelCarruselCompleto.add(scrollCarrusel);
+		    }
 		 return panelCarruselCompleto;
 		 }	
 	
