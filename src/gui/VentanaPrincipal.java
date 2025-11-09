@@ -58,7 +58,7 @@ public class VentanaPrincipal extends JFrame{
 		
 		inicializarComponentes();
 	}
-
+ 
 
 	private void inicializarComponentes() {		
 		//Panel superior para el boton del menu

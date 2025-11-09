@@ -238,7 +238,7 @@ public class VentanaLogin extends JFrame{
 		
 		this.add(panelPrincipal);
 		
-	}
+	} 
 	
 	private void verificarUsuario() {
 		String textoUsuario = userTxt.getText();

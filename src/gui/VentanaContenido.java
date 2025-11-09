@@ -183,7 +183,6 @@ public class VentanaContenido extends JFrame{
         panelPrincipal.add(panelDerecha, BorderLayout.CENTER);
         
         add(panelPrincipal);
-        
 	}
 	
 }
