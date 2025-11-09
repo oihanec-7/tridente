@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.util.List;
@@ -29,6 +30,7 @@ public class VentanaCrearCuenta extends JFrame{
 	private JTextField txt_email;
 	private JPasswordField txt_contraseña;
 	private JButton iniciar_Sesion;
+	private JButton volverLogIn;
 	
 	public VentanaCrearCuenta (List<Usuario> usuarios) {
 		//Configuración de la ventana principal
@@ -130,14 +132,37 @@ public class VentanaCrearCuenta extends JFrame{
 		txt_contraseña.setMaximumSize(new Dimension(300, 30));
 		txt_contraseña.setAlignmentX(LEFT_ALIGNMENT);
 		
+		//boton iniciar sesion
 		iniciar_Sesion = new JButton("Iniciar Sesión");
 		iniciar_Sesion.setMaximumSize(new Dimension(150, 35));
 		iniciar_Sesion.setAlignmentX(LEFT_ALIGNMENT);
 		iniciar_Sesion.setBackground(botonColor);
 		iniciar_Sesion.setFocusPainted(false);
 		iniciar_Sesion.setForeground(Color.WHITE);
+		iniciar_Sesion.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
 		iniciar_Sesion.addActionListener(e -> crearNuevaCuenta(usuarios));
+		
+		
+		//boton para volver atrás
+		volverLogIn = new JButton("<html><u>Ya tengo una cuenta</u></html>");
+		volverLogIn.setMaximumSize(new Dimension(150, 35));
+		volverLogIn.setAlignmentX(LEFT_ALIGNMENT);
+		volverLogIn.setBackground(botonColor);
+		volverLogIn.setForeground(Color.BLACK);
+		volverLogIn.setFocusPainted(false);
+		volverLogIn.setBorderPainted(false);
+		volverLogIn.setContentAreaFilled(false);
+		volverLogIn.setFont(new Font("Helvetica Neue", Font.BOLD, 12));
+		volverLogIn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		
+		volverLogIn.addActionListener(e -> {
+			this.setVisible(false);
+			VentanaLogin vl = new VentanaLogin(usuarios);
+			vl.setVisible(true);
+		});
+		
+		
 	
 		
 		formJPanel.add(nombre);
@@ -162,10 +187,14 @@ public class VentanaCrearCuenta extends JFrame{
 		
 		
 		panelPrincipal.add(crear_cuenta);
-		panelPrincipal.add(Box.createVerticalStrut(25));
+		panelPrincipal.add(Box.createVerticalStrut(15));
+	
 		panelPrincipal.add(formJPanel);
 		panelPrincipal.add(Box.createVerticalStrut(30));
 		panelPrincipal.add(iniciar_Sesion);
+		panelPrincipal.add(Box.createVerticalStrut(10));
+		panelPrincipal.add(volverLogIn);
+		
 		
 		
 		this.setLayout(new BorderLayout());

@@ -8,8 +8,18 @@ public abstract class Contenido {
 	private ArrayList<Double> puntuaciones; 
 	private ArrayList<String> cast;
 	private String rutaPortada;
+	private int estrellas;
+	
 
 	
+
+	public int getEstrellas() {
+		return estrellas;
+	}
+
+	public void setEstrellas(int estrellas) {
+		this.estrellas = estrellas;
+	}
 
 	public Contenido(String titulo, ArrayList<String> genero, ArrayList<Double> puntuaciones, ArrayList<String> cast, String rutaPortada) {
 		super();

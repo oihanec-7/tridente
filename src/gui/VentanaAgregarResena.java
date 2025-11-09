@@ -26,6 +26,7 @@ import domain.Usuario;
 
 public class VentanaAgregarResena extends JFrame{
 	
+	private static final long serialVersionUID = 1L;
 	private Usuario usuarioActual;
 	private ArrayList<Contenido> contenidos;
 		
@@ -165,9 +166,11 @@ public class VentanaAgregarResena extends JFrame{
             	JOptionPane.showMessageDialog(this, "Seleccione una puntuación.");
                 return;
             }
-            double puntuacion = puntuacionSeleccionada[0];
+            int puntuacion = puntuacionSeleccionada[0];
             
-           
+            // Guardar la valoración
+            Resena nuevaResena = new Resena(usuarioActual, contenidoSeleccionado, (double) puntuacion);
+            usuarioActual.agregarValorada(nuevaResena);
             
             JOptionPane.showMessageDialog(this, "Reseña agregada correctamente.");
             dispose();
