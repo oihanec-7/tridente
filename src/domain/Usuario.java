@@ -11,8 +11,9 @@ public class Usuario {
 	private String apellido;
 	private String email;
 	private ArrayList<Contenido> miLista;
-	private ArrayList<Contenido> listaValoradas;
+	private ArrayList<Resena> listaValoradas;
 	private VentanaMiLista ventanaMiLista;
+
 
 
 	public Usuario(String nombre, String nombre_usuario, String contraseña, String apellido, String email) {
@@ -23,7 +24,7 @@ public class Usuario {
 		this.apellido = apellido;
 		this.email = email;
 		this.miLista = new ArrayList<Contenido>();
-		this.listaValoradas = new ArrayList<Contenido>();
+		this.listaValoradas = new ArrayList<Resena>();
 		this.ventanaMiLista = null;
 		
 	}
@@ -56,8 +57,12 @@ public class Usuario {
 		return apellido;
 	}
 
-	public ArrayList<Contenido> getListaValoradas() {
+	public ArrayList<Resena> getListaValoradas() {
 		return listaValoradas;
+	}
+	
+	public void agregarValorada(Resena r) {
+		listaValoradas.add(r);
 	}
 
 	public ArrayList<Contenido> getMiLista() {

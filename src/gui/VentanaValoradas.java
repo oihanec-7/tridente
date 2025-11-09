@@ -2,9 +2,11 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Image;
 import java.util.ArrayList;
 
@@ -14,47 +16,50 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 import domain.Contenido;
+import domain.Resena;
 import domain.Usuario;
 
 public class VentanaValoradas extends JFrame {
 	
-	private static final long serialVersionUID1 = 1L;
-  	private ArrayList<Contenido> listaUsuario;
+	private static final long serialVersionUID = 1L;
+	
   	private Usuario usuario;
-  	private JButton botonMenu;
-    private JPanel panelPrincipal = new JPanel(new BorderLayout());
-    private JPanel panelMenu;
-    private JScrollPane scrollPortadas;
     private JTextField buscador;
+    private JTable tablaValoradas;
+    private DefaultTableModel modeloTabla;
+    private JButton botonMenu;
+    private JPanel panelMenu;
 
 	public VentanaValoradas(Usuario usuario) {
-        this.usuario = usuario;
-        this.listaUsuario = usuario.getListaValoradas();
-        
-        this.setTitle("Mi Lista");
+        this.usuario = usuario;  
+        this.setTitle("Valoradas");
         this.setSize(1300, 800);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+      
 
 	    inicializarVentana();
     }
 
 	private void inicializarVentana() {
+        JPanel panelPrincipal = new JPanel(new BorderLayout());
         panelPrincipal.setBackground(new Color(155, 178, 204));
-        panelPrincipal.setOpaque(true);
-
+       
         // Panel superior (menú + buscador)
         JPanel panelSuperior = new JPanel();
         panelSuperior.setLayout(new BoxLayout(panelSuperior, BoxLayout.X_AXIS));
         panelSuperior.setBackground(new Color(155, 178, 204));
-        panelSuperior.setBorder(null);
 
         botonMenu = new JButton("☰");
         botonMenu.setPreferredSize(new Dimension(50, 50));
@@ -121,16 +126,13 @@ public class VentanaValoradas extends JFrame {
 
         panelMenu.setVisible(false);
         panelPrincipal.add(panelMenu, BorderLayout.WEST);
-
-        // Panel central con las portadas
-        JPanel panelPortadas = anadirContenidos(listaUsuario);
-    	panelPortadas.setBackground(new Color(155, 178, 204));
-    	
-        scrollPortadas = new JScrollPane(panelPortadas,
-                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        panelPrincipal.add(scrollPortadas, BorderLayout.CENTER);
-
+        
+        // Tabla
+        crearTabla(usuario.getListaValoradas());
+        JScrollPane scrollTabla = new JScrollPane(tablaValoradas);
+        panelPrincipal.add(scrollTabla, BorderLayout.CENTER);
+        
+        
         // Buscador con filtrado
 		buscador.getDocument().addDocumentListener(new DocumentListener() {
             public void changedUpdate(DocumentEvent e) { filtrar(); }
@@ -138,57 +140,78 @@ public class VentanaValoradas extends JFrame {
             public void insertUpdate(DocumentEvent e) { filtrar(); }
 
             private void filtrar() {
-                String texto = buscador.getText().toLowerCase();
-                ArrayList<Contenido> filtradas = new ArrayList<>();
-                for (Contenido c : listaUsuario) {
-                    if (c.getTitulo().toLowerCase().contains(texto)) {
-                        filtradas.add(c);
-                    }
-                }
-                JPanel panelActualizado = anadirContenidos(filtradas);
-                scrollPortadas.setViewportView(panelActualizado);
-                scrollPortadas.revalidate();
-                scrollPortadas.repaint();
+            	String texto = buscador.getText().toLowerCase();
+            	DefaultTableModel modeloFiltrado = new DefaultTableModel(
+            		new Object[]{"Título", "Fecha", "Valoración"}, 0
+            	);
+            	for (Resena r: usuario.getListaValoradas()) {
+            		if (r.getContenido().getTitulo().toLowerCase().contains(texto)) {
+                        modeloFiltrado.addRow(new Object[]{
+                                r.getContenido().getTitulo(),
+                                r.getFechaResena(),
+                                r.getPuntuacion().intValue()
+                        });
+            		}
+            	}
+            	tablaValoradas.setModel(modeloFiltrado);
+            	tablaValoradas.getColumnModel().getColumn(2)
+            		.setCellRenderer(new EstrellaRenderer());
             }
-        });
+		});
 
         add(panelPrincipal);
 			    
 	}
+	
+	private void crearTabla(ArrayList<Resena> lista) {
+		String[] columnas = {"Título", "Fecha", "Valoración"};
+		modeloTabla = new DefaultTableModel(columnas, 0);
+		
+		for (Resena r : lista) {
+			modeloTabla.addRow(new Object[] {
+					r.getContenido().getTitulo(),
+                    r.getFechaResena(),
+                    r.getPuntuacion().intValue()
+					
+			});
+		}
+		tablaValoradas = new JTable(modeloTabla);
+		tablaValoradas.setRowHeight(40);
+		tablaValoradas.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		tablaValoradas.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+			 public Component getTableCellRendererComponent(JTable table, 
+					 										Object value,
+											                boolean isSelected, 
+											                boolean hasFocus, 
+											                int row, 
+											                int column) {
+				 Component comp = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				 comp.setBackground(row % 2 == 0 ? new Color(220, 230, 250) : Color.WHITE);
+				 return comp;
+			 }
+		});
+		tablaValoradas.getColumnModel().getColumn(2).setCellRenderer(new EstrellaRenderer());
+	}
 
-	private JPanel anadirContenidos(ArrayList<Contenido> contenidos) {
-        JPanel panelPrincipal = new JPanel();
-        panelPrincipal.setLayout(new BoxLayout(panelPrincipal, BoxLayout.Y_AXIS));
-        panelPrincipal.setBackground(new Color(155, 178, 204));
-        panelPrincipal.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+	 // Renderer para mostrar estrellas dibujadas (sin imágenes)
+    class EstrellaRenderer extends DefaultTableCellRenderer {
+       
 
-        int botonesPorFila = 9;
-        JPanel fila = null;
-        int contador = 0;
+		@Override
+        public Component getTableCellRendererComponent(JTable table, Object value,
+                                                       boolean isSelected, boolean hasFocus, int row, int column) {
+            int numEstrellas = (value instanceof Integer) ? (Integer) value : 0;
+            JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+            panel.setBackground(isSelected ? table.getSelectionBackground() : table.getBackground());
 
-        for (Contenido c : contenidos) {
-            if (contador % botonesPorFila == 0) {
-                fila = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 5));
-                fila.setBackground(new Color(155, 178, 204));
-                panelPrincipal.add(fila);
+            for (int i = 1; i <= 5; i++) {
+                JLabel estrella = new JLabel(i <= numEstrellas ? "⭐" : "");
+                estrella.setFont(new Font("Dialog", Font.PLAIN, 18));
+                panel.add(estrella);
             }
-            // Botones para cada contenido
-            ImageIcon portadaIcon = new ImageIcon(c.getRutaPortada());
-            Image imagenEscalada = portadaIcon.getImage().getScaledInstance(120, 170, Image.SCALE_SMOOTH);
-            JButton boton = new JButton(new ImageIcon(imagenEscalada));
-            boton.setPreferredSize(new Dimension(120, 170));
-            boton.setBorderPainted(false);
 
-            boton.addActionListener(e -> {
-            	VentanaContenido ventana = new VentanaContenido(c, usuario);
-            	ventana.setVisible(true);
-        	});
-        	
-            fila.add(boton);
-            contador++;
+            return panel;
         }
-
-        return panelPrincipal;
 	}
 }
 
