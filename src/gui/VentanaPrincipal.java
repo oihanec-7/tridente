@@ -226,7 +226,7 @@ public class VentanaPrincipal extends JFrame{
 		        mensaje.setAlignmentX(Component.LEFT_ALIGNMENT);
 		        mensaje.setFont(new Font("Arial", Font.ITALIC, 14));
 		        mensaje.setForeground(Color.DARK_GRAY);
-
+ 
 		        if (titulo.equals("Mi Lista")) {
 		            mensaje.setText("No tienes ningún contenido en tu lista.");
 		        } else if (titulo.equals("Recomendadas para ti")) {

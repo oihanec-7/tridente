@@ -77,7 +77,7 @@ public class VentanaCatalogo extends JFrame{
 		panelSuperior.add(buscador);
 					
 		panelPrincipal.add(panelSuperior, BorderLayout.NORTH);
-				
+		
 				
 		// Panel (desplegable) del menu
 		panelMenu = new JPanel();

@@ -15,7 +15,7 @@ public class Recomendador {
 				}
 			}
 		}
-		
+	
 	    Set<Contenido> recomendadasSet = new HashSet<>(); 
 		for (Contenido cont : catalogo) {
 			if(!usuario.getMiLista().contains(cont)) {
