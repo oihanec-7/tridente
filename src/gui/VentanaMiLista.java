@@ -89,28 +89,34 @@ public class VentanaMiLista extends JFrame {
             switch (etiqueta) {
                 case "Inicio":
                     boton.addActionListener(e -> {
-                        setVisible(false);
-                        new VentanaPrincipal(usuario).setVisible(true);
+                        this.setVisible(false);
+                        VentanaPrincipal vp = new VentanaPrincipal(usuario);
+                        vp.setVisible(true);
                     });
                     break;
                 case "Catalogo":
                     boton.addActionListener(e -> {
-                        setVisible(false);
-                        new VentanaCatalogo(usuario).setVisible(true);
+                        this.setVisible(false);
+                        VentanaCatalogo vc = new VentanaCatalogo(usuario);
+                        vc.setVisible(true);
                     });
                     break;
                 case "Mi Lista":
                     boton.addActionListener(e -> {
-                        setVisible(true);
+                        this.setVisible(true);
                         panelMenu.setVisible(true);
                     });
                     break;
                 case "Valoradas":
-                    boton.addActionListener(e -> {});
+                    boton.addActionListener(e -> {
+                    	this.setVisible(false);
+                    	VentanaValoradas vv = new VentanaValoradas(usuario);
+                    	vv.setVisible(true);
+                    });
                     break;
                 case "Mi Usuario":
                     boton.addActionListener(e -> {
-                        setVisible(false);
+                        this.setVisible(false);
                         new VentanaMiUsuario(usuario).setVisible(true);
                     });
                     break;
