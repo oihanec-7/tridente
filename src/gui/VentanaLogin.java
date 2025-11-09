@@ -10,6 +10,8 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
@@ -25,7 +27,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.SwingWorker;
 import javax.swing.border.Border;
 
 import domain.Usuario;
@@ -74,9 +78,9 @@ public class VentanaLogin extends JFrame{
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		//Colores
-		Color fondoPrincipal = new Color(34, 40, 49);
+		Color fondoPrincipal = new Color(14, 28, 59);
 		Color fondoCampos = new Color(255, 255, 255);
-		Color botonColor = new Color(231, 76, 60);
+		Color botonColor = new Color(102, 24, 27);
 		Color textoCampos = Color.BLACK;
 			
 				
@@ -87,7 +91,7 @@ public class VentanaLogin extends JFrame{
 		//Creación y ajustes de la imagen(logo)
 		JLabel imagen = new JLabel();
 		
-		ImageIcon logo = new ImageIcon("images/tridente.png");
+		ImageIcon logo = new ImageIcon("images/logo.png");
 		Image escalarImagen = logo.getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH);
 		imagen.setIcon(new ImageIcon(escalarImagen));
 		imagen.setHorizontalAlignment(JLabel.CENTER);
@@ -138,7 +142,17 @@ public class VentanaLogin extends JFrame{
 		passwordTxt.setForeground(textoCampos);
 		addPlaceholderBehavior(passwordTxt, "Password");
 		
-		
+		//evento de teclado, si le damos a enter y la contraseña es correcta 
+		//entramos en la ventana princiapl
+		passwordTxt.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e){
+				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+					verificarUsuario();
+				}
+				
+				
+			}
+		});
 		
 		singIn = new JButton("Sing In");
 		singIn.setMaximumSize(new Dimension(150, 35));
@@ -233,10 +247,29 @@ public class VentanaLogin extends JFrame{
 		for(Usuario u: usuarios) {
 			if(textoUsuario.equals(u.getNombre_usuario()) && textoPassword.equals(u.getContraseña())) {
 				this.setVisible(false);
-				VentanaPrincipal vp = new VentanaPrincipal(u);
-				vp.setVisible(true);
+				
+				// ventana de carga 
+				VentanaLoading loading = new VentanaLoading();
+				
+				SwingUtilities.invokeLater(() -> {
+					SwingWorker<Void, Void> worker = new SwingWorker<>() {
+		
+						@Override
+						protected Void doInBackground() throws Exception {
+							Thread.sleep(2000);
+							return null;
+						}
+						protected void done() {
+							loading.dispose();
+							VentanaPrincipal vp = new VentanaPrincipal(u);
+							vp.setVisible(true);
+						}
+						
+					};
+					worker.execute();
+				});
 				return;
-			}
+		}
 		}
 		
 		//Si el usuario y la contraseña son incorrectos:
@@ -248,9 +281,6 @@ public class VentanaLogin extends JFrame{
 		
 	}
 	
-	
-	
-		
-		
-
 }
+
+
