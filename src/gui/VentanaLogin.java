@@ -27,7 +27,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.SwingWorker;
 import javax.swing.border.Border;
 
 import domain.Usuario;
@@ -152,8 +154,6 @@ public class VentanaLogin extends JFrame{
 			}
 		});
 		
-		
-		
 		singIn = new JButton("Sing In");
 		singIn.setMaximumSize(new Dimension(150, 35));
 		singIn.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -247,10 +247,29 @@ public class VentanaLogin extends JFrame{
 		for(Usuario u: usuarios) {
 			if(textoUsuario.equals(u.getNombre_usuario()) && textoPassword.equals(u.getContraseña())) {
 				this.setVisible(false);
-				VentanaPrincipal vp = new VentanaPrincipal(u);
-				vp.setVisible(true);
+				
+				// ventana de carga 
+				VentanaLoading loading = new VentanaLoading();
+				
+				SwingUtilities.invokeLater(() -> {
+					SwingWorker<Void, Void> worker = new SwingWorker<>() {
+		
+						@Override
+						protected Void doInBackground() throws Exception {
+							Thread.sleep(2000);
+							return null;
+						}
+						protected void done() {
+							loading.dispose();
+							VentanaPrincipal vp = new VentanaPrincipal(u);
+							vp.setVisible(true);
+						}
+						
+					};
+					worker.execute();
+				});
 				return;
-			}
+		}
 		}
 		
 		//Si el usuario y la contraseña son incorrectos:
@@ -262,5 +281,6 @@ public class VentanaLogin extends JFrame{
 		
 	}
 	
-
 }
+
+
