@@ -3,3 +3,14 @@
 .settings/
 
 bin/
+
+# Configuración de IDEs
+.idea/
+.vscode/
+.metadata/
+.settings/
+*.iml
+
+# Archivos temporales del sistema
+.DS_Store
+Thumbs.db
