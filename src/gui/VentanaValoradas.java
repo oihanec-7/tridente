@@ -8,6 +8,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -25,6 +26,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 import domain.Contenido;
 import domain.Resena;
@@ -37,9 +39,10 @@ public class VentanaValoradas extends JFrame {
   	private Usuario usuario;
     private JTextField buscador;
     private JTable tablaValoradas;
-    private DefaultTableModel modeloTabla;
+    //private DefaultTableModel modeloTabla;
     private JButton botonMenu;
     private JPanel panelMenu;
+   
 
 	public VentanaValoradas(Usuario usuario) {
         this.usuario = usuario;  
@@ -164,33 +167,61 @@ public class VentanaValoradas extends JFrame {
 	}
 	
 	private void crearTabla(ArrayList<Resena> lista) {
-		String[] columnas = {"Título", "Fecha", "Valoración"};
-		modeloTabla = new DefaultTableModel(columnas, 0);
+//		String[] columnas = {"Título", "Fecha", "Valoración"};
+//		modeloTabla = new DefaultTableModel(columnas, 0);
+//		
+//		for (Resena r : lista) {
+//			modeloTabla.addRow(new Object[] {
+//					r.getContenido().getTitulo(),
+//                    r.getFechaResena(),
+//                    r.getPuntuacion().intValue()
+//					
+//			});
+//		}
 		
-		for (Resena r : lista) {
-			modeloTabla.addRow(new Object[] {
-					r.getContenido().getTitulo(),
-                    r.getFechaResena(),
-                    r.getPuntuacion().intValue()
-					
-			});
-		}
-		tablaValoradas = new JTable(modeloTabla);
+		
+		ModeloDeDatosValoradas modeloDatos = new ModeloDeDatosValoradas(lista);
+		tablaValoradas = new JTable(modeloDatos);
+		
+		
+		//tablaValoradas = new JTable(modeloTabla);
 		tablaValoradas.setRowHeight(40);
 		tablaValoradas.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		tablaValoradas.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
-			 public Component getTableCellRendererComponent(JTable table, 
-					 										Object value,
-											                boolean isSelected, 
-											                boolean hasFocus, 
-											                int row, 
-											                int column) {
-				 Component comp = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-				 comp.setBackground(row % 2 == 0 ? new Color(220, 230, 250) : Color.WHITE);
-				 return comp;
-			 }
-		});
+//		tablaValoradas.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+//			 public Component getTableCellRendererComponent(JTable table, 
+//					 										Object value,
+//											                boolean isSelected, 
+//											                boolean hasFocus, 
+//											                int row, 
+//											                int column) {
+//				 
+//				 Component comp = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+//				 comp.setBackground(row % 2 == 0 ? new Color(220, 230, 250) : Color.WHITE);
+//				 return comp;
+//			 }
+//		});
+		
+		TableCellRenderer miCellRenderer = new TableCellRenderer() {
+			
+			@Override
+			public Component getTableCellRendererComponent(JTable table, Object value, 
+					boolean isSelected, boolean hasFocus,
+					int row, int column) {
+				
+				JLabel result = new JLabel(value.toString());
+				result.setHorizontalAlignment(JLabel.CENTER);
+				
+				if(column==0) {
+					if(value.toString().equals(miCellRenderer))
+				}
+				
+			
+				return result;
+			}
+		};
+		tablaValoradas.setDefaultRenderer(Object.class, miCellRenderer);
 		tablaValoradas.getColumnModel().getColumn(2).setCellRenderer(new EstrellaRenderer());
+	
 	}
 
 	 // Renderer para mostrar estrellas dibujadas (sin imágenes)
