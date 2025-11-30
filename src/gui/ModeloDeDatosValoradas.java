@@ -24,6 +24,14 @@ public class ModeloDeDatosValoradas extends AbstractTableModel{
 		}
 		
 	}
+	
+	public Resena getResenaAt(int fila) {
+		if(fila < 0 || fila >= listaValoradas.size()) {
+			return null;
+		} else {
+			return listaValoradas.get(fila);
+		}
+	}
 
 	@Override
 	public int getRowCount() {	

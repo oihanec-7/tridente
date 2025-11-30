@@ -58,11 +58,13 @@ public class VentanaValoradas extends JFrame {
 	private void inicializarVentana() {
         JPanel panelPrincipal = new JPanel(new BorderLayout());
         panelPrincipal.setBackground(new Color(155, 178, 204));
+        panelPrincipal.setOpaque(true);
        
         // Panel superior (menú + buscador)
         JPanel panelSuperior = new JPanel();
         panelSuperior.setLayout(new BoxLayout(panelSuperior, BoxLayout.X_AXIS));
         panelSuperior.setBackground(new Color(155, 178, 204));
+        panelSuperior.setOpaque(true);
 
         botonMenu = new JButton("☰");
         botonMenu.setPreferredSize(new Dimension(50, 50));
@@ -85,6 +87,7 @@ public class VentanaValoradas extends JFrame {
         panelMenu.setLayout(new BoxLayout(panelMenu, BoxLayout.Y_AXIS));
         panelMenu.setPreferredSize(new Dimension(150, 0));
         panelMenu.setBackground(new Color(243, 200, 207));
+        panelMenu.setOpaque(true);
 
         String[] etiquetas = {"Inicio", "Catalogo", "Mi Lista", "Valoradas", "Mi Usuario"};
         for (String etiqueta : etiquetas) {
@@ -185,7 +188,7 @@ public class VentanaValoradas extends JFrame {
 		
 		
 		//tablaValoradas = new JTable(modeloTabla);
-		tablaValoradas.setRowHeight(40);
+		tablaValoradas.setRowHeight(150);
 		tablaValoradas.setFont(new Font("SansSerif", Font.PLAIN, 14));
 //		tablaValoradas.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
 //			 public Component getTableCellRendererComponent(JTable table, 
@@ -210,9 +213,34 @@ public class VentanaValoradas extends JFrame {
 				
 				JLabel result = new JLabel(value.toString());
 				result.setHorizontalAlignment(JLabel.CENTER);
+				result.setOpaque(true);
 				
-				if(column==0) {
-					if(value.toString().equals(miCellRenderer))
+				ModeloDeDatosValoradas modelo = (ModeloDeDatosValoradas) table.getModel();
+				Resena resena = modelo.getResenaAt(row);
+				
+				if(column == 0) {
+					String path = resena.getContenido().getRutaPortada();
+					ImageIcon imagen = new ImageIcon(path);
+					Image escalar = imagen.getImage().getScaledInstance(80, 120, Image.SCALE_SMOOTH);
+					result.setIcon(new ImageIcon(escalar));
+					result.setText("");
+					result.setToolTipText(resena.getContenido().getTitulo());
+					
+				} else if(column == 2) {
+					int numEstrellas = resena.getPuntuacion().intValue();
+					StringBuilder estrellas = new StringBuilder();
+					for(int i=1; i<=5; i++) {
+						if(i<=numEstrellas) {
+							estrellas.append("⭐");
+						} else {
+							estrellas.append("");
+						}
+					}
+					result.setText(estrellas.toString());
+					
+					
+				} else {
+					result.setText(value.toString());
 				}
 				
 			
@@ -234,7 +262,9 @@ public class VentanaValoradas extends JFrame {
             int numEstrellas = (value instanceof Integer) ? (Integer) value : 0;
             JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
             panel.setBackground(isSelected ? table.getSelectionBackground() : table.getBackground());
-
+            panel.setOpaque(true);
+            
+                      
             for (int i = 1; i <= 5; i++) {
                 JLabel estrella = new JLabel(i <= numEstrellas ? "⭐" : "");
                 estrella.setFont(new Font("Dialog", Font.PLAIN, 18));
