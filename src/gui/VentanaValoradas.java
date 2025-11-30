@@ -50,8 +50,7 @@ public class VentanaValoradas extends JFrame {
         this.setSize(1300, 800);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-      
-
+        
 	    inicializarVentana();
     }
 
@@ -160,8 +159,8 @@ public class VentanaValoradas extends JFrame {
             		}
             	}
             	tablaValoradas.setModel(modeloFiltrado);
-            	tablaValoradas.getColumnModel().getColumn(2)
-            		.setCellRenderer(new EstrellaRenderer());
+//            	tablaValoradas.getColumnModel().getColumn(2)
+//            		.setCellRenderer(new EstrellaRenderer());
             }
 		});
 
@@ -190,6 +189,15 @@ public class VentanaValoradas extends JFrame {
 		//tablaValoradas = new JTable(modeloTabla);
 		tablaValoradas.setRowHeight(150);
 		tablaValoradas.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		tablaValoradas.getTableHeader().setDefaultRenderer(new TableCellRenderer() {
+			
+			@Override
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
+					int row, int column) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+		});
 //		tablaValoradas.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
 //			 public Component getTableCellRendererComponent(JTable table, 
 //					 										Object value,
@@ -227,20 +235,48 @@ public class VentanaValoradas extends JFrame {
 					result.setToolTipText(resena.getContenido().getTitulo());
 					
 				} else if(column == 2) {
-					int numEstrellas = resena.getPuntuacion().intValue();
-					StringBuilder estrellas = new StringBuilder();
-					for(int i=1; i<=5; i++) {
-						if(i<=numEstrellas) {
-							estrellas.append("⭐");
-						} else {
-							estrellas.append("");
-						}
+					int puntuacion = (int)Math.round(resena.getPuntuacion());
+					switch (puntuacion) {
+					case 1: 
+						ImageIcon muyMal = new ImageIcon("images/m_enfa.png");
+						result.setIcon(muyMal);
+						break;
+	
+					case 2: 
+						ImageIcon mal = new ImageIcon("images/enfa.png");
+						result.setIcon(mal);
+						break;
+					
+					case 3: 
+						ImageIcon serio = new ImageIcon("images/serio.png");
+						result.setIcon(serio);
+						break;
+					
+					case 4: 
+						ImageIcon feliz = new ImageIcon("images/FELIZ.png");
+						result.setIcon(feliz);
+						break;
+					
+					case 5: 
+						ImageIcon mfeliz = new ImageIcon("images/muy_fe.png");
+						result.setIcon(mfeliz);
+						break;
+
+					default:
+						break;
 					}
-					result.setText(estrellas.toString());
 					
-					
+					result.setText("");
+				
+					result.setToolTipText(String.valueOf(puntuacion));
 				} else {
 					result.setText(value.toString());
+				}
+				
+				if(row % 2 == 0) {
+					result.setBackground(new Color(155, 178, 204));
+				} else {
+					result.setBackground(new Color(185, 200, 220));
 				}
 				
 			
@@ -248,32 +284,33 @@ public class VentanaValoradas extends JFrame {
 			}
 		};
 		tablaValoradas.setDefaultRenderer(Object.class, miCellRenderer);
-		tablaValoradas.getColumnModel().getColumn(2).setCellRenderer(new EstrellaRenderer());
+		//tablaValoradas.getColumnModel().getColumn(2).setCellRenderer(new EstrellaRenderer());
 	
 	}
 
 	 // Renderer para mostrar estrellas dibujadas (sin imágenes)
-    class EstrellaRenderer extends DefaultTableCellRenderer {
-       
-
-		@Override
-        public Component getTableCellRendererComponent(JTable table, Object value,
-                                                       boolean isSelected, boolean hasFocus, int row, int column) {
-            int numEstrellas = (value instanceof Integer) ? (Integer) value : 0;
-            JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
-            panel.setBackground(isSelected ? table.getSelectionBackground() : table.getBackground());
-            panel.setOpaque(true);
-            
-                      
-            for (int i = 1; i <= 5; i++) {
-                JLabel estrella = new JLabel(i <= numEstrellas ? "⭐" : "");
-                estrella.setFont(new Font("Dialog", Font.PLAIN, 18));
-                panel.add(estrella);
-            }
-
-            return panel;
-        }
-	}
+//    class EstrellaRenderer extends DefaultTableCellRenderer {
+//       
+//
+//		@Override
+//        public Component getTableCellRendererComponent(JTable table, Object value,
+//                                                       boolean isSelected, boolean hasFocus, int row, int column) {
+//            int numEstrellas = (value instanceof Integer) ? (Integer) value : 0;
+//            JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+//            panel.setBackground(isSelected ? table.getSelectionBackground() : table.getBackground());
+//            panel.setOpaque(true);
+//            
+//                      
+//            for (int i = 1; i <= 5; i++) {
+//                JLabel estrella = new JLabel(i <= numEstrellas ? "⭐" : "");
+//                estrella.setFont(new Font("Dialog", Font.PLAIN, 18));
+//                panel.add(estrella);
+//            }
+//
+//            return panel;
+//        }
+//	}
+	
 }
 
 
