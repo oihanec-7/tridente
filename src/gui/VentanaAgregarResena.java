@@ -21,18 +21,20 @@ import javax.swing.JPanel;
 
 import data.GestorDatos;
 import domain.Contenido;
+import domain.Pelicula;
 import domain.Resena;
+import domain.Serie;
 import domain.Usuario;
 
 public class VentanaAgregarResena extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
 	private Usuario usuarioActual;
-	private ArrayList<Contenido> contenidos;
+	private Contenido contenido;
 		
-	public VentanaAgregarResena(Usuario usuario, ArrayList<Contenido> contenidos) {
+	public VentanaAgregarResena(Usuario usuario, Contenido contenido) {
 		this.usuarioActual = usuario;
-        this.contenidos = GestorDatos.cargarCSV("src/data/contenido.csv");
+        this.contenido = contenido;
 		
 		setTitle("Agregar reseña");
 		setSize(450,350);
@@ -51,25 +53,24 @@ public class VentanaAgregarResena extends JFrame{
         panelPrincipal.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         panelPrincipal.setBackground(new Color(155, 178, 204));
         
-        // Titulo
+        // Titulo Nueva Reseña
         JLabel lblTitulo = new JLabel("Nueva Reseña");
         lblTitulo.setFont(new Font("Arial", Font.BOLD, 20));
         lblTitulo.setForeground(new Color(102, 24, 27));
         lblTitulo.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-        // ComboBox con titulos de contenidos
-        ArrayList<String> titulos = new ArrayList<>();
-        for (Contenido c : this.contenidos) {
-        	titulos.add(c.getTitulo());
+        // Titulo serie / peli
+        JPanel panelTitulo = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JLabel labelTitulo = new JLabel();
+        if(contenido instanceof Pelicula) {
+        	labelTitulo.setText("Película: " + contenido.getTitulo());
+        } else if (contenido instanceof Serie){
+        	labelTitulo.setText("Serie: " + contenido.getTitulo());
         }
-        JComboBox<String> comboTitulos = new JComboBox<>(titulos.toArray(new String[0]));
-        comboTitulos.setPreferredSize(new Dimension(200, 25)); 
-        
-        JPanel panelCombo = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        panelCombo.add(new JLabel("Título:"));
-        panelCombo.add(comboTitulos);
-        panelCombo.setBackground(new Color(155, 178, 204));
-               
+        labelTitulo.setFont(new Font("Arial", Font.BOLD, 15));
+		panelTitulo.add(labelTitulo);
+        panelTitulo.setBackground(new Color(155, 178, 204));
+		
         // Puntuacion con estrellas
         JPanel panelPuntuacion = new JPanel(new FlowLayout(FlowLayout.LEFT));
         panelPuntuacion.add(new JLabel("Puntuación:"));
@@ -150,26 +151,10 @@ public class VentanaAgregarResena extends JFrame{
         
         // Accion Guardar
         btnGuardar.addActionListener(e -> {
-        	String tituloSeleccionado = (String) comboTitulos.getSelectedItem();
-        	Contenido contenidoSeleccionado = null;
-            for (Contenido c : contenidos) {
-                if (c.getTitulo().equalsIgnoreCase(tituloSeleccionado)) {
-                    contenidoSeleccionado = c;
-                    break;
-                }
-            }
-            if (contenidoSeleccionado == null) {
-            	JOptionPane.showMessageDialog(this, "No se encontro el contenido seleccionado.");
-            	return;
-            }
-            if (puntuacionSeleccionada[0] == 0) {
-            	JOptionPane.showMessageDialog(this, "Seleccione una puntuación.");
-                return;
-            }
             int puntuacion = puntuacionSeleccionada[0];
             
             // Guardar la valoración
-            Resena nuevaResena = new Resena(usuarioActual, contenidoSeleccionado, (double) puntuacion);
+            Resena nuevaResena = new Resena(usuarioActual, contenido, (double) puntuacion);
             usuarioActual.agregarValorada(nuevaResena);
             
             JOptionPane.showMessageDialog(this, "Reseña agregada correctamente.");
@@ -178,9 +163,8 @@ public class VentanaAgregarResena extends JFrame{
         
         // Añadir todo al panel principal
         panelPrincipal.add(lblTitulo);
-        panelPrincipal.add(Box.createVerticalStrut(15));
-        panelPrincipal.add(panelCombo);
-        panelPrincipal.add(Box.createVerticalStrut(10));
+        panelPrincipal.add(Box.createVerticalStrut(25));
+        panelPrincipal.add(panelTitulo);
         panelPrincipal.add(Box.createVerticalStrut(10));
         panelPrincipal.add(panelPuntuacion);
         panelPrincipal.add(Box.createVerticalGlue());

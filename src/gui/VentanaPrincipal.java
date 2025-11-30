@@ -33,7 +33,7 @@ public class VentanaPrincipal extends JFrame{
 	private JPanel panelMenu;
 	private JButton botonMenu;
 	private JPanel panelCarruseles;
-	private JButton botonResena;
+	private JButton botonFiltrar;
 	private Usuario usuario;
 	private ArrayList<Contenido> listaContenidos;
 	private ArrayList<Contenido> listaMejorValoradas;
@@ -148,7 +148,7 @@ public class VentanaPrincipal extends JFrame{
 		panelCarruseles.setLayout(new BoxLayout(panelCarruseles, BoxLayout.Y_AXIS));
 		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 30)));
 
-			//Panel para el titulo y el boton
+			//Panel para el titulo y el boton de filtrar
 		JPanel panelTitulo = new JPanel();
 		panelTitulo.setLayout(new BoxLayout(panelTitulo, BoxLayout.X_AXIS));
 		panelTitulo.setBackground(new Color(102, 24, 27));
@@ -162,18 +162,8 @@ public class VentanaPrincipal extends JFrame{
 
 		panelTitulo.add(Box.createHorizontalGlue());
 
-		botonResena = new JButton("+");
-		botonResena.setPreferredSize(new Dimension(60, 60));
-		botonResena.setMaximumSize(new Dimension(60, 60));
-		botonResena.setFont(new Font("Arial", Font.BOLD, 24));
-		botonResena.setForeground(Color.WHITE);
-		botonResena.setBackground(new Color(14, 28, 59));
-		botonResena.setOpaque(true);
-		panelTitulo.add(botonResena);
-		botonResena.addActionListener(e -> {
-			VentanaAgregarResena vr = new VentanaAgregarResena(usuario, listaContenidos);
-			vr.setVisible(true);
-		});
+		botonFiltrar = new JButton("Filtrar");      //FALTA POR HACER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		
 		
 		panelCarruseles.add(panelTitulo);
 //		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 30))); 

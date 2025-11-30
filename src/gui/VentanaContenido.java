@@ -180,6 +180,26 @@ public class VentanaContenido extends JFrame{
         panelDerecha.add(Box.createRigidArea(new Dimension(0, 30)));
         
         panelDerecha.add(botonLista);
+        panelDerecha.add(Box.createRigidArea(new Dimension(10, 20)));
+        
+        //Boton reseña
+        JButton botonValoracion = new JButton("Añadir valoración");
+        botonValoracion.addActionListener(e -> new VentanaAgregarResena(usuario, contenido).setVisible(true));
+        
+        botonValoracion.setBackground(new Color(155, 178, 204));
+    	ImageIcon estrella = new ImageIcon("images/estrella.png");
+    	Image escalarEstrella = estrella.getImage().getScaledInstance(18, 18, Image.SCALE_SMOOTH);
+    	botonValoracion.setIcon(new ImageIcon(escalarEstrella));
+        botonValoracion.setAlignmentX(LEFT_ALIGNMENT);
+        botonValoracion.setFont(new Font("Arial", Font.BOLD, 14));
+        botonValoracion.setForeground(Color.black);
+     	botonValoracion.setFocusPainted(false);
+     	botonValoracion.setBorder(BorderFactory.createEmptyBorder(8,15,8,15));
+     	botonValoracion.setHorizontalAlignment(JButton.LEFT);
+     	botonValoracion.setIconTextGap(8);
+        
+        
+        panelDerecha.add(botonValoracion);
         panelPrincipal.add(panelDerecha, BorderLayout.CENTER);
         
         add(panelPrincipal);
