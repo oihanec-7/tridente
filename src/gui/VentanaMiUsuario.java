@@ -28,7 +28,7 @@ public class VentanaMiUsuario extends JFrame{
 		setSize(500,300);
 		setLayout(new BorderLayout(15,15));
 		setLocationRelativeTo(null);
-		
+		 
 		// Panel principal 
 		JPanel panelPrincipal = new JPanel(new BorderLayout());
 		panelPrincipal.setBackground(new Color(155, 178, 204));

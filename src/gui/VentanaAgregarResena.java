@@ -27,7 +27,7 @@ import domain.Serie;
 import domain.Usuario;
 
 public class VentanaAgregarResena extends JFrame{
-	
+	  
 	private static final long serialVersionUID = 1L;
 	private Usuario usuarioActual;
 	private Contenido contenido;

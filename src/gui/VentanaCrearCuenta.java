@@ -20,7 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 import domain.Usuario;
-
+ 
 public class VentanaCrearCuenta extends JFrame{
 
 	private static final long serialVersionUID = 1L;
@@ -31,7 +31,7 @@ public class VentanaCrearCuenta extends JFrame{
 	private JPasswordField txt_contraseña;
 	private JButton iniciar_Sesion;
 	private JButton volverLogIn;
-	
+	 
 	public VentanaCrearCuenta (List<Usuario> usuarios) {
 		//Configuración de la ventana principal
 		this.setTitle("Crear Cuenta");
@@ -39,7 +39,7 @@ public class VentanaCrearCuenta extends JFrame{
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		
-		//Colores
+		//Colores 
 		Color fondoPrincipal = new Color(155, 178, 204);
         Color fondoCampo = new Color(220, 220, 220);
         Color colorTexto = Color.BLACK;

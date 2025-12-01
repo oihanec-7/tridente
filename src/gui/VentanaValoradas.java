@@ -34,7 +34,7 @@ import javax.swing.table.TableCellRenderer;
 import domain.Contenido;
 import domain.Resena;
 import domain.Usuario;
-
+ 
 public class VentanaValoradas extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
@@ -46,7 +46,7 @@ public class VentanaValoradas extends JFrame {
     private JButton botonMenu;
     private JPanel panelMenu;
    
-
+ 
 	public VentanaValoradas(Usuario usuario) {
         this.usuario = usuario;  
         this.setTitle("Valoradas");
@@ -55,7 +55,7 @@ public class VentanaValoradas extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         
 	    inicializarVentana();
-    }
+    } 
 
 	private void inicializarVentana() {
         JPanel panelPrincipal = new JPanel(new BorderLayout());
