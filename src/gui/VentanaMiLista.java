@@ -34,6 +34,8 @@ public class VentanaMiLista extends JFrame {
     private JScrollPane scrollPortadas;
     private JTextField buscador;
 
+    
+    
     public VentanaMiLista(Usuario usuario) {
         this.usuario = usuario;
         this.miLista = usuario.getMiLista(); // Obtener la lista de contenido del usuario
