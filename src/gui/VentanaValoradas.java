@@ -211,7 +211,7 @@ public class VentanaValoradas extends JFrame {
 				result.setHorizontalAlignment(JLabel.CENTER);
 				
 				if(column == 1) {
-					ImageIcon calendario = new ImageIcon("images/calendario.png");
+					ImageIcon calendario = new ImageIcon("resources/images/cal.png");
 					Image escalar = calendario.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
 					ImageIcon imagen = new ImageIcon(escalar);
 					result.setIcon(imagen);
@@ -260,6 +260,7 @@ public class VentanaValoradas extends JFrame {
 				
 				
 				result.setFont(new FontUIResource("SansSerif", Font.BOLD, 16));
+				result.setOpaque(true);
 			
 				return result;
 			}
@@ -308,27 +309,27 @@ public class VentanaValoradas extends JFrame {
 					int puntuacion = (int)Math.round(resena.getPuntuacion());
 					switch (puntuacion) {
 					case 1: 
-						ImageIcon muyMal = new ImageIcon("images/m_enfa.png");
+						ImageIcon muyMal = new ImageIcon("resources/images/m_enfa.png");
 						result.setIcon(muyMal);
 						break;
 	
 					case 2: 
-						ImageIcon mal = new ImageIcon("images/enfa.png");
+						ImageIcon mal = new ImageIcon("resources/images/enfa.png");
 						result.setIcon(mal);
 						break;
 					
 					case 3: 
-						ImageIcon serio = new ImageIcon("images/serio.png");
+						ImageIcon serio = new ImageIcon("resources/images/serio.png");
 						result.setIcon(serio);
 						break;
 					
 					case 4: 
-						ImageIcon feliz = new ImageIcon("images/FELIZ.png");
+						ImageIcon feliz = new ImageIcon("resources/images/FELIZ.png");
 						result.setIcon(feliz);
 						break;
 					
 					case 5: 
-						ImageIcon mfeliz = new ImageIcon("images/muy_fe.png");
+						ImageIcon mfeliz = new ImageIcon("resources/images/muy_fe.png");
 						result.setIcon(mfeliz);
 						break;
 
