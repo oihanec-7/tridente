@@ -211,7 +211,7 @@ public class VentanaValoradas extends JFrame {
 				result.setHorizontalAlignment(JLabel.CENTER);
 				
 				if(column == 1) {
-					ImageIcon calendario = new ImageIcon("resources/images/cal.png");
+					ImageIcon calendario = new ImageIcon("images/cal.png");
 					Image escalar = calendario.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
 					ImageIcon imagen = new ImageIcon(escalar);
 					result.setIcon(imagen);
@@ -236,33 +236,41 @@ public class VentanaValoradas extends JFrame {
 				ModeloDeDatosValoradas modelo = (ModeloDeDatosValoradas) table.getModel();
 				Resena resena = modelo.getResenaAt(row);
 				
-				JLabel result = new JLabel(value.toString());
-				result.setHorizontalAlignment(JLabel.CENTER);
+				 JPanel panel = new JPanel();
+				 panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+			     panel.setOpaque(true);
 				
-				ArrayList<String> generos = resena.getContenido().getGenero();
-				StringBuilder sb = new StringBuilder("<html>");
-				for(String genero: generos) {
-					sb.append("<span style = 'color: #2A9DF4; font-weight:bold;'>").append(genero).append("</span> ");
-				}
-				sb.append("</html>");
-				result.setText(sb.toString());
+				for (String genero : resena.getContenido().getGenero()) {
+		            JLabel etiqueta = new JLabel(genero);
+		            etiqueta.setFont(new Font("SansSerif", Font.BOLD, 12));
+		            etiqueta.setForeground(Color.WHITE);
+		            etiqueta.setOpaque(true);
+		            etiqueta.setBackground(new Color(14, 28, 59));
+		            etiqueta.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+		            etiqueta.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		            panel.add(Box.createVerticalStrut(20));
+		            panel.add(etiqueta);
+		            panel.add(Box.createVerticalStrut(1));
+		        }
+
 				
 				if(row % 2 == 0) {
-					result.setBackground(new Color(155, 178, 204));
+					panel.setBackground(new Color(155, 178, 204));
 				} else {
-					result.setBackground(new Color(185, 200, 220));
+					panel.setBackground(new Color(185, 200, 220));
 				}
 				
 				if(isSelected) {
-					result.setBackground(new Color(255, 230, 128));
-					result.setOpaque(true);
+					panel.setBackground(new Color(255, 230, 128));
+					panel.setOpaque(true);
 				}
 				
 				
-				result.setFont(new FontUIResource("SansSerif", Font.BOLD, 16));
-				result.setOpaque(true);
+				panel.setFont(new FontUIResource("SansSerif", Font.BOLD, 16));
+				panel.setBorder(BorderFactory.createLineBorder(Color.black));
+				panel.setOpaque(true);
 			
-				return result;
+				return panel;
 			}
 			
 			
@@ -309,27 +317,27 @@ public class VentanaValoradas extends JFrame {
 					int puntuacion = (int)Math.round(resena.getPuntuacion());
 					switch (puntuacion) {
 					case 1: 
-						ImageIcon muyMal = new ImageIcon("resources/images/m_enfa.png");
+						ImageIcon muyMal = new ImageIcon("images/m_enfa.png");
 						result.setIcon(muyMal);
 						break;
 	
 					case 2: 
-						ImageIcon mal = new ImageIcon("resources/images/enfa.png");
+						ImageIcon mal = new ImageIcon("images/enfa.png");
 						result.setIcon(mal);
 						break;
 					
 					case 3: 
-						ImageIcon serio = new ImageIcon("resources/images/serio.png");
+						ImageIcon serio = new ImageIcon("images/serio.png");
 						result.setIcon(serio);
 						break;
 					
 					case 4: 
-						ImageIcon feliz = new ImageIcon("resources/images/FELIZ.png");
+						ImageIcon feliz = new ImageIcon("images/FELIZ.png");
 						result.setIcon(feliz);
 						break;
 					
 					case 5: 
-						ImageIcon mfeliz = new ImageIcon("resources/images/muy_fe.png");
+						ImageIcon mfeliz = new ImageIcon("images/muy_fe.png");
 						result.setIcon(mfeliz);
 						break;
 
