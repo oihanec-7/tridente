@@ -62,7 +62,7 @@ public class GestorBD {
                 + " email TEXT NOT NULL UNIQUE\n"
                 + ");";
  
-        // TABLA 2: CONTENIDOS (Almacena películas y series, usando 'tipo')
+        // TABLA 2: CONTENIDOS 
         String sql2 = "CREATE TABLE IF NOT EXISTS CONTENIDOS (\n"
                 + " id_contenido INTEGER PRIMARY KEY AUTOINCREMENT,\n"
                 + " titulo TEXT NOT NULL UNIQUE,\n"
@@ -70,7 +70,7 @@ public class GestorBD {
                 + " duracion_o_temporadas INTEGER\n" // duracion para Pelicula, temporadas para Serie
                 + ");";
 
-        // TABLA 3: FAVORITOS (Relación muchos a muchos entre USUARIOS y CONTENIDOS)
+        // TABLA 3: FAVORITOS (para relacionar la tabla USUARIOS con la tabla CONTENIDOS)
         String sql3 = "CREATE TABLE IF NOT EXISTS FAVORITOS (\n"
                 + " id_usuario_fk INTEGER,\n"
                 + " id_contenido_fk INTEGER,\n"
