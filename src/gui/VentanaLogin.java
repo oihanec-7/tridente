@@ -130,6 +130,7 @@ public class VentanaLogin extends JFrame{
 		addPlaceholderBehavior(userTxt, "Usuario");
 		
 		
+		
 		JLabel labelPassWord = new JLabel("Contraseña");
 		labelPassWord.setAlignmentX(Component.CENTER_ALIGNMENT);
 		labelPassWord.setFont(new Font("Helvetica Neue", Font.BOLD, 16));
