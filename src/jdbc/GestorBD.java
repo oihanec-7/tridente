@@ -51,9 +51,7 @@ public class GestorBD {
 
     // --- MÉTODOS DE ESTRUCTURA DE LA BD ---
 
-    public void crearBBDD() {
-        // La base de datos tiene 3 tablas: Usuarios, Contenidos y Favoritos
-        
+    public void crearBBDD() {        
         // TABLA 1: USUARIOS
         String sql1 = "CREATE TABLE IF NOT EXISTS USUARIOS (\n"
                 + " id_usuario INTEGER PRIMARY KEY AUTOINCREMENT,\n"
