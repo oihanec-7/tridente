@@ -233,6 +233,7 @@ public class VentanaPrincipal extends JFrame{
 					
 					Thread.sleep(5000);
 					
+					
 				} catch (InterruptedException e) {
 					ejecutandoBanner = false;
 				} catch (Exception e) {
