@@ -68,6 +68,8 @@ public class VentanaMiLista extends JFrame {
         buscador = new JTextField(30);
         panelSuperior.add(Box.createHorizontalStrut(10));
         panelSuperior.add(buscador);
+        
+        
 
         panelPrincipal.add(panelSuperior, BorderLayout.NORTH);
 
