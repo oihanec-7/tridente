@@ -91,7 +91,7 @@ public class VentanaLogin extends JFrame{
 		//Creación y ajustes de la imagen(logo)
 		JLabel imagen = new JLabel();
 		
-		ImageIcon logo = new ImageIcon("images/logo.png");
+		ImageIcon logo = new ImageIcon("resources/images/logo.png");
 		Image escalarImagen = logo.getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH);
 		imagen.setIcon(new ImageIcon(escalarImagen));
 		imagen.setHorizontalAlignment(JLabel.CENTER);
