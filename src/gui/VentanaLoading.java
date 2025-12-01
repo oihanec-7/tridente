@@ -30,9 +30,16 @@ public class VentanaLoading extends JFrame {
 		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Helvetica Neue", Font.BOLD, 16));
 
+
 		// Añadimos un poco de margen vacío alrededor del texto
 		label.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 10, 20, 10));
 		add(label, BorderLayout.CENTER);
+
+
+		// Añadimos un poco de margen vacío alrededor del texto
+		label.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 10, 20, 10));
+		add(label, BorderLayout.CENTER);
+
 
 		// 2. Configuración de la JProgressBar
 		progressBar = new JProgressBar(0, 100); // Mínimo 0, Máximo 100

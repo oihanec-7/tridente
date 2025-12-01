@@ -260,6 +260,7 @@ public class VentanaValoradas extends JFrame {
 				
 				
 				result.setFont(new FontUIResource("SansSerif", Font.BOLD, 16));
+				result.setOpaque(true);
 			
 				return result;
 			}

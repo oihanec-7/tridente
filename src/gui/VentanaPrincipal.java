@@ -19,17 +19,16 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.SwingUtilities;
 
 import data.GestorDatos;
 import domain.Contenido;
 import domain.Recomendador;
 import domain.Usuario;
- 
+
 public class VentanaPrincipal extends JFrame{
 
 	private static final long serialVersionUID = 1L;
-	 
+	
 	private JPanel panelPrincipal = new JPanel(new BorderLayout());
 	private JPanel panelMenu;
 	private JButton botonMenu;
@@ -41,14 +40,8 @@ public class VentanaPrincipal extends JFrame{
 	private ArrayList<Contenido> listaPeliculas;
 	private ArrayList<Contenido> listaSeries;
 	
-	// Componentes para el hilo
-	private JLabel lblBannerImagen;
-	private JLabel lblBannerTitulo;
-	private JPanel panelBannerDestacado;
-	private boolean ejecutandoBanner = true;
-	
 	public VentanaPrincipal(Usuario usuario) throws HeadlessException {
-		super(); 
+		super();
 		this.usuario = usuario;
 		this.listaContenidos = GestorDatos.cargarCSV("src/data/contenido.csv");
 		this.listaMejorValoradas = GestorDatos.mejorValoradas(listaContenidos);
@@ -171,15 +164,12 @@ public class VentanaPrincipal extends JFrame{
 
 		botonFiltrar = new JButton("Filtrar");      //FALTA POR HACER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		
+		
 		panelCarruseles.add(panelTitulo);
 //		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 30))); 
 		
 		// Añadimos los scrolls al panelCarruseles
-		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 20)));
-		 
-		crearPanelBannerDestacado();
-		panelCarruseles.add(panelBannerDestacado);
-		panelCarruseles.add(Box.createRigidArea(new Dimension(0,30)));
+		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 70)));
 		
 		panelCarruseles.add(crearCarrusel("Mi Lista", usuario.getMiLista())); 
 		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 20)));
@@ -203,74 +193,8 @@ public class VentanaPrincipal extends JFrame{
 		panelPrincipal.add(scrollPanelCarruseles, BorderLayout.CENTER);
 		this.add(panelPrincipal);
 	}
-	
-	private void crearPanelBannerDestacado() {
-		panelBannerDestacado = new JPanel();
-		panelBannerDestacado.setLayout(new BoxLayout(panelBannerDestacado, BoxLayout.X_AXIS));
-		panelBannerDestacado.setBackground(new Color(40, 40, 60));
-		panelBannerDestacado.setMaximumSize(new Dimension(Integer.MAX_VALUE, 300));
-		panelBannerDestacado.setPreferredSize(new Dimension(1000, 300));
-		panelBannerDestacado.setAlignmentX(Component.LEFT_ALIGNMENT);
-		
-		// Imagen de la izquierda
-		lblBannerImagen = new JLabel();
-		lblBannerImagen.setPreferredSize(new Dimension(200, 280));
-		
-		// Texto a la derecha
-		JPanel panelTextoBanner = new JPanel();
-		panelTextoBanner.setLayout(new BoxLayout(panelTextoBanner, BoxLayout.Y_AXIS));
-		panelTextoBanner.setOpaque(false);
-		
-		lblBannerTitulo = new JLabel("Cargando destacados...");
-		lblBannerTitulo.setFont(new Font("Arial", Font.BOLD, 40));
-		lblBannerTitulo.setForeground(Color.WHITE);
-		
-		JLabel lblSubtitulo = new JLabel("Novedad destacada");
-		lblSubtitulo.setFont(new Font("Arial", Font.ITALIC, 20));
-		lblSubtitulo.setForeground(Color.LIGHT_GRAY);
-		
-		panelTextoBanner.add(Box.createVerticalGlue());
-		panelTextoBanner.add(lblSubtitulo);
-		panelTextoBanner.add(Box.createRigidArea(new Dimension(0, 10)));
-		panelTextoBanner.add(lblBannerTitulo);
-		panelTextoBanner.add(Box.createVerticalGlue());
-		
-		panelBannerDestacado.add(Box.createRigidArea(new Dimension(40, 0)));
-		panelBannerDestacado.add(lblBannerImagen);
-		panelBannerDestacado.add(Box.createRigidArea(new Dimension(40, 0)));
-		panelBannerDestacado.add(panelTextoBanner);
-	}
 
-	private void iniciarHiloBanner() {
-		Thread hilo = new Thread(() -> {
-			int index = 0;
-			while (ejecutandoBanner) {
-				try {
-					Contenido destacado = listaMejorValoradas.get(index);
-					
-					ImageIcon iconoOriginal = new ImageIcon(destacado.getRutaPortada());
-					Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(200, 280, Image.SCALE_SMOOTH);
-					ImageIcon iconoBanner = new ImageIcon(imagenEscalada);
-					
-					SwingUtilities.invokeLater(() -> {
-						lblBannerTitulo.setText(destacado.getTitulo());
-						lblBannerImagen.setIcon(iconoBanner);
-						panelBannerDestacado.repaint();
-					});
-					index = (index + 1) % listaMejorValoradas.size();
-					
-					Thread.sleep(5000);
-					
-				} catch (InterruptedException e) {
-					ejecutandoBanner = false;
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		hilo.setDaemon(true);
-		hilo.start();
-	}
+	
 	
 	
 	private JPanel crearCarrusel(String titulo, ArrayList<Contenido> lista) {
@@ -331,4 +255,6 @@ public class VentanaPrincipal extends JFrame{
 		    }
 		 return panelCarruselCompleto;
 		 }	
+	
+	
 }
