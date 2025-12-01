@@ -26,7 +26,7 @@ import javax.swing.event.DocumentListener;
 import data.GestorDatos;
 import domain.Contenido;
 import domain.Usuario;
- 
+
 public class VentanaCatalogo extends JFrame{
 
 	private static final long serialVersionUID = 1L;
@@ -48,7 +48,7 @@ public class VentanaCatalogo extends JFrame{
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		inicializarVentana();
-	} 
+	}
 
 	private void inicializarVentana() {
 		panelPrincipal.setBackground(new Color(155, 178, 204));

@@ -24,7 +24,7 @@ import javax.swing.border.EmptyBorder;
 import data.GestorDatos;
 import domain.Contenido;
 import domain.Usuario;
- 
+
 public class VentanaContenido extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private Usuario usuario;
@@ -41,7 +41,7 @@ public class VentanaContenido extends JFrame{
 	    setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	    setLayout(new BorderLayout(15, 15));	
 		
-	    
+	   
 		//Panel principal
 		JPanel panelPrincipal = new JPanel(new BorderLayout());
 		panelPrincipal.setBackground(new Color(50, 70, 120));
@@ -119,7 +119,7 @@ public class VentanaContenido extends JFrame{
         if(enMilista) {
         	botonLista = new JButton("Quitar de mi Lista");
         	botonLista.setBackground(new Color(200, 50, 50));
-        	ImageIcon basura = new ImageIcon("resources/images/quitar.png");
+        	ImageIcon basura = new ImageIcon("images/quitar.png");
         	Image escalarBasura = basura.getImage().getScaledInstance(18, 18, Image.SCALE_SMOOTH);
         	botonLista.setIcon(new ImageIcon(escalarBasura));
 
@@ -144,17 +144,14 @@ public class VentanaContenido extends JFrame{
 	                        JOptionPane.INFORMATION_MESSAGE
 	                );
 	          		this.dispose();
-	          	}
-	          
-	          		
-        	});  	
-        		
+	          	}     		
+        	});  			
         }  
       
         else {
         	botonLista = new JButton("Añadir a mi Lista");
         	botonLista.setBackground(new Color(155, 178, 204));
-        	ImageIcon cine = new ImageIcon("resources/images/cine.png");
+        	ImageIcon cine = new ImageIcon("images/cine.png");
         	Image escalarCine = cine.getImage().getScaledInstance(18, 18, Image.SCALE_SMOOTH);
         	botonLista.setIcon(new ImageIcon(escalarCine));
     
@@ -168,6 +165,7 @@ public class VentanaContenido extends JFrame{
           		
           	});
         }
+        Dimension tamBoton = new Dimension(180, 35);
         
         botonLista.setAlignmentX(LEFT_ALIGNMENT);
     	botonLista.setFont(new Font("Arial", Font.BOLD, 14));
@@ -176,6 +174,9 @@ public class VentanaContenido extends JFrame{
     	botonLista.setBorder(BorderFactory.createEmptyBorder(8,15,8,15));
      	botonLista.setHorizontalAlignment(JButton.LEFT);
       	botonLista.setIconTextGap(8);
+      	botonLista.setPreferredSize(tamBoton);
+        botonLista.setMaximumSize(tamBoton);
+        botonLista.setMinimumSize(tamBoton);
     	
         panelDerecha.add(Box.createRigidArea(new Dimension(0, 30)));
         
@@ -187,7 +188,7 @@ public class VentanaContenido extends JFrame{
         botonValoracion.addActionListener(e -> new VentanaAgregarResena(usuario, contenido).setVisible(true));
         
         botonValoracion.setBackground(new Color(155, 178, 204));
-    	ImageIcon estrella = new ImageIcon("resources/images/estrella.png");
+    	ImageIcon estrella = new ImageIcon("images/estrella.png");
     	Image escalarEstrella = estrella.getImage().getScaledInstance(18, 18, Image.SCALE_SMOOTH);
     	botonValoracion.setIcon(new ImageIcon(escalarEstrella));
         botonValoracion.setAlignmentX(LEFT_ALIGNMENT);
@@ -197,6 +198,10 @@ public class VentanaContenido extends JFrame{
      	botonValoracion.setBorder(BorderFactory.createEmptyBorder(8,15,8,15));
      	botonValoracion.setHorizontalAlignment(JButton.LEFT);
      	botonValoracion.setIconTextGap(8);
+     	botonValoracion.setPreferredSize(tamBoton);
+     	botonValoracion.setMaximumSize(tamBoton);
+     	botonValoracion.setMinimumSize(tamBoton);
+
         
         
         panelDerecha.add(botonValoracion);

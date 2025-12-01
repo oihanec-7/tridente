@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import domain.Usuario;
- 
+
 public class VentanaMiUsuario extends JFrame{
 	
 	public VentanaMiUsuario(Usuario usuario) {
@@ -34,12 +34,12 @@ public class VentanaMiUsuario extends JFrame{
 		panelPrincipal.setBackground(new Color(155, 178, 204));
 		
 		// Panel izquierdo - Foto perfil
-		ImageIcon icon = new ImageIcon("resources/images/icono_perfil.png");
+		ImageIcon icon = new ImageIcon("images/icono_perfil.png");
 		Image imagenAjustada = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 		ImageIcon iconoEscalado = new ImageIcon(imagenAjustada);
 		JLabel fotoPerfil = new JLabel(iconoEscalado);
 		fotoPerfil.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
-		 
+		
 		JPanel panelIzquierdo = new JPanel(new BorderLayout());
 		panelIzquierdo.setBackground(new Color(243, 200, 207)); 
 		panelIzquierdo.add(fotoPerfil, BorderLayout.NORTH);
