@@ -144,8 +144,11 @@ public class VentanaContenido extends JFrame{
 	                        JOptionPane.INFORMATION_MESSAGE
 	                );
 	          		this.dispose();
-	          	}     		
-        	});  			
+	          	}
+	          
+	          		
+        	});  	
+        		
         }  
       
         else {
@@ -165,7 +168,6 @@ public class VentanaContenido extends JFrame{
           		
           	});
         }
-        Dimension tamBoton = new Dimension(180, 35);
         
         botonLista.setAlignmentX(LEFT_ALIGNMENT);
     	botonLista.setFont(new Font("Arial", Font.BOLD, 14));
@@ -174,9 +176,6 @@ public class VentanaContenido extends JFrame{
     	botonLista.setBorder(BorderFactory.createEmptyBorder(8,15,8,15));
      	botonLista.setHorizontalAlignment(JButton.LEFT);
       	botonLista.setIconTextGap(8);
-      	botonLista.setPreferredSize(tamBoton);
-        botonLista.setMaximumSize(tamBoton);
-        botonLista.setMinimumSize(tamBoton);
     	
         panelDerecha.add(Box.createRigidArea(new Dimension(0, 30)));
         
@@ -198,10 +197,6 @@ public class VentanaContenido extends JFrame{
      	botonValoracion.setBorder(BorderFactory.createEmptyBorder(8,15,8,15));
      	botonValoracion.setHorizontalAlignment(JButton.LEFT);
      	botonValoracion.setIconTextGap(8);
-     	botonValoracion.setPreferredSize(tamBoton);
-     	botonValoracion.setMaximumSize(tamBoton);
-     	botonValoracion.setMinimumSize(tamBoton);
-
         
         
         panelDerecha.add(botonValoracion);
