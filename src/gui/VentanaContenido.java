@@ -166,7 +166,7 @@ public class VentanaContenido extends JFrame{
           	});
         }
         Dimension tamBoton = new Dimension(180, 35);
-        
+         
         botonLista.setAlignmentX(LEFT_ALIGNMENT);
     	botonLista.setFont(new Font("Arial", Font.BOLD, 14));
      	botonLista.setForeground(Color.black);
