@@ -155,7 +155,7 @@ public class VentanaPrincipal extends JFrame{
 		panelCarruseles.setLayout(new BoxLayout(panelCarruseles, BoxLayout.Y_AXIS));
 		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 30)));
 
-			//Panel para el titulo y el boton de filtrar
+		//Panel para el titulo y el boton de filtrar
 		JPanel panelTitulo = new JPanel();
 		panelTitulo.setLayout(new BoxLayout(panelTitulo, BoxLayout.X_AXIS));
 		panelTitulo.setBackground(new Color(102, 24, 27));
@@ -176,11 +176,13 @@ public class VentanaPrincipal extends JFrame{
 		
 		// Añadimos los scrolls al panelCarruseles
 		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 20)));
-		 
+		
+		// Banner
 		crearPanelBannerDestacado();
 		panelCarruseles.add(panelBannerDestacado);
 		panelCarruseles.add(Box.createRigidArea(new Dimension(0,30)));
 		
+		// Carruseles
 		panelCarruseles.add(crearCarrusel("Mi Lista", usuario.getMiLista())); 
 		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 20)));
 		panelCarruseles.add(crearCarrusel("Recomendadas para ti", Recomendador.recomendarPorGenero(usuario, listaContenidos))); 
@@ -244,19 +246,27 @@ public class VentanaPrincipal extends JFrame{
 	private void iniciarHiloBanner() {
 		Thread hilo = new Thread(() -> {
 			int index = 0;
+			
+			if (listaMejorValoradas == null || listaMejorValoradas.isEmpty()) return;
+			
 			while (ejecutandoBanner) {
 				try {
 					Contenido destacado = listaMejorValoradas.get(index);
 					
-					ImageIcon iconoOriginal = new ImageIcon(destacado.getRutaPortada());
-					Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(200, 280, Image.SCALE_SMOOTH);
-					ImageIcon iconoBanner = new ImageIcon(imagenEscalada);
-					
-					SwingUtilities.invokeLater(() -> {
-						lblBannerTitulo.setText(destacado.getTitulo());
-						lblBannerImagen.setIcon(iconoBanner);
-						panelBannerDestacado.repaint();
-					});
+					String ruta = destacado.getRutaPortada();
+					if (ruta != null) {
+						ImageIcon iconoOriginal = new ImageIcon(ruta);
+						if (iconoOriginal.getIconWidth() > 0) {
+							Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(200, 280, Image.SCALE_SMOOTH);
+							ImageIcon iconoBanner = new ImageIcon(imagenEscalada);
+							
+							SwingUtilities.invokeLater(() -> {
+								lblBannerTitulo.setText(destacado.getTitulo());
+								lblBannerImagen.setIcon(iconoBanner);
+								panelBannerDestacado.repaint();
+							});
+						}
+					}
 					index = (index + 1) % listaMejorValoradas.size();
 					
 					Thread.sleep(5000);
