@@ -151,7 +151,7 @@ public class VentanaContenido extends JFrame{
         else {
         	botonLista = new JButton("Añadir a mi Lista");
         	botonLista.setBackground(new Color(155, 178, 204));
-        	ImageIcon cine = new ImageIcon("images/cine.png");
+        	ImageIcon cine = new ImageIcon("resources/images/cine.png");
         	Image escalarCine = cine.getImage().getScaledInstance(18, 18, Image.SCALE_SMOOTH);
         	botonLista.setIcon(new ImageIcon(escalarCine));
     
@@ -188,7 +188,7 @@ public class VentanaContenido extends JFrame{
         botonValoracion.addActionListener(e -> new VentanaAgregarResena(usuario, contenido).setVisible(true));
         
         botonValoracion.setBackground(new Color(155, 178, 204));
-    	ImageIcon estrella = new ImageIcon("images/estrella.png");
+    	ImageIcon estrella = new ImageIcon("resources/images/estrella.png");
     	Image escalarEstrella = estrella.getImage().getScaledInstance(18, 18, Image.SCALE_SMOOTH);
     	botonValoracion.setIcon(new ImageIcon(escalarEstrella));
         botonValoracion.setAlignmentX(LEFT_ALIGNMENT);
