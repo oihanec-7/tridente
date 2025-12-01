@@ -24,7 +24,7 @@ import data.GestorDatos;
 import domain.Contenido;
 import domain.Recomendador;
 import domain.Usuario;
-
+ 
 public class VentanaPrincipal extends JFrame{
 
 	private static final long serialVersionUID = 1L;

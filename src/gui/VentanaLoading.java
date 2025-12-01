@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-
+ 
 public class VentanaLoading extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JLabel label;

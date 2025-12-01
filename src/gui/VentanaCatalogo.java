@@ -26,7 +26,7 @@ import javax.swing.event.DocumentListener;
 import data.GestorDatos;
 import domain.Contenido;
 import domain.Usuario;
-
+ 
 public class VentanaCatalogo extends JFrame{
 
 	private static final long serialVersionUID = 1L;

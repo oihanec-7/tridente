@@ -24,7 +24,7 @@ import javax.swing.border.EmptyBorder;
 import data.GestorDatos;
 import domain.Contenido;
 import domain.Usuario;
-
+ 
 public class VentanaContenido extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private Usuario usuario;

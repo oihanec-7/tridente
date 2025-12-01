@@ -23,7 +23,7 @@ import javax.swing.event.DocumentListener;
 
 import domain.Contenido;
 import domain.Usuario;
-
+ 
 public class VentanaMiLista extends JFrame {
     private static final long serialVersionUID = 1L;
     private ArrayList<Contenido> miLista;

@@ -20,7 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 import domain.Usuario;
-
+ 
 public class VentanaCrearCuenta extends JFrame{
 
 	private static final long serialVersionUID = 1L;

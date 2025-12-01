@@ -18,7 +18,7 @@ import domain.Usuario;
 import domain.Pelicula;
 import domain.Serie;
 import domain.Contenido;
-
+ 
 public class GestorBD {
 
     private final String PROPERTIES_FILE = "resources/config/app.properties";

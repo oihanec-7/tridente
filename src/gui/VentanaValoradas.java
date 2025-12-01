@@ -31,7 +31,7 @@ import javax.swing.table.TableCellRenderer;
 import domain.Contenido;
 import domain.Resena;
 import domain.Usuario;
-
+ 
 public class VentanaValoradas extends JFrame {
 	
 	private static final long serialVersionUID = 1L;

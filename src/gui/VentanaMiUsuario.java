@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import domain.Usuario;
-
+ 
 public class VentanaMiUsuario extends JFrame{
 	
 	public VentanaMiUsuario(Usuario usuario) {
