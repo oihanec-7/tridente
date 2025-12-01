@@ -8,8 +8,10 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
+import java.io.File;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.concurrent.Flow;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -24,6 +26,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.plaf.FontUIResource;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
@@ -31,7 +34,7 @@ import javax.swing.table.TableCellRenderer;
 import domain.Contenido;
 import domain.Resena;
 import domain.Usuario;
-
+ 
 public class VentanaValoradas extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
@@ -52,7 +55,7 @@ public class VentanaValoradas extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         
 	    inicializarVentana();
-    }
+    } 
 
 	private void inicializarVentana() {
         JPanel panelPrincipal = new JPanel(new BorderLayout());
@@ -189,14 +192,79 @@ public class VentanaValoradas extends JFrame {
 		//tablaValoradas = new JTable(modeloTabla);
 		tablaValoradas.setRowHeight(150);
 		tablaValoradas.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		tablaValoradas.getTableHeader().setDefaultRenderer(new TableCellRenderer() {
+		tablaValoradas.getTableHeader().setReorderingAllowed(false);
+		tablaValoradas.getTableHeader().setPreferredSize(new Dimension(tablaValoradas.getTableHeader().getWidth(), 60));
+		tablaValoradas.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
 			
 			@Override
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
 					int row, int column) {
-				// TODO Auto-generated method stub
-				return null;
+				
+				
+				JLabel result = (JLabel) super.getTableCellRendererComponent(
+		                table, value, isSelected, hasFocus, row, column);
+				
+				
+				result.setFont(new Font("Helvetica Neue", Font.BOLD, 16));
+				result.setBorder(BorderFactory.createLineBorder(Color.black));
+				result.setOpaque(true);
+				result.setHorizontalAlignment(JLabel.CENTER);
+				
+				if(column == 1) {
+					ImageIcon calendario = new ImageIcon("images/calendario.png");
+					Image escalar = calendario.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+					ImageIcon imagen = new ImageIcon(escalar);
+					result.setIcon(imagen);
+					result.setText("");
+				} else {
+		           	result.setIcon(null); 
+		            result.setText(value.toString());
+			        
+				}
+			
+				
+				return result;
 			}
+		});
+		
+		tablaValoradas.getColumnModel().getColumn(3).setCellRenderer(new DefaultTableCellRenderer() {
+
+			@Override
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+					boolean hasFocus, int row, int column){
+				
+				ModeloDeDatosValoradas modelo = (ModeloDeDatosValoradas) table.getModel();
+				Resena resena = modelo.getResenaAt(row);
+				
+				JLabel result = new JLabel(value.toString());
+				result.setHorizontalAlignment(JLabel.CENTER);
+				
+				ArrayList<String> generos = resena.getContenido().getGenero();
+				StringBuilder sb = new StringBuilder("<html>");
+				for(String genero: generos) {
+					sb.append("<span style = 'color: #2A9DF4; font-weight:bold;'>").append(genero).append("</span> ");
+				}
+				sb.append("</html>");
+				result.setText(sb.toString());
+				
+				if(row % 2 == 0) {
+					result.setBackground(new Color(155, 178, 204));
+				} else {
+					result.setBackground(new Color(185, 200, 220));
+				}
+				
+				if(isSelected) {
+					result.setBackground(new Color(255, 230, 128));
+					result.setOpaque(true);
+				}
+				
+				
+				result.setFont(new FontUIResource("SansSerif", Font.BOLD, 16));
+			
+				return result;
+			}
+			
+			
 		});
 //		tablaValoradas.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
 //			 public Component getTableCellRendererComponent(JTable table, 
@@ -221,10 +289,12 @@ public class VentanaValoradas extends JFrame {
 				
 				JLabel result = new JLabel(value.toString());
 				result.setHorizontalAlignment(JLabel.CENTER);
+				result.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 				result.setOpaque(true);
 				
 				ModeloDeDatosValoradas modelo = (ModeloDeDatosValoradas) table.getModel();
 				Resena resena = modelo.getResenaAt(row);
+				
 				
 				if(column == 0) {
 					String path = resena.getContenido().getRutaPortada();
@@ -267,8 +337,8 @@ public class VentanaValoradas extends JFrame {
 					}
 					
 					result.setText("");
-				
 					result.setToolTipText(String.valueOf(puntuacion));
+					
 				} else {
 					result.setText(value.toString());
 				}
@@ -279,6 +349,13 @@ public class VentanaValoradas extends JFrame {
 					result.setBackground(new Color(185, 200, 220));
 				}
 				
+				if(isSelected) {
+					result.setBackground(new Color(255, 230, 128));
+					result.setOpaque(true);
+				}
+				
+				
+				result.setFont(new FontUIResource("SansSerif", Font.BOLD, 16));
 			
 				return result;
 			}
@@ -310,6 +387,8 @@ public class VentanaValoradas extends JFrame {
 //            return panel;
 //        }
 //	}
+	
+	
 	
 }
 

@@ -23,7 +23,7 @@ import javax.swing.event.DocumentListener;
 
 import domain.Contenido;
 import domain.Usuario;
-
+ 
 public class VentanaMiLista extends JFrame {
     private static final long serialVersionUID = 1L;
     private ArrayList<Contenido> miLista;
@@ -45,7 +45,7 @@ public class VentanaMiLista extends JFrame {
 
         inicializarVentana();
     }
-
+ 
     private void inicializarVentana() {
         panelPrincipal.setBackground(new Color(155, 178, 204));
         panelPrincipal.setOpaque(true);

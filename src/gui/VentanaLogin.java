@@ -1,12 +1,12 @@
 package gui;
-
+ 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridLayout;
+import java.awt.GridLayout; 
 import java.awt.Image;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
@@ -91,7 +91,7 @@ public class VentanaLogin extends JFrame{
 		//Creación y ajustes de la imagen(logo)
 		JLabel imagen = new JLabel();
 		
-		ImageIcon logo = new ImageIcon("images/logo.png");
+		ImageIcon logo = new ImageIcon("resources/images/logo.png");
 		Image escalarImagen = logo.getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH);
 		imagen.setIcon(new ImageIcon(escalarImagen));
 		imagen.setHorizontalAlignment(JLabel.CENTER);

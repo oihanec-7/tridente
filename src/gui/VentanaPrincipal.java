@@ -25,7 +25,7 @@ import data.GestorDatos;
 import domain.Contenido;
 import domain.Recomendador;
 import domain.Usuario;
-
+ 
 public class VentanaPrincipal extends JFrame{
 
 	private static final long serialVersionUID = 1L;
@@ -48,7 +48,7 @@ public class VentanaPrincipal extends JFrame{
 	private boolean ejecutandoBanner = true;
 	
 	public VentanaPrincipal(Usuario usuario) throws HeadlessException {
-		super();
+		super(); 
 		this.usuario = usuario;
 		this.listaContenidos = GestorDatos.cargarCSV("src/data/contenido.csv");
 		this.listaMejorValoradas = GestorDatos.mejorValoradas(listaContenidos);
@@ -176,7 +176,7 @@ public class VentanaPrincipal extends JFrame{
 		
 		// Añadimos los scrolls al panelCarruseles
 		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 20)));
-		
+		 
 		crearPanelBannerDestacado();
 		panelCarruseles.add(panelBannerDestacado);
 		panelCarruseles.add(Box.createRigidArea(new Dimension(0,30)));
