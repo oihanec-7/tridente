@@ -63,7 +63,7 @@ public class GestorBD {
                 + " apellido TEXT,\n"
                 + " email TEXT NOT NULL UNIQUE\n"
                 + ");";
-
+ 
         // TABLA 2: CONTENIDOS (Almacena películas y series, usando 'tipo')
         String sql2 = "CREATE TABLE IF NOT EXISTS CONTENIDOS (\n"
                 + " id_contenido INTEGER PRIMARY KEY AUTOINCREMENT,\n"

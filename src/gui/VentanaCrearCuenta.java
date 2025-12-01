@@ -31,7 +31,7 @@ public class VentanaCrearCuenta extends JFrame{
 	private JPasswordField txt_contraseña;
 	private JButton iniciar_Sesion;
 	private JButton volverLogIn;
-	
+	 
 	public VentanaCrearCuenta (List<Usuario> usuarios) {
 		//Configuración de la ventana principal
 		this.setTitle("Crear Cuenta");

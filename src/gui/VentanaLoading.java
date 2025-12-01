@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
- 
+  
 public class VentanaLoading extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JLabel label;
@@ -22,7 +22,7 @@ public class VentanaLoading extends JFrame {
 		label = new JLabel("Cargando...", SwingConstants.CENTER);
 		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Helvetica Neue", Font.BOLD, 16));
-<<<<<<< HEAD
+
 		// Añadimos un poco de margen vacío alrededor del texto
 		label.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 10, 20, 10));
 		add(label, BorderLayout.CENTER);

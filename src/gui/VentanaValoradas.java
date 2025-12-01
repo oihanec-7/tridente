@@ -46,7 +46,7 @@ public class VentanaValoradas extends JFrame {
     private JButton botonMenu;
     private JPanel panelMenu;
    
-
+ 
 	public VentanaValoradas(Usuario usuario) {
         this.usuario = usuario;  
         this.setTitle("Valoradas");

@@ -33,7 +33,7 @@ public class VentanaContenido extends JFrame{
 	public VentanaContenido(Contenido contenido, Usuario usuario) {
 		this.usuario = usuario;
 		this.contenido = contenido;
-		
+		 
 		
 		setTitle(contenido.getTitulo());
 	    setSize(500, 300);

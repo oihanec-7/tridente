@@ -45,7 +45,7 @@ public class VentanaMiLista extends JFrame {
 
         inicializarVentana();
     }
- 
+  
     private void inicializarVentana() {
         panelPrincipal.setBackground(new Color(155, 178, 204));
         panelPrincipal.setOpaque(true);

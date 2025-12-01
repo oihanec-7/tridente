@@ -56,7 +56,7 @@ public class VentanaLogin extends JFrame{
 	                
 	            }
 	        }
-
+ 
 	        @Override
 	        public void focusLost(FocusEvent e) {
 	            if (field.getText().isEmpty()) {

@@ -8,7 +8,7 @@ import domain.Resena;
 import domain.Usuario;
 
 public class ModeloDeDatosValoradas extends AbstractTableModel{
-	
+	 
 	private static final long serialVersionUID = 1L;
 	private String[] cabecera = {"Contenido", "Fecha", "Valoracion", "Genero"};
 	private ArrayList<Resena> listaValoradas;

@@ -28,7 +28,7 @@ import domain.Usuario;
 public class VentanaPrincipal extends JFrame{
 
 	private static final long serialVersionUID = 1L;
-	
+	 
 	private JPanel panelPrincipal = new JPanel(new BorderLayout());
 	private JPanel panelMenu;
 	private JButton botonMenu;
