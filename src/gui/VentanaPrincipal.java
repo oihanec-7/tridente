@@ -41,7 +41,7 @@ public class VentanaPrincipal extends JFrame{
 	private ArrayList<Contenido> listaSeries;
 	
 	public VentanaPrincipal(Usuario usuario) throws HeadlessException {
-		super();
+		super(); 
 		this.usuario = usuario;
 		this.listaContenidos = GestorDatos.cargarCSV("src/data/contenido.csv");
 		this.listaMejorValoradas = GestorDatos.mejorValoradas(listaContenidos);

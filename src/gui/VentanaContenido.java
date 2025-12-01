@@ -41,7 +41,7 @@ public class VentanaContenido extends JFrame{
 	    setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	    setLayout(new BorderLayout(15, 15));	
 		
-	   
+	    
 		//Panel principal
 		JPanel panelPrincipal = new JPanel(new BorderLayout());
 		panelPrincipal.setBackground(new Color(50, 70, 120));

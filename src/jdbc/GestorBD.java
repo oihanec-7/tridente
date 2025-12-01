@@ -47,7 +47,7 @@ public class GestorBD {
         } catch (Exception ex) {
             logger.warning(String.format("Error al cargar configuración o driver de BBDD: %s", ex.getMessage()));
         }
-    }
+    } 
 
     // --- MÉTODOS DE ESTRUCTURA DE LA BD ---
 

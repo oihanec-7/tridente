@@ -39,7 +39,7 @@ public class VentanaCrearCuenta extends JFrame{
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		
-		//Colores
+		//Colores 
 		Color fondoPrincipal = new Color(155, 178, 204);
         Color fondoCampo = new Color(220, 220, 220);
         Color colorTexto = Color.BLACK;

@@ -48,7 +48,7 @@ public class VentanaCatalogo extends JFrame{
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		inicializarVentana();
-	}
+	} 
 
 	private void inicializarVentana() {
 		panelPrincipal.setBackground(new Color(155, 178, 204));

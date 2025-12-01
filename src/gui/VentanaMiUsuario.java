@@ -39,7 +39,7 @@ public class VentanaMiUsuario extends JFrame{
 		ImageIcon iconoEscalado = new ImageIcon(imagenAjustada);
 		JLabel fotoPerfil = new JLabel(iconoEscalado);
 		fotoPerfil.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
-		
+		 
 		JPanel panelIzquierdo = new JPanel(new BorderLayout());
 		panelIzquierdo.setBackground(new Color(243, 200, 207)); 
 		panelIzquierdo.add(fotoPerfil, BorderLayout.NORTH);
