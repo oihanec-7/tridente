@@ -33,30 +33,30 @@ public class BannerCarga extends JFrame {
         setLayout(new BorderLayout());
         setUndecorated(true); // Sin borde
         
-        // Panel principal con fondo oscuro
+        // Panel principal
         JPanel panelPrincipal = new JPanel(new BorderLayout());
-        panelPrincipal.setBackground(new Color(20, 20, 20));
-        panelPrincipal.setBorder(BorderFactory.createLineBorder(new Color(255, 50, 50), 3));
+        panelPrincipal.setBackground(new Color(14, 28, 59));
+        panelPrincipal.setBorder(BorderFactory.createLineBorder(new Color(102, 24, 27), 3));
         
         // Título superior
-        JLabel titulo = new JLabel("🎬 CARGANDO CATÁLOGO...", JLabel.CENTER);
+        JLabel titulo = new JLabel("CARGANDO CATÁLOGO...", JLabel.CENTER);
         titulo.setFont(new Font("Arial", Font.BOLD, 20));
-        titulo.setForeground(Color.WHITE);
+        titulo.setForeground(new Color(243, 200, 207));
         titulo.setBorder(BorderFactory.createEmptyBorder(15, 10, 15, 10));
-        titulo.setBackground(new Color(30, 30, 30));
+        titulo.setBackground(new Color(14, 28, 59));
         titulo.setOpaque(true);
         
         // Label para las portadas (centro)
         lblPortada = new JLabel();
         lblPortada.setHorizontalAlignment(JLabel.CENTER);
         lblPortada.setVerticalAlignment(JLabel.CENTER);
-        lblPortada.setBackground(new Color(20, 20, 20));
+        lblPortada.setBackground(new Color(14, 28, 59));
         lblPortada.setOpaque(true);
         
         // Mensaje inferior
         JLabel mensaje = new JLabel("Preparando contenido multimedia...", JLabel.CENTER);
         mensaje.setFont(new Font("Arial", Font.ITALIC, 12));
-        mensaje.setForeground(new Color(150, 150, 150));
+        mensaje.setForeground(new Color(155, 178, 204));
         mensaje.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         
         panelPrincipal.add(titulo, BorderLayout.NORTH);
