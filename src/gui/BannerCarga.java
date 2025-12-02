@@ -54,7 +54,7 @@ public class BannerCarga extends JFrame {
         lblPortada.setOpaque(true);
         
         // Mensaje inferior
-        JLabel mensaje = new JLabel("Preparando contenido multimedia...", JLabel.CENTER);
+        JLabel mensaje = new JLabel("Contenio recomendado para ti...", JLabel.CENTER);
         mensaje.setFont(new Font("Arial", Font.ITALIC, 12));
         mensaje.setForeground(new Color(155, 178, 204));
         mensaje.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));

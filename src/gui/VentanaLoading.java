@@ -73,7 +73,7 @@ public class VentanaLoading extends JFrame {
 				try {
 					// Simulamos trabajo pesado (dormir el hilo trabajador)
 					// Si aumentas este número, la carga será más lenta
-					Thread.sleep(30); 
+					Thread.sleep(10); 
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

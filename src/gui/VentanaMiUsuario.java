@@ -34,7 +34,7 @@ public class VentanaMiUsuario extends JFrame{
 		panelPrincipal.setBackground(new Color(155, 178, 204));
 		
 		// Panel izquierdo - Foto perfil
-		ImageIcon icon = new ImageIcon("images/icono_perfil.png");
+		ImageIcon icon = new ImageIcon("images/foto_perfil.jpg");
 		Image imagenAjustada = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 		ImageIcon iconoEscalado = new ImageIcon(imagenAjustada);
 		JLabel fotoPerfil = new JLabel(iconoEscalado);
