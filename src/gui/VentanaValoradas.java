@@ -24,6 +24,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.plaf.FontUIResource;
@@ -45,7 +46,8 @@ public class VentanaValoradas extends JFrame {
     //private DefaultTableModel modeloTabla;
     private JButton botonMenu;
     private JPanel panelMenu;
-   
+    private JTable tablaContenido;
+    private DefaultTableModel modeloContenido;
  
 	public VentanaValoradas(Usuario usuario) {
         this.usuario = usuario;  
@@ -135,10 +137,33 @@ public class VentanaValoradas extends JFrame {
         panelMenu.setVisible(false);
         panelPrincipal.add(panelMenu, BorderLayout.WEST);
         
-        // Tabla
+        // Crear Tabla
         crearTabla(usuario.getListaValoradas());
-        JScrollPane scrollTabla = new JScrollPane(tablaValoradas);
-        panelPrincipal.add(scrollTabla, BorderLayout.CENTER);
+//        JScrollPane scrollTabla = new JScrollPane(tablaValoradas);
+//        panelPrincipal.add(scrollTabla, BorderLayout.CENTER);
+        crearTablaContenido();
+        
+        JPanel panelCentro = new JPanel();
+        panelCentro.setLayout(new BoxLayout(panelCentro, BoxLayout.Y_AXIS));
+        panelCentro.add(new JScrollPane(tablaValoradas));
+        panelCentro.add(Box.createVerticalStrut(10));
+        panelCentro.add(new JScrollPane(tablaContenido));
+        panelPrincipal.add(panelCentro, BorderLayout.CENTER);
+        
+        
+        //Listener para seleccionar fila
+        tablaValoradas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        tablaValoradas.getSelectionModel().addListSelectionListener(e -> {
+        	if(!e.getValueIsAdjusting()) {
+        		int fila = tablaValoradas.getSelectedRow();
+        		if(fila >= 0) {
+        			ModeloDeDatosValoradas modelo = (ModeloDeDatosValoradas) tablaValoradas.getModel();
+        			Resena resenaSeleccionada = modelo.getResenaAt(fila);
+        			actualizarTablaDetalles(resenaSeleccionada);
+        		}
+        	}
+        	
+        });
         
         
         // Buscador con filtrado
@@ -396,6 +421,33 @@ public class VentanaValoradas extends JFrame {
 //            return panel;
 //        }
 //	}
+	
+	private void crearTablaContenido(){
+		String[] columnas = {"Titulo", "Puntuación Media", "Cast"};
+		modeloContenido = new DefaultTableModel(columnas, 0);
+		tablaContenido = new JTable(modeloContenido);
+		tablaContenido.setRowHeight(30);
+		
+	}
+	
+	private void actualizarTablaDetalles(Resena resena) {
+		modeloContenido.setRowCount(0);
+		
+		modeloContenido.addRow(new Object[]{"Titulo", resena.getContenido().getTitulo()});
+		modeloContenido.addRow(new Object[]{"Puntuacion Media", resena.getContenido().getPuntuacionMedia()});
+		String castTexto = ""; 
+		if(resena.getContenido().getCast() != null && !resena.getContenido().getCast().isEmpty()) {
+			for(String actor: resena.getContenido().getCast()) {
+				castTexto += actor + ", ";
+			}
+			castTexto = castTexto.substring(0, castTexto.length() - 2);
+			
+		} else {
+			castTexto = "No disponible";
+		}
+		modeloContenido.addRow(new Object[] {"Cast", castTexto});;
+	
+	}
 	
 	
 	
