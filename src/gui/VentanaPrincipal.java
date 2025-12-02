@@ -108,8 +108,7 @@ public class VentanaPrincipal extends JFrame{
 		    	case "Catalogo":
 		    		boton.addActionListener(e -> {
 		    			this.setVisible(false);
-		    			VentanaCatalogo catalogo = new VentanaCatalogo(usuario);
-		    		    catalogo.setVisible(true);
+		    			CargadorCatalogo.abrirCatalogoConCarga(usuario, listaContenidos);
 		    		});
 		    		break;
 		    	case "Mi Lista":
