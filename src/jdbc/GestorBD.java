@@ -2,6 +2,8 @@ package jdbc;
 
 import java.io.FileInputStream;
 import java.io.FileReader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -26,21 +28,22 @@ public class GestorBD {
     private Properties properties;
     private String driverName;
     private String connectionString;
+	private String databaseFile;
+
     
     private static Logger logger = Logger.getLogger(GestorBD.class.getName());
 
     public GestorBD() {
         try (FileInputStream fis = new FileInputStream("resources/config/logger.properties")) {
-            // Inicialización del Logger (si tienes el archivo logger.properties)
-            // Si no tienes el archivo, puedes eliminar este bloque try/catch
+           
             LogManager.getLogManager().readConfiguration(fis);
             
-            // Lectura del fichero properties
             properties = new Properties();
             properties.load(new FileReader(PROPERTIES_FILE));
             
             driverName = properties.getProperty("driver");
             connectionString = properties.getProperty("connection");
+            databaseFile = properties.getProperty("file");
             
             // Cargar el driver SQLite
             Class.forName(driverName);
@@ -48,8 +51,6 @@ public class GestorBD {
             logger.warning(String.format("Error al cargar configuración o driver de BBDD: %s", ex.getMessage()));
         }
     } 
-
-    // --- MÉTODOS DE ESTRUCTURA DE LA BD ---
 
     public void crearBBDD() {        
         // TABLA 1: USUARIOS
@@ -67,10 +68,10 @@ public class GestorBD {
                 + " id_contenido INTEGER PRIMARY KEY AUTOINCREMENT,\n"
                 + " titulo TEXT NOT NULL UNIQUE,\n"
                 + " tipo TEXT NOT NULL CHECK(tipo IN ('PELICULA', 'SERIE')),\n"
-                + " duracion_o_temporadas INTEGER\n" // duracion para Pelicula, temporadas para Serie
+                + " duracion_o_temporadas INTEGER\n" // duracion si es una peli y temporadas si es serie
                 + ");";
 
-        // TABLA 3: FAVORITOS (para relacionar la tabla USUARIOS con la tabla CONTENIDOS)
+        // TABLA 3: FAVORITOS (que relaciona la tabla USUARIOS con la tabla CONTENIDOS)
         String sql3 = "CREATE TABLE IF NOT EXISTS FAVORITOS (\n"
                 + " id_usuario_fk INTEGER,\n"
                 + " id_contenido_fk INTEGER,\n"
@@ -80,21 +81,24 @@ public class GestorBD {
                 + ");";
         
         try (Connection con = DriverManager.getConnection(connectionString);
-             Statement stmt = con.createStatement()) {
+        	PreparedStatement pStmt1 = con.prepareStatement(sql1);
+        	PreparedStatement pStmt2 = con.prepareStatement(sql2);
+        	PreparedStatement pStmt3 = con.prepareStatement(sql3)) {
             
-            stmt.execute(sql1);
-            stmt.execute(sql2);
-            stmt.execute(sql3);
+        	pStmt1.execute(sql1);
+        	pStmt2.execute(sql2);
+        	pStmt3.execute(sql3);
 
-            logger.info("Se han creado las tablas USUARIOS, CONTENIDOS y FAVORITOS.");
-        } catch (Exception ex) {
-            logger.warning(String.format("Error al crear las tablas: %s", ex.getMessage()));
-        }
+        	if (!pStmt1.execute() && !pStmt2.execute() && !pStmt3.execute()) {
+	        	logger.info("Se han creado las tablas");
+	        }
+		} catch (Exception ex) {
+			logger.warning(String.format("Error al crear las tablas: %s", ex.getMessage()));
+		}
     }
+    
 
-    // --- MÉTODOS CRUD (Create, Read, Update, Delete) ---
-
-    // REQUISITO: INSERCIÓN (Usando PreparedStatement)
+    //Metodo insert
     public void insertarUsuario(Usuario u) {
         String sql = "INSERT INTO USUARIOS(nombre, nombre_usuario, contraseña, apellido, email) VALUES (?, ?, ?, ?, ?);";
         
@@ -117,7 +121,7 @@ public class GestorBD {
         }
     }
     
-    // REQUISITO: MODIFICACIÓN (Usando PreparedStatement)
+    // Metodo update
     public boolean modificarContrasenaUsuario(String nombreUsuario, String nuevaContrasena) {
         String sql = "UPDATE USUARIOS SET contraseña = ? WHERE nombre_usuario = ?;";
         
@@ -142,31 +146,59 @@ public class GestorBD {
         }
     }
     
-    // REQUISITO: BORRADO
-    public boolean borrarUsuario(String nombreUsuario) {
-        // Al usar FOREIGN KEY ON DELETE CASCADE, al borrar un usuario,
-        // sus registros en la tabla FAVORITOS se borrarán automáticamente.
-        String sql = "DELETE FROM USUARIOS WHERE nombre_usuario = ?;";
-        
-        try (Connection con = DriverManager.getConnection(connectionString);
-             PreparedStatement pStmt = con.prepareStatement(sql)) {
+    // Metodo borrar
+    public void borrarBBDD() {
+        if (properties.get("deleteBBDD").equals("true")) { 	
+            String sql1 = "DROP TABLE IF EXISTS FAVORITOS;";
+            String sql2 = "DROP TABLE IF EXISTS USUARIOS;"; 
+            String sql3 = "DROP TABLE IF EXISTS CONTENIDO;";
             
-            pStmt.setString(1, nombreUsuario);
-            int filasAfectadas = pStmt.executeUpdate();
-            
-            if (filasAfectadas > 0) {
-                logger.info(String.format("Usuario %s eliminado.", nombreUsuario));
-                return true;
-            } else {
-                logger.warning(String.format("Usuario %s no encontrado para borrar.", nombreUsuario));
-                return false;
+            try (Connection con = DriverManager.getConnection(connectionString);
+                 PreparedStatement pStmt1 = con.prepareStatement(sql1);
+                 PreparedStatement pStmt2 = con.prepareStatement(sql2);
+                 PreparedStatement pStmt3 = con.prepareStatement(sql3)) {
+                
+                // Se ejecutan las sentencias de borrado de las tablas
+                if (!pStmt1.execute() && !pStmt2.execute() && !pStmt3.execute()) {
+                    logger.info("Se han borrado las tablas: FAVORITOS, USUARIOS y CONTENIDO.");
+                }
+            } catch (Exception ex) {
+                logger.warning(String.format("Error al borrar las tablas: %s", ex.getMessage()));
             }
-        } catch (SQLException ex) {
-            logger.warning(String.format("Error al borrar usuario: %s", ex.getMessage()));
-            return false;
+            
+            try {
+                Files.delete(Paths.get(databaseFile));
+                logger.info("Se ha borrado el fichero de la BBDD.");
+            } catch (Exception ex) {
+                logger.warning(String.format("Error al borrar el fichero de la BBDD: %s", ex.getMessage()));
+            }
         }
     }
 
+    
+    //Metodo para borrar el contenido de una tabla
+    public void borrarDatos() {
+		if (properties.get("cleanBBDD").equals("true")) {	
+			String sql1 = "DELETE FROM FAVORITOS;";
+			String sql2 = "DELETE FROM USUARIOS;";
+			String sql3 = "DELETE FROM CONTENIDO;";
+			
+			try (Connection con = DriverManager.getConnection(connectionString);
+			     PreparedStatement pStmt1 = con.prepareStatement(sql1);
+				 PreparedStatement pStmt2 = con.prepareStatement(sql2);
+				 PreparedStatement pStmt3 = con.prepareStatement(sql3)) {
+				
+		        if (!pStmt1.execute() && !pStmt2.execute() && !pStmt3.execute()) {
+		        	logger.info("Se han borrado los datos");
+		        }
+			} catch (Exception ex) {
+				logger.warning(String.format("Error al borrar los datos: %s", ex.getMessage()));
+			}
+		}
+	}
+    
+    
+    
     // REQUISITO: CONSULTA
     public List<Usuario> getUsuarios() {
         List<Usuario> usuarios = new ArrayList<>();
@@ -260,8 +292,10 @@ public class GestorBD {
         System.out.println("\n--- CONSULTA TRAS MODIFICACIÓN ---");
         db.getUsuarios().forEach(u -> System.out.printf("  -> %s / Contraseña: %s%n", u.getNombre_usuario(), u.getContraseña()));
         
-        // 7. BORRADO
-        db.borrarUsuario("laura_dev");
+     // 7. AÑADIR AQUÍ: BORRADO DE DATOS
+        // Llama al método que has creado para vaciar las tablas.
+        db.borrarDatos();
+        
         
         // 8. CONSULTA para verificar el borrado
         System.out.println("\n--- CONSULTA TRAS BORRADO ---");
