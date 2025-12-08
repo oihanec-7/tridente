@@ -174,19 +174,15 @@ public class VentanaValoradas extends JFrame {
 
             private void filtrar() {
             	String texto = buscador.getText().toLowerCase();
-            	DefaultTableModel modeloFiltrado = new DefaultTableModel(
-            		new Object[]{"Título", "Fecha", "Valoración"}, 0
-            	);
-            	for (Resena r: usuario.getListaValoradas()) {
-            		if (r.getContenido().getTitulo().toLowerCase().contains(texto)) {
-                        modeloFiltrado.addRow(new Object[]{
-                                r.getContenido().getTitulo(),
-                                r.getFechaResena(),
-                                r.getPuntuacion().intValue()
-                        });
-            		}
-            	}
-            	tablaValoradas.setModel(modeloFiltrado);
+            	ModeloDeDatosValoradas modelo = (ModeloDeDatosValoradas) tablaValoradas.getModel();
+            	modelo.filtrar(texto);
+				/*
+				 * for (Resena r: usuario.getListaValoradas()) { if
+				 * (r.getContenido().getTitulo().toLowerCase().contains(texto)) {
+				 * modeloFiltrado.addRow(new Object[]{ r.getContenido().getTitulo(),
+				 * r.getFechaResena(), r.getPuntuacion().intValue() }); } }
+				 * tablaValoradas.setModel(modeloFiltrado);
+				 */
 //            	tablaValoradas.getColumnModel().getColumn(2)
 //            		.setCellRenderer(new EstrellaRenderer());
             }
@@ -219,8 +215,9 @@ public class VentanaValoradas extends JFrame {
 		tablaValoradas.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		tablaValoradas.getTableHeader().setReorderingAllowed(false);
 		tablaValoradas.getTableHeader().setPreferredSize(new Dimension(tablaValoradas.getTableHeader().getWidth(), 60));
+		
+		//Redenrer para el encabezado
 		tablaValoradas.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
-			
 			@Override
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
 					int row, int column) {
@@ -234,16 +231,33 @@ public class VentanaValoradas extends JFrame {
 				result.setBorder(BorderFactory.createLineBorder(Color.black));
 				result.setOpaque(true);
 				result.setHorizontalAlignment(JLabel.CENTER);
+				result.setText("");
 				
-				if(column == 1) {
+				if(column == 0) {
+					ImageIcon peli = new ImageIcon("images/contenido.png");
+					Image escalar = peli.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+					ImageIcon imagen = new ImageIcon(escalar);
+					result.setIcon(imagen);
+					
+					
+				} else if(column == 1) {
 					ImageIcon calendario = new ImageIcon("images/cal.png");
 					Image escalar = calendario.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
 					ImageIcon imagen = new ImageIcon(escalar);
 					result.setIcon(imagen);
-					result.setText("");
-				} else {
-		           	result.setIcon(null); 
-		            result.setText(value.toString());
+				
+					
+				} else if(column == 2){
+					ImageIcon val = new ImageIcon("images/valoracion.png");
+					Image escalar = val.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+					ImageIcon imagen = new ImageIcon(escalar);
+					result.setIcon(imagen);
+					
+				}else {
+		           	ImageIcon genero = new ImageIcon("images/genero2.png");
+					Image escalar = genero.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+					ImageIcon imagen = new ImageIcon(escalar);
+					result.setIcon(imagen);
 			        
 				}
 			
@@ -342,28 +356,39 @@ public class VentanaValoradas extends JFrame {
 					int puntuacion = (int)Math.round(resena.getPuntuacion());
 					switch (puntuacion) {
 					case 1: 
-						ImageIcon muyMal = new ImageIcon("images/m_enfa.png");
-						result.setIcon(muyMal);
+						ImageIcon unaestrella = new ImageIcon("images/1estrella.png");
+						Image escalar1 = unaestrella.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+						ImageIcon imagen1 = new ImageIcon(escalar1);
+						result.setIcon(imagen1);
 						break;
 	
 					case 2: 
-						ImageIcon mal = new ImageIcon("images/enfa.png");
-						result.setIcon(mal);
+						ImageIcon dosestrellas = new ImageIcon("images/2estrellas.png");
+						Image escalar2 = dosestrellas.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+						ImageIcon imagen2 = new ImageIcon(escalar2);
+						result.setIcon(imagen2);
+						
 						break;
 					
 					case 3: 
-						ImageIcon serio = new ImageIcon("images/serio.png");
-						result.setIcon(serio);
+						ImageIcon tresestrell = new ImageIcon("images/3estrellas.png");
+						Image escalar3 = tresestrell.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+						ImageIcon imagen3 = new ImageIcon(escalar3);
+						result.setIcon(imagen3);
 						break;
 					
 					case 4: 
-						ImageIcon feliz = new ImageIcon("images/FELIZ.png");
-						result.setIcon(feliz);
+						ImageIcon cuatroestrell = new ImageIcon("images/4estrellas.png");
+						Image escalar4 = cuatroestrell.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+						ImageIcon imagen4 = new ImageIcon(escalar4);
+						result.setIcon(imagen4);
 						break;
 					
 					case 5: 
-						ImageIcon mfeliz = new ImageIcon("images/muy_fe.png");
-						result.setIcon(mfeliz);
+						ImageIcon cincoestrell = new ImageIcon("images/5estrellas.png");
+						Image escalar5 = cincoestrell.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+						ImageIcon imagen5 = new ImageIcon(escalar5);
+						result.setIcon(imagen5);
 						break;
 
 					default:

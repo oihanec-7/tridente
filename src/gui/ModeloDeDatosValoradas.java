@@ -12,6 +12,7 @@ public class ModeloDeDatosValoradas extends AbstractTableModel{
 	private static final long serialVersionUID = 1L;
 	private String[] cabecera = {"Contenido", "Fecha", "Valoracion", "Genero"};
 	private ArrayList<Resena> listaValoradas;
+	private ArrayList<Resena> listaFiltrada;
 	
 
 	public ModeloDeDatosValoradas(ArrayList<Resena> listaValoradas) {
@@ -22,6 +23,8 @@ public class ModeloDeDatosValoradas extends AbstractTableModel{
 			this.listaValoradas = listaValoradas;
 			
 		}
+		this.listaFiltrada = new ArrayList<>();
+		this.listaFiltrada.addAll(listaValoradas);
 		
 	}
 	
@@ -73,8 +76,7 @@ public class ModeloDeDatosValoradas extends AbstractTableModel{
 
 		}
 		
-		
-		
+	
 		
 	}
 
@@ -82,6 +84,18 @@ public class ModeloDeDatosValoradas extends AbstractTableModel{
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
 	
 		return false;
+	}
+	
+	public void filtrar(String texto) {
+		listaFiltrada.clear();
+		
+		for(Resena r: listaValoradas){
+			if(r.getContenido().getTitulo().toLowerCase().contains(texto)) {
+				listaFiltrada.add(r);
+			}
+			
+		}
+		fireTableDataChanged();
 	}
 	
 	
