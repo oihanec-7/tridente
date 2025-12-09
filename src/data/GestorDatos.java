@@ -40,24 +40,19 @@ public class GestorDatos {
 		    	 for (String actor : partes[4].split(",")) {
 		    		 cast.add(actor);
 		    	 }
-		    	 
-
-		    	 //String rutaPortada = partes[5];
-
-		    	 String rutaPortada = partes[6].trim();
-		    
+		  		    
 
 		    	 if (tipo.equalsIgnoreCase("Pelicula")) {
 		    		 int duracion = Integer.parseInt(partes[5]);
 
 		    		 //Pelicula peli = new Pelicula(titulo, generos, puntuaciones, cast,duracion);
 
-		    		 Pelicula peli = new Pelicula(titulo, generos, puntuaciones, cast, rutaPortada, duracion);
+		    		 Pelicula peli = new Pelicula(titulo, generos, puntuaciones, cast, duracion);
 
 		    		 contenidos.add(peli);
 		    	 } else if (tipo.equalsIgnoreCase("Serie")) {
 		    		 int temporadas = Integer.parseInt(partes[5]);
-		    		 Serie serie = new Serie(titulo, generos, puntuaciones, cast, rutaPortada, temporadas); 
+		    		 Serie serie = new Serie(titulo, generos, puntuaciones, cast, temporadas); 
 		    		 contenidos.add(serie);
 		    	 }
 		        }

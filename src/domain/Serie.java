@@ -6,8 +6,8 @@ public class Serie extends Contenido{
 	private int temporadas;
 	private String titulo;
 	
-	public Serie(String titulo, ArrayList<String> genero, ArrayList<Double> puntuaciones,  ArrayList<String> cast, String rutaPortada, int temporadas) {
-		super(titulo, genero, puntuaciones, cast, rutaPortada);
+	public Serie(String titulo, ArrayList<String> genero, ArrayList<Double> puntuaciones,  ArrayList<String> cast, int temporadas) {
+		super(titulo, genero, puntuaciones, cast);
 		this.temporadas = temporadas;
 		this.titulo = titulo;
 	}

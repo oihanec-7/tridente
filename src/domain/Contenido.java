@@ -7,35 +7,17 @@ public abstract class Contenido {
 	private ArrayList<String> genero;
 	private ArrayList<Double> puntuaciones; 
 	private ArrayList<String> cast;
-	private String rutaPortada;
 	private int estrellas;
 	
 
-	
 
-	public int getEstrellas() {
-		return estrellas;
-	}
 
-	public void setEstrellas(int estrellas) {
-		this.estrellas = estrellas;
-	}
-
-	public Contenido(String titulo, ArrayList<String> genero, ArrayList<Double> puntuaciones, ArrayList<String> cast, String rutaPortada) {
+	public Contenido(String titulo, ArrayList<String> genero, ArrayList<Double> puntuaciones, ArrayList<String> cast) {
 		super();
 		this.titulo = titulo;
 		this.genero = genero;
 		this.puntuaciones = puntuaciones;
 		this.cast = cast;
-		this.rutaPortada = rutaPortada;
-	}
-
-	public String getRutaPortada() {
-		return rutaPortada;
-	}
-
-	public void setRutaPortada(String rutaPortada) {
-		this.rutaPortada = rutaPortada;
 	}
 
 	public ArrayList<String> getCast() {
@@ -82,5 +64,23 @@ public abstract class Contenido {
 		puntuaciones.add(puntuacion);
 		
 	}
+	
+	
+	public int getEstrellas() {
+		return estrellas;
+	}
+
+	public void setEstrellas(int estrellas) {
+		this.estrellas = estrellas;
+	}
+	
+	
+	public String getNombreArchivoPortada() {
+        return this.titulo.replaceAll(":", "").replaceAll(" ", "_");
+    }
+	
+	public String getRutaPortada() {
+        return "images/" + getNombreArchivoPortada() + ".jpg"; 
+    }
 
 }

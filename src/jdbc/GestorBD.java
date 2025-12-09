@@ -83,14 +83,13 @@ public class GestorBD {
                       cast.add(actor.trim());
                   }
 
-                  String rutaPortada = partes[6].trim();
                   int valorNumerico = Integer.parseInt(partes[5].trim());
 
                   Contenido nuevoContenido = null;
                   if (tipo.equalsIgnoreCase("Pelicula")) {
-                      nuevoContenido = new Pelicula(titulo, generos, puntuaciones, cast, rutaPortada, valorNumerico);
+                      nuevoContenido = new Pelicula(titulo, generos, puntuaciones, cast, valorNumerico);
                   } else if (tipo.equalsIgnoreCase("Serie")) {
-                      nuevoContenido = new Serie(titulo, generos, puntuaciones, cast, rutaPortada, valorNumerico);
+                      nuevoContenido = new Serie(titulo, generos, puntuaciones, cast, valorNumerico);
                   }
 
                   if (nuevoContenido != null) {
