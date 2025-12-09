@@ -266,54 +266,6 @@ public class VentanaValoradas extends JFrame {
 			}
 		});
 		
-		tablaValoradas.getColumnModel().getColumn(3).setCellRenderer(new DefaultTableCellRenderer() {
-
-			@Override
-			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
-					boolean hasFocus, int row, int column){
-				
-				ModeloDeDatosValoradas modelo = (ModeloDeDatosValoradas) table.getModel();
-				Resena resena = modelo.getResenaAt(row);
-				
-				 JPanel panel = new JPanel();
-				 panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-			     panel.setOpaque(true);
-				
-				for (String genero : resena.getContenido().getGenero()) {
-		            JLabel etiqueta = new JLabel(genero);
-		            etiqueta.setFont(new Font("SansSerif", Font.BOLD, 12));
-		            etiqueta.setForeground(Color.WHITE);
-		            etiqueta.setOpaque(true);
-		            etiqueta.setBackground(new Color(14, 28, 59));
-		            etiqueta.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
-		            etiqueta.setAlignmentX(JLabel.CENTER_ALIGNMENT);
-		            panel.add(Box.createVerticalStrut(20));
-		            panel.add(etiqueta);
-		            panel.add(Box.createVerticalStrut(1));
-		        }
-
-				
-				if(row % 2 == 0) {
-					panel.setBackground(new Color(155, 178, 204));
-				} else {
-					panel.setBackground(new Color(185, 200, 220));
-				}
-				
-				if(isSelected) {
-					panel.setBackground(new Color(255, 230, 128));
-					panel.setOpaque(true);
-				}
-				
-				
-				panel.setFont(new FontUIResource("SansSerif", Font.BOLD, 16));
-				panel.setBorder(BorderFactory.createLineBorder(Color.black));
-				panel.setOpaque(true);
-			
-				return panel;
-			}
-			
-			
-		});
 //		tablaValoradas.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
 //			 public Component getTableCellRendererComponent(JTable table, 
 //					 										Object value,
@@ -354,54 +306,33 @@ public class VentanaValoradas extends JFrame {
 					
 				} else if(column == 2) {
 					int puntuacion = (int)Math.round(resena.getPuntuacion());
-					switch (puntuacion) {
-					case 1: 
-						ImageIcon unaestrella = new ImageIcon("images/1estrella.png");
-						Image escalar1 = unaestrella.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-						ImageIcon imagen1 = new ImageIcon(escalar1);
-						result.setIcon(imagen1);
-						break;
-	
-					case 2: 
-						ImageIcon dosestrellas = new ImageIcon("images/2estrellas.png");
-						Image escalar2 = dosestrellas.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-						ImageIcon imagen2 = new ImageIcon(escalar2);
-						result.setIcon(imagen2);
-						
-						break;
-					
-					case 3: 
-						ImageIcon tresestrell = new ImageIcon("images/3estrellas.png");
-						Image escalar3 = tresestrell.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-						ImageIcon imagen3 = new ImageIcon(escalar3);
-						result.setIcon(imagen3);
-						break;
-					
-					case 4: 
-						ImageIcon cuatroestrell = new ImageIcon("images/4estrellas.png");
-						Image escalar4 = cuatroestrell.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-						ImageIcon imagen4 = new ImageIcon(escalar4);
-						result.setIcon(imagen4);
-						break;
-					
-					case 5: 
-						ImageIcon cincoestrell = new ImageIcon("images/5estrellas.png");
-						Image escalar5 = cincoestrell.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-						ImageIcon imagen5 = new ImageIcon(escalar5);
-						result.setIcon(imagen5);
-						break;
-
-					default:
-						break;
+					StringBuilder estrellas = new StringBuilder();
+					for(int i =0; i < puntuacion; i++) {
+						estrellas.append('★');
 					}
 					
-					result.setText("");
-					result.setToolTipText(String.valueOf(puntuacion));
+					for(int i=puntuacion; i <5; i++) {
+						estrellas.append('☆');
+					}
 					
-				} else {
-					result.setText(value.toString());
+					result.setText(estrellas.toString());
+					result.setFont(new Font("Dialog", Font.PLAIN, 30));
+					
+					
+				} else if (column == 3){
+					String generosTexto; 
+					if(resena.getContenido().getGenero() != null && !resena.getContenido().getGenero().isEmpty()) {
+						generosTexto = String.join(", ", resena.getContenido().getGenero());
+						
+					} else {
+						generosTexto = "No disponible";
+					}
+					
+					result.setText(generosTexto);
+					result.setHorizontalAlignment(JLabel.CENTER);
 				}
 				
+			
 				if(row % 2 == 0) {
 					result.setBackground(new Color(155, 178, 204));
 				} else {
@@ -449,17 +380,111 @@ public class VentanaValoradas extends JFrame {
 	
 	private void crearTablaContenido(){
 		String[] columnas = {"Titulo", "Puntuación Media", "Cast"};
-		modeloContenido = new DefaultTableModel(columnas, 0);
+		modeloContenido = new DefaultTableModel(columnas, 0) {
+
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				
+				return false;
+			}
+			
+		};
 		tablaContenido = new JTable(modeloContenido);
-		tablaContenido.setRowHeight(30);
+		tablaContenido.setRowHeight(45);
 		
+		tablaContenido.setFont(new Font("SanSerif", Font.PLAIN, 16));
+		tablaContenido.getTableHeader().setPreferredSize(new Dimension(0, 40));
+		tablaContenido.getTableHeader().setFont(new Font("SanSerif", Font.BOLD, 16));
+		tablaContenido.getTableHeader().setReorderingAllowed(false);
+		tablaContenido.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
+
+			@Override
+			public Component getTableCellRendererComponent(JTable table, Object value, 
+					boolean isSelected, boolean hasFocus, int row, int column) {
+				
+				JLabel result = new JLabel(value.toString());
+				result.setHorizontalAlignment(JLabel.CENTER);
+				result.setBorder(BorderFactory.createLineBorder(Color.gray));
+				result.setFont(new Font("Helvetica Neue", Font.BOLD, 16));
+				result.setOpaque(true);
+				result.setBackground(Color.white);
+				result.setForeground(Color.black);
+				
+				switch (column) {
+					case 0:
+						ImageIcon peli = new ImageIcon("images/cine.png");
+						Image escalar = peli.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+						ImageIcon imagen = new ImageIcon(escalar);
+						result.setIcon(imagen);
+						result.setText(" " + value.toString());
+						break;
+	
+					case 1:
+						ImageIcon punt = new ImageIcon("images/valoracion.png");
+						Image escalar1 = punt.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+						ImageIcon imagen2 = new ImageIcon(escalar1);
+						result.setIcon(imagen2);
+						result.setText(" " + value.toString());
+						break;
+						
+					case 2:
+						ImageIcon cast = new ImageIcon("images/cast.png");
+						Image escalar2 = cast.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+						ImageIcon imagen3 = new ImageIcon(escalar2);
+						result.setIcon(imagen3);
+						result.setText(" " + value.toString());
+						break;
+				}
+				
+				
+				if(column == 0) {
+					
+					result.setHorizontalTextPosition(JLabel.RIGHT);
+					result.setHorizontalAlignment(JLabel.CENTER);
+					
+				}
+				
+				
+				return result; 
+			}
+			
+		});
+		
+		tablaContenido.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+
+			@Override
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+					boolean hasFocus, int row, int column) {
+				
+				JLabel result = new JLabel(value.toString());
+				result.setOpaque(true);
+				result.setFont(new FontUIResource("SansSerif", Font.BOLD, 16));
+				result.setBackground(new Color(230, 240, 250));
+				result.setHorizontalAlignment(JLabel.CENTER);
+			
+
+				if(isSelected) {
+					result.setBackground(new Color(255, 230, 128));
+				}
+				
+				if(column == 1) {
+					
+				}
+				
+				
+				return result;
+			}
+			
+			
+		});
 	}
 	
 	private void actualizarTablaDetalles(Resena resena) {
 		modeloContenido.setRowCount(0);
 		
-		modeloContenido.addRow(new Object[]{"Titulo", resena.getContenido().getTitulo()});
-		modeloContenido.addRow(new Object[]{"Puntuacion Media", resena.getContenido().getPuntuacionMedia()});
+		String titulo = resena.getContenido().getTitulo();
+		Double puntuacionMedia = resena.getContenido().getPuntuacionMedia();
+		String puntuacionFormateada = String.format("%.2f", puntuacionMedia);
 		String castTexto = ""; 
 		if(resena.getContenido().getCast() != null && !resena.getContenido().getCast().isEmpty()) {
 			for(String actor: resena.getContenido().getCast()) {
@@ -470,7 +495,7 @@ public class VentanaValoradas extends JFrame {
 		} else {
 			castTexto = "No disponible";
 		}
-		modeloContenido.addRow(new Object[] {"Cast", castTexto});;
+		modeloContenido.addRow(new Object[] {titulo, puntuacionFormateada, castTexto});;
 	
 	}
 	
