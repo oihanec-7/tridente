@@ -76,7 +76,7 @@ public abstract class Contenido {
 	
 	
 	public String getNombreArchivoPortada() {
-        return this.titulo.replaceAll(":", "").replaceAll(" ", "_");
+        return this.titulo.replaceAll(" ", "_");
     }
 	
 	public String getRutaPortada() {
