@@ -318,6 +318,8 @@ public class VentanaValoradas extends JFrame {
 					result.setText(estrellas.toString());
 					result.setFont(new Font("Dialog", Font.PLAIN, 30));
 					
+	
+					
 					
 				} else if (column == 3){
 					String generosTexto; 
