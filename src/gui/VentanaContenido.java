@@ -123,6 +123,7 @@ public class VentanaContenido extends JFrame{
         	Image escalarBasura = basura.getImage().getScaledInstance(18, 18, Image.SCALE_SMOOTH);
         	botonLista.setIcon(new ImageIcon(escalarBasura));
 
+        	//Creado con IA
         	botonLista.addActionListener(e -> {
 	          	int confirm = JOptionPane.showConfirmDialog(
 	                    this,
@@ -155,7 +156,7 @@ public class VentanaContenido extends JFrame{
         	Image escalarCine = cine.getImage().getScaledInstance(18, 18, Image.SCALE_SMOOTH);
         	botonLista.setIcon(new ImageIcon(escalarCine));
     
-        	
+        	//Generado con IA
           	botonLista.addActionListener(e -> {
           		usuario.getMiLista().add(contenido);
           		JOptionPane.showMessageDialog(this,

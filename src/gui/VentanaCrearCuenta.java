@@ -144,7 +144,7 @@ public class VentanaCrearCuenta extends JFrame{
 		iniciar_Sesion.addActionListener(e -> crearNuevaCuenta(usuarios));
 		
 		
-		//boton para volver atrás
+		//boton para volver atrás: creado con IA
 		volverLogIn = new JButton("<html><u>Ya tengo una cuenta</u></html>");
 		volverLogIn.setMaximumSize(new Dimension(150, 35));
 		volverLogIn.setAlignmentX(LEFT_ALIGNMENT);
@@ -162,8 +162,6 @@ public class VentanaCrearCuenta extends JFrame{
 			vl.setVisible(true);
 		});
 		
-		
-	
 		
 		formJPanel.add(nombre);
 		formJPanel.add(Box.createVerticalStrut(15));
@@ -203,6 +201,7 @@ public class VentanaCrearCuenta extends JFrame{
 		
 	}
 	
+	//Metodo corregido por la IA
 	private void crearNuevaCuenta(List<Usuario> usuarios) {
 		String nombreC = txt_nombre.getText();
 		String apellidoC = txt_apellido.getText();

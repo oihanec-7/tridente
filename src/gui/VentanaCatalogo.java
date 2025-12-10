@@ -54,7 +54,7 @@ public class VentanaCatalogo extends JFrame{
 		panelPrincipal.setBackground(new Color(155, 178, 204));
 		panelPrincipal.setOpaque(true);
 		
-		//Mantener el boton de menu y el menu desplegable y añadir la barra de buscar arriba
+		//Mantenemos el boton de menu y el menu desplegable y añadir la barra de buscar arriba
 			//Panel superior (barra buscar + boton menu)
 		JPanel panelSuperior = new JPanel();
 		panelSuperior.setLayout(new BoxLayout(panelSuperior, BoxLayout.X_AXIS));
@@ -183,6 +183,7 @@ public class VentanaCatalogo extends JFrame{
 		add(panelPrincipal);
 	}
 	
+	//Metodo corregido por la IA
 	private JPanel anadirContenidos(ArrayList<Contenido> contenidos) {
 	    JPanel panelPrincipal = new JPanel();
 	    panelPrincipal.setLayout(new BoxLayout(panelPrincipal, BoxLayout.Y_AXIS));

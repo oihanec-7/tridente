@@ -74,10 +74,7 @@ public class ModeloDeDatosValoradas extends AbstractTableModel{
 		default:
 			return null;
 
-		}
-		
-	
-		
+		}	
 	}
 
 	@Override

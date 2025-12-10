@@ -71,7 +71,7 @@ public class VentanaAgregarResena extends JFrame{
 		panelTitulo.add(labelTitulo);
         panelTitulo.setBackground(new Color(155, 178, 204));
 		
-        // Puntuacion con estrellas
+        // Puntuacion con estrellas - Generado con IA
         JPanel panelPuntuacion = new JPanel(new FlowLayout(FlowLayout.LEFT));
         panelPuntuacion.add(new JLabel("Puntuación:"));
         panelPuntuacion.setBackground(new Color(155, 178, 204));

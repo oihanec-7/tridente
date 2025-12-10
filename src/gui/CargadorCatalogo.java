@@ -24,6 +24,7 @@ import domain.Usuario;
 
 public class CargadorCatalogo {
 	
+	//Constructor generado con IA
     public static void abrirCatalogoConCarga(Usuario usuario, ArrayList<Contenido> catalogo) {
         // 1. Obtener películas recomendadas usando tu Recomendador
         String[] rutasPortadas = obtenerRutasPortadas(usuario, catalogo);
@@ -72,7 +73,6 @@ public class CargadorCatalogo {
         // Obtener películas recomendadas usando tu Recomendador
         ArrayList<Contenido> recomendadas = Recomendador.recomendarPorGenero(usuario, catalogo);
         
-        // Si no hay recomendaciones, usar algunas por defecto del catálogo
         if (recomendadas.isEmpty() || recomendadas.size() < 3) {
             recomendadas = new ArrayList<>();
             for (int i = 0; i < Math.min(5, catalogo.size()); i++) {
@@ -80,7 +80,7 @@ public class CargadorCatalogo {
             }
         }
         
-        // Obtener las rutas de las imágenes (máximo 10 portadas para el carrusel)
+        // Máximo 10 portadas para el carrusel)
         int numPortadas = Math.min(recomendadas.size(), 10);
         String[] rutas = new String[numPortadas];
         
@@ -123,7 +123,6 @@ public class CargadorCatalogo {
     // Main para probar
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            // Simular el menú principal
             JFrame menuPrincipal = new JFrame("Menú Principal");
             menuPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             menuPrincipal.setSize(400, 200);

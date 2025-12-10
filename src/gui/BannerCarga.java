@@ -31,7 +31,7 @@ public class BannerCarga extends JFrame {
     
     private void configurarVentana() {
         setLayout(new BorderLayout());
-        setUndecorated(true); // Sin borde
+        setUndecorated(true); 
         
         // Panel principal
         JPanel panelPrincipal = new JPanel(new BorderLayout());
@@ -63,7 +63,7 @@ public class BannerCarga extends JFrame {
         panelPrincipal.add(lblPortada, BorderLayout.CENTER);
         panelPrincipal.add(mensaje, BorderLayout.SOUTH);
         
-        add(panelPrincipal);
+        add(panelPrincipal); 
         
         setSize(400, 500);
         setLocationRelativeTo(null);
