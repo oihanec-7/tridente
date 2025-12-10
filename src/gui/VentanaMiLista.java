@@ -139,6 +139,7 @@ public class VentanaMiLista extends JFrame {
         panelPrincipal.add(scrollPortadas, BorderLayout.CENTER);
 
         // Buscador
+        // Adaptado por la IA 
         buscador.getDocument().addDocumentListener(new DocumentListener() {
             public void insertUpdate(DocumentEvent e) { filtrar(); }
             public void removeUpdate(DocumentEvent e) { filtrar(); }

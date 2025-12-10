@@ -160,12 +160,9 @@ public class VentanaPrincipal extends JFrame{
 		panelTitulo.add(nombreApp);
 
 		panelTitulo.add(Box.createHorizontalGlue());
-
-		botonFiltrar = new JButton("Filtrar");      //FALTA POR HACER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		
 		
 		panelCarruseles.add(panelTitulo);
-//		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 30))); 
 		
 		// Añadimos los scrolls al panelCarruseles
 		panelCarruseles.add(Box.createRigidArea(new Dimension(0, 70)));
@@ -197,7 +194,8 @@ public class VentanaPrincipal extends JFrame{
 	
 	
 	private JPanel crearCarrusel(String titulo, ArrayList<Contenido> lista) {
-		//Panel que contiene el titulo y el carrusel
+		// Adaptado por la IA 
+		// Panel que contiene el titulo y el carrusel
 		 JPanel panelCarruselCompleto = new JPanel();
 		 panelCarruselCompleto.setLayout(new BoxLayout(panelCarruselCompleto, BoxLayout.Y_AXIS));
 		 panelCarruselCompleto.setBackground(new Color(155, 178, 204));

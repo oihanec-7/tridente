@@ -305,6 +305,7 @@ public class VentanaValoradas extends JFrame {
 					result.setToolTipText(resena.getContenido().getTitulo());
 					
 				} else if(column == 2) {
+					// Generado por IA
 					int puntuacion = (int)Math.round(resena.getPuntuacion());
 					StringBuilder estrellas = new StringBuilder();
 					for(int i =0; i < puntuacion; i++) {
@@ -486,7 +487,7 @@ public class VentanaValoradas extends JFrame {
 	
 	private void actualizarTablaDetalles(Resena resena) {
 		modeloContenido.setRowCount(0);
-		
+		 // Adaptado por IA
 		String titulo = resena.getContenido().getTitulo();
 		Double puntuacionMedia = resena.getContenido().getPuntuacionMedia();
 		String puntuacionFormateada = String.format("%.2f", puntuacionMedia);

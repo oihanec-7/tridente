@@ -242,6 +242,7 @@ public class VentanaLogin extends JFrame{
 	} 
 	
 	private void verificarUsuario() {
+		// Adaptado por la IA
 		String textoUsuario = userTxt.getText();
 		String textoPassword = new String(passwordTxt.getPassword());
 		

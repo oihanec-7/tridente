@@ -58,6 +58,7 @@ public class VentanaLoading extends JFrame {
 	}
 
 	private void iniciarCarga() {
+		// Fuente Externa: Ejercicio de clase
 		// Creamos el hilo trabajador
 		Thread hilo = new Thread(() -> {
 			for (int i = 0; i <= 100; i++) {
@@ -71,8 +72,6 @@ public class VentanaLoading extends JFrame {
 				// -------------------------------
 
 				try {
-					// Simulamos trabajo pesado (dormir el hilo trabajador)
-					// Si aumentas este número, la carga será más lenta
 					Thread.sleep(10); 
 				} catch (InterruptedException e) {
 					e.printStackTrace();
@@ -83,12 +82,10 @@ public class VentanaLoading extends JFrame {
 			SwingUtilities.invokeLater(() -> {
 				label.setText("¡Carga completa!");
 				try {
-					// Una pequeña pausa final para que el usuario vea el 100%
 					Thread.sleep(500);
 				} catch (InterruptedException e) {}
 				dispose(); // Cierra la ventana
 				System.out.println("Ventana de carga cerrada. Iniciando aplicación principal...");
-				// Aquí podrías llamar a: new VentanaPrincipal();
 			});
 		});
 
