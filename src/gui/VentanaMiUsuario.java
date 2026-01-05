@@ -3,9 +3,11 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -21,7 +23,10 @@ import domain.Usuario;
 
 public class VentanaMiUsuario extends JFrame{
 	
+	private List<Usuario> usuarios;
+	
 	public VentanaMiUsuario(Usuario usuario) {
+		this.usuarios = usuarios;
 		
 		setTitle("Perfil de Usuario:" + usuario.getNombre_usuario());
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -34,15 +39,23 @@ public class VentanaMiUsuario extends JFrame{
 		panelPrincipal.setBackground(new Color(155, 178, 204));
 		
 		// Panel izquierdo - Foto perfil
-		ImageIcon icon = new ImageIcon("images/foto_perfil.jpg");
-		Image imagenAjustada = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-		ImageIcon iconoEscalado = new ImageIcon(imagenAjustada);
-		JLabel fotoPerfil = new JLabel(iconoEscalado);
-		fotoPerfil.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+		ImageIcon icon = new ImageIcon("C:\\Usuarios\\oihane.c\\eclipse-workspace\\tridente\\images\\foto_perfil.jpg");
+		JLabel fotoPerfil = new JLabel();
 		
+		
+		
+		Image escalarImagen = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+		
+		fotoPerfil.setIcon(new ImageIcon(escalarImagen));
+		fotoPerfil.setHorizontalAlignment(JLabel.CENTER);
+		fotoPerfil.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+	
+		
+		//El logo estará situado en el panel izquierdo
 		JPanel panelIzquierdo = new JPanel(new BorderLayout());
-		panelIzquierdo.setBackground(new Color(243, 200, 207)); 
-		panelIzquierdo.add(fotoPerfil, BorderLayout.NORTH);
+		//panelIzquierdo.setPreferredSize(new Dimension(350,400));
+		panelIzquierdo.add(fotoPerfil, BorderLayout.CENTER);
+		panelIzquierdo.setBackground(new Color(243, 200, 207));
 		panelPrincipal.add(panelIzquierdo, BorderLayout.WEST);
 		
 		// Panel derecho - Datos usuario
@@ -53,18 +66,18 @@ public class VentanaMiUsuario extends JFrame{
 		
 		// Nombre de Usuario (en grande)
         JLabel labelNombreUsuario = new JLabel(usuario.getNombre_usuario());
-        labelNombreUsuario.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 40)); 
+        labelNombreUsuario.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 20)); 
 
         // Nombre y Apellidos
         JLabel labelNombreCompleto = new JLabel(usuario.getNombre() + " " + usuario.getApellido());
         JLabel labelEmail = new JLabel(usuario.getEmail());
         JLabel labelResenas = new JLabel("Numero de reseñas hechas:" + " " + usuario.getListaValoradas().size());
-        labelNombreCompleto.setFont(new Font("SansSerif", Font.PLAIN ,30));
+        labelNombreCompleto.setFont(new Font("Arial", Font.PLAIN ,15));
         labelNombreCompleto.setForeground(new Color(14, 28, 59));
-        labelEmail.setFont(new Font("Segoe UI", Font.PLAIN ,30));
+        labelEmail.setFont(new Font("Arial", Font.PLAIN ,15));
         labelEmail.setForeground(new Color(14, 28, 59));
-        labelResenas.setFont(new Font("Century Gothic", Font.PLAIN ,30));
-        labelResenas.setForeground(new Color(14, 28, 59));
+        //labelResenas.setFont(new Font("Arial", Font.PLAIN ,15));
+        //labelResenas.setForeground(new Color(14, 28, 59));
         
         // Boton Cerrar Sesion
         JButton btnCerrarSesion = new JButton("Cerrar Sesión");
@@ -72,9 +85,10 @@ public class VentanaMiUsuario extends JFrame{
         btnCerrarSesion.setBackground(new Color(102, 24, 27));
         btnCerrarSesion.setForeground(Color.WHITE);
         btnCerrarSesion.setFocusPainted(false);
-        btnCerrarSesion.setFont(new Font("Arial", Font.BOLD, 13));
+        btnCerrarSesion.setFont(new Font("Arial", Font.BOLD, 10));
+        
         btnCerrarSesion.addActionListener(e -> {
-        	VentanaLogin ventana = new VentanaLogin(null);
+        	VentanaLogin ventana = new VentanaLogin(usuarios);
         	ventana.setVisible(true);
         	dispose();
         });
