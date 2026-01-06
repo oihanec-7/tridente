@@ -39,9 +39,8 @@ public class VentanaMiUsuario extends JFrame{
 		panelPrincipal.setBackground(new Color(155, 178, 204));
 		
 		// Panel izquierdo - Foto perfil
-		ImageIcon icon = new ImageIcon("C:\\Usuarios\\oihane.c\\eclipse-workspace\\tridente\\images\\foto_perfil.jpg");
+		ImageIcon icon = new ImageIcon("images/foto_perfil.jpg");
 		JLabel fotoPerfil = new JLabel();
-		
 		
 		
 		Image escalarImagen = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
