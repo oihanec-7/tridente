@@ -39,7 +39,7 @@ public class VentanaCatalogo extends JFrame{
 	private JPanel panelMenu;
 	private JScrollPane scrollPortadas;
 	private JTextField buscador;
-	private JButton botonOrdenar;
+	private JButton botonFiltrar;
 	private OrdenadorRecursivo ordenador;
 	
 	public VentanaCatalogo(Usuario usuario) {
@@ -81,12 +81,12 @@ public class VentanaCatalogo extends JFrame{
 		panelSuperior.add(Box.createHorizontalStrut(10));
 		
 		// Boton de ordenar 
-		botonOrdenar = new JButton("Ordenar Contenidos");
-		botonOrdenar.setBackground(new Color(14, 28, 59));
-		botonOrdenar.setForeground(Color.WHITE);
-		botonOrdenar.setFocusPainted(false);
-		botonOrdenar.addActionListener(e -> mostrarOpcionesOrdenar());
-		panelSuperior.add(botonOrdenar);
+		botonFiltrar = new JButton("Ordenar Contenidos");
+		botonFiltrar.setBackground(new Color(14, 28, 59));
+		botonFiltrar.setForeground(Color.WHITE);
+		botonFiltrar.setFocusPainted(false);
+		botonFiltrar.addActionListener(e -> mostrarOpcionesOrdenar());
+		panelSuperior.add(botonFiltrar);
 		
 		// Espacio entre botones
 		panelSuperior.add(Box.createHorizontalStrut(10));
@@ -204,89 +204,50 @@ public class VentanaCatalogo extends JFrame{
 	}
 	
 	private void mostrarOpcionesOrdenar() {
-		JPanel panelOpciones = new JPanel();
-		panelOpciones.setLayout(new BoxLayout(panelOpciones, BoxLayout.Y_AXIS));
-		panelOpciones.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-		
-		// ComboBox para seleccionar criterio
-		String[] criterios = {"Seleccionar criterio...", "Título (A-Z)", "Título (Z-A)",
-				"Duración Ascendente", "Duración Descendente"};
-		
-		JComboBox<String> comboCriterios = new JComboBox<String>(criterios);
-		comboCriterios.setSelectedIndex(0);
-		
-		// Checkbox para orden recursivo
-		javax.swing.JCheckBox  checkRecursivo = new javax.swing.JCheckBox("Usar algoritmo recursivo (Merge Sort");
-		checkRecursivo.setSelected(true);
-		
-		// Informacion sobre el algoritmo
-		javax.swing.JLabel labelInfo = new javax.swing.JLabel("<html><small>El algoritmo recursivo Merge Sort tiene complejidad O(n log n)</small></html>");
-		
-		panelOpciones.add(new javax.swing.JLabel("Seleccione criterio de ordenación:"));
-		panelOpciones.add(Box.createVerticalStrut(5));
-		panelOpciones.add(comboCriterios);
-		panelOpciones.add(Box.createVerticalStrut(10));
-		panelOpciones.add(checkRecursivo);
-		panelOpciones.add(Box.createVerticalStrut(5));
-		panelOpciones.add(labelInfo);
-		
-		int opcion = JOptionPane.showConfirmDialog(
-				this, 
-				panelOpciones,
-				"Ordenar Catálogo - Algoritmo Recursivo",
-				JOptionPane.OK_CANCEL_OPTION,
-				JOptionPane.PLAIN_MESSAGE);
-		
-		if (opcion == JOptionPane.OK_OPTION) {
-			String criterioSeleccionado = (String) comboCriterios.getSelectedItem();
-			boolean usarRecursivo = checkRecursivo.isSelected();
-			
-			if (criterioSeleccionado.equals("Seleccionar criterio...")) {
-				JOptionPane.showMessageDialog(
-						this, 
-						"Por favor, seleccione un criterio de ordenación válido.",
-						"Error",
-						JOptionPane.WARNING_MESSAGE);
-				return;
-			}
-			
-			// Ordenar según la opcion seleccionada
-			ordenarContenidos(criterioSeleccionado, usarRecursivo);
+		Object[] opciones = {
+				"Título (A-Z)",
+				"Título (Z-A)",
+				"Puntuación (Ascendente)",
+				"Puntuación (Descendente)"
+			};
+		String seleccion = (String) JOptionPane.showInputDialog(
+				this,
+				"Seleccione cómo ordenar el catálogo: \n\nUsando algoritmos recursivos Merge Sort",
+				"Ordenar Recursivamente",
+				JOptionPane.PLAIN_MESSAGE,
+				null,
+				opciones,
+				opciones[0]
+						);
+		if (seleccion != null) {
+			ordenarContenidos(seleccion);
 		}
 	}
-	
-	private void ordenarContenidos(String criterio, boolean usarRecursivo) {
+
+	private void ordenarContenidos(String criterio) {
 		ArrayList<Contenido> contenidosOrdenados = new ArrayList<>();
 		String mensaje = "";
 		
 		try {
 			switch(criterio) {
 				case "Título (A-Z)":
-					if (usarRecursivo) {
-						contenidosOrdenados = ordenador.ordenarPorTituloAscendente(listaContenidos);
-						mensaje = "Ordenado por Título (A-Z)";
-					} else {
-						contenidosOrdenados = ordenarPorTituloAscendenteIterativo(listaContenidos);
-						mensaje = "Ordenar por Título (A-Z) usando algoritmo iterativo";
-					}
+					contenidosOrdenados = ordenador.ordenarPorTituloAsc(listaContenidos);
+					mensaje = "Ordenado por Título (A-Z) usando Merge Sort recursivo";
 					break;
+			
 				case "Título (Z-A)":
-					if (usarRecursivo) {
-						contenidosOrdenados = ordenador.ordenarPorTituloDesscendente(listaContenidos);
-						mensaje = "Ordenado por Título (Z-A)";
-					} else {
-						contenidosOrdenados = ordenarPorTituloDescendenteIterativo(listaContenidos);
-						mensaje = "Ordenar por Título (Z-A) usando algoritmo iterativo";
-					}
+					contenidosOrdenados = ordenador.ordenarPorTituloDesc(listaContenidos);
+					mensaje = "Ordenado por Título (Z-A) usando Merge sort recursivo";
 					break;
-				case "Duración Ascendente":
-					if (usarRecursivo) {
-						contenidosOrdenados = ordenador.ordenarPorDuracionAsc(listaContenidos);
-						mensaje = "Ordenado por Duración Acendente usando Merge Sort recursivo";
-					} else {
-						contenidosOrdenados = ordenarPorDuracionAscIterativo(listaContenidos);
-						mensaje = "Ordenar por Duración Acendente usando algoritmo iterativo";
-					}
+				
+				case "Puntuación (Ascendente)":
+					contenidosOrdenados = ordenador.ordenarPorPuntuacionAsc(listaContenidos);
+					mensaje = "Ordenado por Puntuación Acendente usando Merge Sort recursivo";
+					break;
+				
+				case "Puntuación (Descendente)":
+					contenidosOrdenados = ordenador.ordenarPorPuntuacionDesc(listaContenidos);
+					mensaje = "Ordenado por Puntuación Descendente usando Merge Sort recursivo";
 					break;
 			}
 			// Actualizar la lista original
@@ -299,6 +260,12 @@ public class VentanaCatalogo extends JFrame{
 			scrollPortadas.revalidate();
 			scrollPortadas.repaint();
 			
+			JOptionPane.showMessageDialog(
+					this,
+					"Elementos ordenados",
+					"Ordenación Recursiva Completada",
+					JOptionPane.INFORMATION_MESSAGE);
+			
 			
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(this, 
@@ -309,35 +276,8 @@ public class VentanaCatalogo extends JFrame{
 		}
 	}
 	
-	// Métodos iterativos para comparación (pueden implementarse más adelante)
-	private ArrayList<Contenido> ordenarPorTituloAscendenteIterativo(ArrayList<Contenido> lista) {
-		ArrayList<Contenido> copia = new ArrayList<>(lista);
-		// Implementación Bubble Sort iterativo
-		for (int i = 0; i < copia.size() - 1; i++) {
-			for (int j = 0; j < copia.size() - i - 1; j++) {
-				if (copia.get(j).getTitulo().compareToIgnoreCase(copia.get(j+1).getTitulo()) > 0) {
-					Contenido temp = copia.get(j);
-					copia.set(j, copia.get(j+1));
-					copia.set(j+1, temp);
-				}
-			}
-		}
-		return copia;
-	}
 		
-	// Métodos placeholder para los demás criterios iterativos
-		private ArrayList<Contenido> ordenarPorTituloDescendenteIterativo(ArrayList<Contenido> lista) {
-			ArrayList<Contenido> copia = ordenarPorTituloAscendenteIterativo(lista);
-			java.util.Collections.reverse(copia);
-			return copia;
-		}
-		
-		private ArrayList<Contenido> ordenarPorDuracionDescendenteIterativo(ArrayList<Contenido> lista) {
-			ArrayList<Contenido> copia = ordenarPorDuracionAscendenteIterativo(lista);
-			java.util.Collections.reverse(copia);
-			return copia;
-		}
-
+	
 	//Metodo corregido por la IA
 	private JPanel anadirContenidos(ArrayList<Contenido> contenidos) {
 	    JPanel panelPrincipal = new JPanel();
